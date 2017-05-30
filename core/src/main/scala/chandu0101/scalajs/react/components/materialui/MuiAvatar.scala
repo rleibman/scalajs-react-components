@@ -21,7 +21,7 @@ case class MuiAvatar(
   /* The icon or letter's color. */
   color:           js.UndefOr[String]      = js.undefined,
   /* This is the SvgIcon or FontIcon to be used inside the avatar. */
-  icon:            js.UndefOr[ReactElement]  = js.undefined,
+  icon:            js.UndefOr[VdomElement]  = js.undefined,
   /* This is the size of the avatar in pixels. */
   size:            js.UndefOr[Int]           = js.undefined,
   /* If passed in, this component will render an img element. Otherwise, a div will be rendered. */
@@ -32,7 +32,7 @@ case class MuiAvatar(
   /**
     * @param children Can be used, for instance, to render a letter inside the avatar.
    */
-  def apply(children: js.UndefOr[ReactNode] = js.undefined) = {
+  def apply(children: js.UndefOr[VdomNode] = js.undefined) = {
     
     val props = JSMacro[MuiAvatar](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Avatar)

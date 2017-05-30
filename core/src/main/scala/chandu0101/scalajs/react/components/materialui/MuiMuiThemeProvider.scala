@@ -17,7 +17,7 @@ case class MuiMuiThemeProvider(
   muiTheme: js.UndefOr[js.Object]                     = js.undefined){
 
 
-  def apply(children: ReactElement*) = {
+  def apply(children: VdomElement*) = {
     
     val props = JSMacro[MuiMuiThemeProvider](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.MuiThemeProvider)

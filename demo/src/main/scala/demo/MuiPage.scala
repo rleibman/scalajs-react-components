@@ -5,7 +5,7 @@ import chandu0101.scalajs.react.components.materialui.MuiMuiThemeProvider
 import japgolly.scalajs.react._
 
 object MuiPage {
-  private val component = ReactComponentB[Unit]("MuiPage")
+  private val component = ScalaComponent.builder[Unit]("MuiPage")
     .render(_ =>
       WithAsyncScript("assets/material_ui-bundle.js")(
         MuiMuiThemeProvider()(MuiAvatarDemo()))

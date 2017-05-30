@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.materialui
 
 import chandu0101.scalajs.react.components.CssProperties
-import japgolly.scalajs.react.{Callback, JsComponentC, JsComponentType, JsComponentU, React, ReactMouseEventH, ReactNode, TopNode}
+import japgolly.scalajs.react.{Callback, JsComponentC, JsComponentType, JsComponentU, React, ReactMouseEventFromHtml, VdomNode, TopNode}
 
 import scala.scalajs.js
 @js.native
@@ -10,8 +10,8 @@ trait MuiSvgIconProps extends js.Any {
   def ref:          js.UndefOr[String]
   def color:        js.UndefOr[String]
   def hoverColor:   js.UndefOr[String]
-  def onMouseEnter: js.UndefOr[ReactMouseEventH => Callback]
-  def onMouseLeave: js.UndefOr[ReactMouseEventH => Callback]
+  def onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback]
+  def onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback]
   def style:        js.UndefOr[CssProperties]
   def viewBox:      js.UndefOr[String]
 }
@@ -22,11 +22,11 @@ object MuiSvgIcon {
               ref:          js.UndefOr[String]                       = js.undefined,
               color:        js.UndefOr[String]                     = js.undefined,
               hoverColor:   js.UndefOr[String]                     = js.undefined,
-              onMouseEnter: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
-              onMouseLeave: js.UndefOr[ReactMouseEventH => Callback] = js.undefined,
+              onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+              onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
               style:        js.UndefOr[CssProperties]                = js.undefined,
               viewBox:      js.UndefOr[String]                       = js.undefined)
-             (childOpt:     js.UndefOr[ReactNode]                    = js.undefined): JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
+             (childOpt:     js.UndefOr[VdomNode]                    = js.undefined): JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
 
       val props = js.Dynamic.literal()
       key.         foreach(v => props.updateDynamic("key")(v))
