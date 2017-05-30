@@ -51,7 +51,6 @@ object Mui extends js.Object {
   val StepContent:              js.Dynamic  = js.native
   val StepLabel:                js.Dynamic  = js.native
   val Stepper:                  js.Dynamic  = js.native
-  val Styles:                   MuiStyles   = js.native
   val Snackbar:                 js.Dynamic  = js.native
   val Subheader:                js.Dynamic  = js.native
   val Tab:                      js.Dynamic  = js.native
@@ -71,5 +70,5 @@ object Mui extends js.Object {
   val ToolbarGroup:             js.Dynamic  = js.native
   val ToolbarSeparator:         js.Dynamic  = js.native
   val ToolbarTitle:             js.Dynamic  = js.native
-  val Utils:                    MuiUtil     = js.native
+  val MuiThemeProvider:             js.Dynamic  = js.native
 }

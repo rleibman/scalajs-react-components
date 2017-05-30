@@ -1,6 +1,5 @@
 package demo
 
-import demo.routes.AppRouter
 import org.scalajs.dom
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
@@ -16,7 +15,6 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading", "")
       dom.document.body.className += " pg-loaded"
     }
-    AppCSS.load()
-    AppRouter.router().render(dom.document.getElementById("container"))
+    MuiPage().render(dom.document.getElementById("container"))
   }
 }

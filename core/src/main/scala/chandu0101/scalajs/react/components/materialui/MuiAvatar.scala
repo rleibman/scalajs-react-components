@@ -15,11 +15,11 @@ case class MuiAvatar(
   key:             js.UndefOr[String]        = js.undefined,
   ref:             js.UndefOr[String]        = js.undefined,
   /* The backgroundColor of the avatar. Does not apply to image avatars. */
-  backgroundColor: js.UndefOr[MuiColor]      = js.undefined,
+  backgroundColor: js.UndefOr[String]      = js.undefined,
   /* The css class name of the root `div` or `img` element. */
   className:       js.UndefOr[String]        = js.undefined,
   /* The icon or letter's color. */
-  color:           js.UndefOr[MuiColor]      = js.undefined,
+  color:           js.UndefOr[String]      = js.undefined,
   /* This is the SvgIcon or FontIcon to be used inside the avatar. */
   icon:            js.UndefOr[ReactElement]  = js.undefined,
   /* This is the size of the avatar in pixels. */

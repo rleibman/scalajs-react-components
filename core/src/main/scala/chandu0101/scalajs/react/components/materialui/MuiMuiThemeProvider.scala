@@ -14,7 +14,7 @@ import scala.scalajs.js.`|`
 case class MuiMuiThemeProvider(
   key:      js.UndefOr[String]                       = js.undefined,
   ref:      js.UndefOr[MuiMuiThemeProviderM => Unit] = js.undefined,
-  muiTheme: js.UndefOr[MuiTheme]                     = js.undefined){
+  muiTheme: js.UndefOr[js.Object]                     = js.undefined){
 
 
   def apply(children: ReactElement*) = {
