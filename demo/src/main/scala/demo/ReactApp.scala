@@ -1,6 +1,7 @@
 package demo
 
 import org.scalajs.dom
+
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
@@ -15,6 +16,6 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading", "")
       dom.document.body.className += " pg-loaded"
     }
-    MuiPage().render(dom.document.getElementById("container"))
+    MuiPage().renderIntoDOM(dom.document.getElementById("container"))
   }
 }

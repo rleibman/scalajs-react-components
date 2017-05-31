@@ -1,11 +1,14 @@
-package chandu0101.scalajs.react.components.materialui
+package chandu0101.scalajs.react.components
+package materialui
 
-import chandu0101.scalajs.react.components.CssProperties
-import japgolly.scalajs.react.{Callback, JsComponentC, JsComponentType, JsComponentU, React, ReactMouseEventFromHtml, VdomNode, TopNode}
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
+import japgolly.scalajs.react.vdom.VdomNode
+import japgolly.scalajs.react.{Callback, Children, JsComponent, ReactMouseEventFromHtml}
 
 import scala.scalajs.js
+
 @js.native
-trait MuiSvgIconProps extends js.Any {
+trait MuiSvgIconProps extends js.Object {
   def key:          js.UndefOr[String]
   def ref:          js.UndefOr[String]
   def color:        js.UndefOr[String]
@@ -26,7 +29,7 @@ object MuiSvgIcon {
               onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
               style:        js.UndefOr[CssProperties]                = js.undefined,
               viewBox:      js.UndefOr[String]                       = js.undefined)
-             (childOpt:     js.UndefOr[VdomNode]                    = js.undefined): JsComponentU[MuiSvgIconProps, js.Any, TopNode] = {
+             (children:     VdomNode*): UnmountedWithRawType[MuiSvgIconProps, Null, RawMounted] = {
 
       val props = js.Dynamic.literal()
       key.         foreach(v => props.updateDynamic("key")(v))
@@ -38,18 +41,17 @@ object MuiSvgIcon {
       style.       foreach(v => props.updateDynamic("style")(v))
       viewBox.     foreach(v => props.updateDynamic("viewBox")(v))
 
-      val f: JsComponentC[MuiSvgIconProps, js.Any, TopNode] =
-        React.createFactory(icon)
       val svgProps: MuiSvgIconProps =
         props.asInstanceOf[MuiSvgIconProps]
 
-      childOpt.fold(f(svgProps))(c => f(svgProps, c))
+      val Component = JsComponent[MuiSvgIconProps, Children.Varargs, Null](icon)
+      Component(svgProps)(children :_*)
     }
   }
 }
 
 @js.native
-trait MuiSvgIcon extends JsComponentType[MuiSvgIconProps, js.Any, TopNode]
+trait MuiSvgIcon extends js.Any
 
 @js.native
 trait MuiSvgIcons extends js.Object {

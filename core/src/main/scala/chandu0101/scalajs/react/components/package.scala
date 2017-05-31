@@ -52,12 +52,4 @@ package object components {
     @inline def asCbo(t1: T1, t2: T2, t3: T3): CallbackOption[R] =
       CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2, t3).toCBO)
   }
-
-  @js.native
-  @JSName("React")
-  object ReactJS extends js.Object {
-
-    def createElement(ctor: js.Any, props: js.Object, children: VdomNode*): VdomElement = js.native
-  }
-
 }

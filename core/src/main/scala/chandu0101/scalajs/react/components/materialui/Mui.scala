@@ -1,9 +1,9 @@
 package chandu0101.scalajs.react.components.materialui
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.JSGlobal
 
-@js.native @JSName("mui")
+@js.native @JSGlobal("mui")
 object Mui extends js.Object {
   val AppBar:                   js.Dynamic  = js.native
   val Avatar:                   js.Dynamic  = js.native

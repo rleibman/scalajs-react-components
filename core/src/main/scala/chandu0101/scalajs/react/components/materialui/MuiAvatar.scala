@@ -2,15 +2,16 @@ package chandu0101.scalajs.react.components
 package materialui
 
 import chandu0101.macros.tojs.JSMacro
-import japgolly.scalajs.react._
-import org.scalajs.dom
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
+import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+import japgolly.scalajs.react.{Children, JsComponent}
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 /**
  * This file is generated - submit issues instead of PR against it
  */
-    
+
 case class MuiAvatar(
   key:             js.UndefOr[String]        = js.undefined,
   ref:             js.UndefOr[String]        = js.undefined,
@@ -32,10 +33,9 @@ case class MuiAvatar(
   /**
     * @param children Can be used, for instance, to render a letter inside the avatar.
    */
-  def apply(children: js.UndefOr[VdomNode] = js.undefined) = {
-    
+  def apply(children: VdomNode*): UnmountedWithRawType[js.Object, Null, RawMounted] = {
+    val Component = JsComponent[js.Object, Children.Varargs, Null](Mui.Avatar)
     val props = JSMacro[MuiAvatar](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(Mui.Avatar)
-    f(props, children).asInstanceOf[ReactComponentU_]
+    Component(props)(children :_*)
   }
 }
