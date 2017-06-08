@@ -1,9 +1,9 @@
 package chandu0101.macros.tojs
 
 import japgolly.scalajs.react.CallbackTo
-import japgolly.scalajs.react.vdom.{VdomElement, VdomNode}
+import japgolly.scalajs.react.vdom.{ VdomElement, VdomNode }
 
-import scala.collection.{GenMap, GenTraversableOnce}
+import scala.collection.{ GenMap, GenTraversableOnce }
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js
@@ -77,21 +77,20 @@ object JSMacro {
         q"""$target"""
     }
 
-
-    val tpe    = c.weakTypeOf[T]
+    val tpe = c.weakTypeOf[T]
     val target = c.freshName[TermName](TermName("t"))
-    val props  = c.freshName[TermName](TermName("p"))
+    val props = c.freshName[TermName](TermName("p"))
 
     val fieldSymbols: List[Symbol] = tpe.decls.collectFirst {
       case m: MethodSymbol if m.isPrimaryConstructor => m
     }.get.paramLists.head
 
-    val fieldUpdates = fieldSymbols.map{
+    val fieldUpdates = fieldSymbols.map {
       f =>
-        val name      = f.asTerm.name
-        val decoded   = name.decodedName.toString
+        val name = f.asTerm.name
+        val decoded = name.decodedName.toString
 
-        if (isOptional(f.typeSignature)){
+        if (isOptional(f.typeSignature)) {
           val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
           q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
         } else {
@@ -101,8 +100,8 @@ object JSMacro {
     }
 
     q""" ($target: $tpe) => {
-      import scala.language.reflectiveCalls
-      import scalajs.js.JSConverters._
+//      import scala.language.reflectiveCalls
+//      import scalajs.js.JSConverters._
       val $props = scala.scalajs.js.Dynamic.literal()
       ..$fieldUpdates
       $props

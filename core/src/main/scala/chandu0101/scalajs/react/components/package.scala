@@ -3,14 +3,11 @@ package chandu0101.scalajs.react
 import japgolly.scalajs.react._
 import org.scalajs.dom.html
 
-import scala.reflect.ClassTag
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-import scala.scalajs.js.annotation.JSName
 
 package object components {
   type CssProperties = js.Any
-
 
   type ReactEventB = ReactEventFrom[html.Button]
   type ReactClipboardEventB = ReactClipboardEventFrom[html.Button]
@@ -29,7 +26,7 @@ package object components {
   /* this works here, but not in the general case!
    * (see https://github.com/scala-js/scala-js/pull/2070 )
    */
-  @deprecated("We need to find a better solution here")
+  @deprecated("We need to find a better solution here", "")
   private[components] implicit def UnionEvidence[A, B](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
     ab.asInstanceOf[js.Any]
 

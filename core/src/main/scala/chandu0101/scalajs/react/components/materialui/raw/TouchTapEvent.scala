@@ -1,10 +1,9 @@
 package chandu0101.scalajs.react.components.materialui.raw
 
-import japgolly.scalajs.react.ReactEventFrom
+import japgolly.scalajs.react._
 import org.scalajs.dom
 
 import scala.scalajs.js
-
 
 @js.native
 trait TouchTapEvent[+DOMEventTarget <: dom.Node] extends ReactEventFrom[DOMEventTarget] {

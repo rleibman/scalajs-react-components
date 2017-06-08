@@ -5,8 +5,8 @@ import scala.reflect.macros.blackbox.Context
 import scala.language.experimental.macros
 
 /**
-  * Shamelessly stolen from https://github.com/japgolly/scalajs-react/blob/master/gh-pages-macros/src/main/scala/ghpages/GhPagesMacros.scala
-  */
+ * Shamelessly stolen from https://github.com/japgolly/scalajs-react/blob/master/gh-pages-macros/src/main/scala/ghpages/GhPagesMacros.scala
+ */
 object GhPagesMacros {
   def exampleSource: String = macro GhPagesMacroImpls.exampleSource
 }
