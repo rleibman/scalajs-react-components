@@ -1,18 +1,17 @@
 package chandu0101.scalajs.react.components
 
-import japgolly.scalajs.react.CompScope._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 import japgolly.scalajs.react.component.builder.Lifecycle.ComponentWillReceiveProps
+import japgolly.scalajs.react.component.builder.Lifecycle
 
 case class TreeItem(item: Any, children: TreeItem*) {
   def apply(item: Any): TreeItem = this(item, Nil)
 }
 
 object ReactTreeView {
-
   trait Style {
 
     def reactTreeView = TagMod()
@@ -42,7 +41,9 @@ object ReactTreeView {
 
   }
 
-  type NodeC = DuringCallbackU[NodeProps, NodeState, NodeBackend]
+  type NodeC = japgolly.scalajs.react.component.Scala.MountedPure[NodeProps, NodeState, NodeBackend]
+
+  //  type NodeC = DuringCallbackU[NodeProps, NodeState, NodeBackend]
 
   case class State(
     filterText: String,
@@ -52,12 +53,12 @@ object ReactTreeView {
 
   class Backend($: BackendScope[Props, State]) {
 
-    def onNodeSelect(P: Props)(selected: NodeC): Callback = {
+    def onNodeSelect(props: Props)(selected: NodeC): Callback = {
       val removeSelection: Callback =
         $.state.flatMap(
           _.selectedNode
+            //            .filter(a => a.isMounted)
             .filterNot(_ == selected)
-            .filter(_.isMounted)
             .fold(Callback.empty)(_.modState(_.copy(selected = false)))
         )
 
@@ -67,12 +68,17 @@ object ReactTreeView {
       val setSelection: Callback =
         selected.modState(_.copy(selected = true))
 
-      val tell: Callback =
-        P.onItemSelect.asCbo(
-          selected.props.root.item.toString,
-          selected.props.parent,
-          selected.props.depth
-        )
+      val tell: CallbackTo[Unit] = {
+        selected.props.flatMap(nodeProps => {
+          props.onItemSelect.fold(Callback.empty)(fn => {
+            fn(
+              nodeProps.root.item.toString,
+              nodeProps.parent,
+              nodeProps.depth
+            )
+          })
+        })
+      }
 
       removeSelection >> updateThis >> setSelection >> tell
     }
@@ -101,7 +107,7 @@ object ReactTreeView {
 
     def childrenFromProps(P: NodeProps): CallbackTo[Option[Unit]] =
       $.modState(S => S.copy(children = if (S.children.isEmpty) P.root.children else Nil))
-        .conditionally(P.root.children.nonEmpty)
+        .when(P.root.children.nonEmpty)
 
     def onTreeMenuToggle(P: NodeProps)(e: ReactEventFromHtml): Callback =
       childrenFromProps(P) >> e.preventDefaultCB >> e.stopPropagationCB
@@ -181,9 +187,9 @@ object ReactTreeView {
     .initialStateFromProps(P => if (P.open) NodeState(P.root.children) else NodeState())
     .renderBackend[NodeBackend]
     .componentWillReceiveProps {
-      case japgolly.scalajs.react.component.builder.Lifecycle.ComponentWillReceiveProps(_$, newProps) =>
-        _$.modState(_.copy(children = if (newProps.open) newProps.root.children else Nil))
-          .conditionally(newProps.filterMode)
+      case componentWillReceiveProps =>
+        componentWillReceiveProps.modState(_.copy(children = if (componentWillReceiveProps.nextProps.open) componentWillReceiveProps.nextProps.root.children else Nil))
+          .when(componentWillReceiveProps.nextProps.filterMode)
           .void
     }
     .build
@@ -210,6 +216,6 @@ object ReactTreeView {
     key: js.UndefOr[js.Any] = js.undefined,
     style: Style = new Style {}
   ) =
-    component/*.set(key, ref)*/(Props(root, openByDefault, onItemSelect, showSearchBox, style))
+    component /*.set(key, ref)*/ (Props(root, openByDefault, onItemSelect, showSearchBox, style))
 
 }

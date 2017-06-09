@@ -11,6 +11,7 @@ object MuiTextFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
+  //TODO for some reason the vdomNodeFromString implicit is not working 
 
   val component = ScalaComponent.builder[Unit]("MuiTextFieldDemo")
     .render(P => {

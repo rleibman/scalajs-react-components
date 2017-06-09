@@ -96,6 +96,6 @@ object ReactListView {
     ref: js.UndefOr[String] = js.undefined,
     key: js.Any = {}
   ) =
-    component/*.set(key, ref)*/(Props(items, onItemSelect, showSearchBox, style))
+    component /*.set(key, ref)*/ (Props(items, onItemSelect, showSearchBox, style))
 
 }
