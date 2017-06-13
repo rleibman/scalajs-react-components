@@ -44,6 +44,8 @@ lazy val core =
     .settings(commonSettings)
     .settings(
       generateEui := {
+      	val genDir = sourceManaged.value
+      	genDir.mkdirs()
         val res = runner.value.run(
           "com.olvind.eui.EuiRunner",
           (fullClasspath in (gen, Runtime)).value.files,
@@ -58,6 +60,8 @@ lazy val core =
         pathFinder.get.filter(_.getAbsolutePath.contains("elemental"))
       },
       generateMui := {
+      	val genDir = sourceManaged.value
+      	genDir.mkdirs()
         val res = runner.value.run(
           "com.olvind.mui.MuiRunner",
           (fullClasspath in (gen, Runtime)).value.files,
@@ -71,6 +75,8 @@ lazy val core =
         pathFinder.get.filter(_.getAbsolutePath.contains("material"))
       },
       generateSui := {
+      	val genDir = sourceManaged.value
+      	genDir.mkdirs()
         val res = runner.value.run(
           "com.olvind.sui.SuiRunner",
           (fullClasspath in (gen, Runtime)).value.files,
@@ -91,15 +97,15 @@ lazy val core =
     .settings(
       sourceGenerators in Compile += generateMui,
       sourceGenerators in Compile += generateEui,
-      sourceGenerators in Compile += generateSui,
+//       sourceGenerators in Compile += generateSui,
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1" withSources(),
         "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1" withSources(),
-	"com.github.japgolly.scalacss" %%% "core" % "0.5.3"  withSources(),
-	"com.github.japgolly.scalacss" %%% "ext-react" % "0.5.3"  withSources(),
+		"com.github.japgolly.scalacss" %%% "core" % "0.5.3"  withSources(),
+		"com.github.japgolly.scalacss" %%% "ext-react" % "0.5.3"  withSources(),
         "org.scala-js" %%% "scalajs-dom" % "0.9.2" withSources(),
-	"org.scalacheck" %%% "scalacheck" % "1.13.5" % Test,
-	"org.scalatest"  %%% "scalatest"  % "3.0.3" % Test
+		"org.scalacheck" %%% "scalacheck" % "1.13.5" % Test,
+		"org.scalatest"  %%% "scalatest"  % "3.0.3" % Test
       )
     )
 
