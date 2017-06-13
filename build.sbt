@@ -88,10 +88,7 @@ lazy val core =
         )
         val pathFinder: PathFinder = sourceManaged.value ** "*.scala"
         pathFinder.get.filter(_.getAbsolutePath.contains("semanticui"))
-      },
-      generateSui <<= generateSui.dependsOn(npmUpdate in (gen, Compile)),
-      generateEui <<= generateEui.dependsOn(npmUpdate in (gen, Compile)),
-      generateMui <<= generateMui.dependsOn(npmUpdate in (gen, Compile))
+      }
     )
     
     .settings(
