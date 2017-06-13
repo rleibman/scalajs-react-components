@@ -20,8 +20,8 @@ object MuiPopoverDemo {
 
     val items: VdomNode =
       ts.map(
-        t => MuiMenuItem(value = str(t), primaryText = str(t))()
-      ).toJsArray
+        t => MuiMenuItem[String](value = str(t), primaryText = str(t))()
+      ).toTagMod
 
     def menu(S: State): VdomElement =
       <.div(
@@ -30,7 +30,7 @@ object MuiPopoverDemo {
           label,
           ^.width := "400px"
         ),
-        MuiDropDownMenu(
+        MuiDropDownMenu[String](
           onChange = action,
           value = str(fromState(S))
         )(items)

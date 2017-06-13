@@ -15,7 +15,7 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  case class Item(val id: String, val name: String)
+  case class Item(val id: String, val name: String) extends js.Any
 
   val items: Seq[Item] =
     Seq(
@@ -33,12 +33,12 @@ object MuiDropDownMenuDemo {
     def render(chosen: Item) =
       <.div(
         CodeExample(code, "MuiDropDownMenu")(
-          MuiDropDownMenu(
+          MuiDropDownMenu[Item](
             onChange = onChange,
             value = chosen
           )(
             items map {
-              case item => MuiMenuItem(key = item.id, value = item, primaryText = item.name)()
+              case item => MuiMenuItem[Item](key = item.id, value = item, primaryText = item.name)()
             }: _*
           )
         )

@@ -6,13 +6,14 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 
 import scala.scalajs.js
+import japgolly.scalajs.react.vdom._
 
 object MuiSelectFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  case class ChoiceId(value: String)
-  case class Choice(id: ChoiceId, text: String)
+  case class ChoiceId(value: String) extends js.Any
+  case class Choice(id: ChoiceId, text: String) extends js.Any
 
   case class Backend($: BackendScope[Seq[Choice], Choice]) {
     val onChange: (TouchTapEvent, Int, Choice) => Callback =

@@ -10,11 +10,11 @@ object ReactListViewDemo {
 
   object Style {
 
-    def listViewComponent = Seq(^.float := "left", ^.marginBottom := "2em")
+    def listViewComponent = TagMod(^.float := "left", ^.marginBottom := "2em")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
 
-    def listViewDemo = Seq(^.display := "flex")
+    def listViewDemo = TagMod(^.display := "flex")
   }
 
   val code = GhPagesMacros.exampleSource

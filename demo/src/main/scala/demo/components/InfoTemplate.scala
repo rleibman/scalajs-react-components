@@ -51,7 +51,7 @@ object InfoTemplate {
     componentFilePath: String,
     scalacss: Boolean = false,
     browsersTested: List[String] = List()
-  )(children: CtorType.ChildArg*) =
+  )(children: VdomNode*) =
 
     //    component.set(key, ref)(
     //      Props(browsersTested, componentFilePath, scalacss),

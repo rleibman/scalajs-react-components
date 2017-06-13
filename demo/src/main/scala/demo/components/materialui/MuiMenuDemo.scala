@@ -45,14 +45,14 @@ object MuiMenuDemo {
           onKeyDown = CallbackDebug.f1("onKeyDown"),
           onEscKeyDown = toggleOpen
         )(
-            MuiMenuItem(value = "bold", secondaryText = "⌘B", checked = true)("Bold"),
-            MuiMenuItem(value = "italic", secondaryText = "⌘I")("Italic"),
-            MuiMenuItem(value = "under", secondaryText = "⌘U")("Underline"),
-            MuiMenuItem(value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
-            MuiMenuItem(value = "super", secondaryText = "⌘.")("Superscript"),
-            MuiMenuItem(value = "sub", secondaryText = "⌘,")("Subscript"),
+            MuiMenuItem[String](value = "bold", secondaryText = "⌘B", checked = true)("Bold"),
+            MuiMenuItem[String](value = "italic", secondaryText = "⌘I")("Italic"),
+            MuiMenuItem[String](value = "under", secondaryText = "⌘U")("Underline"),
+            MuiMenuItem[String](value = "strike", secondaryText = "Alt+Shift+5")("Strikethrough"),
+            MuiMenuItem[String](value = "super", secondaryText = "⌘.")("Superscript"),
+            MuiMenuItem[String](value = "sub", secondaryText = "⌘,")("Subscript"),
             MuiDivider()(),
-            MuiMenuItem(value = "align")("Align")
+            MuiMenuItem[String](value = "align")("Align")
           )
       )
 

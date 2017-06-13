@@ -50,7 +50,7 @@ object CodeExample {
   def apply(
     code: String,
     title: String
-  )(children: CtorType.ChildArg*) = {
+  )(children: VdomNode*) = {
     //    component.set(key, ref)(Props(code, title), children: _*)
     component(Props(code, title))(children: _*)
   }

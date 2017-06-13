@@ -9,9 +9,9 @@ import org.scalajs.dom
 object ReactTreeViewDemo {
 
   object Style {
-    def treeViewDemo = Seq(^.display := "flex")
+    def treeViewDemo = TagMod(^.display := "flex")
 
-    def selectedContent = Seq(^.alignSelf := "center", ^.margin := "0 40px")
+    def selectedContent = TagMod(^.alignSelf := "center", ^.margin := "0 40px")
   }
 
   val code = GhPagesMacros.exampleSource

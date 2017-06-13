@@ -6,6 +6,7 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+import scala.scalajs.js
 
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
@@ -33,10 +34,10 @@ object MuiTabsDemo {
       <.div(
         CodeExample(code, "MuiTabs")(
           MuiTabs[Int](value = current, onChange = onChange)(
-            MuiTab(label = "Tab1", value = 1)(
+            MuiTab[Int](label = "Tab1", value = 1)(
               <.h3(Style.tabContent, "Tab1 Content")
             ),
-            MuiTab(label = "Tab2", value = 2)(
+            MuiTab[Int](label = "Tab2", value = 2)(
               <.h3(Style.tabContent, "Tab2 Content")
             )
           )

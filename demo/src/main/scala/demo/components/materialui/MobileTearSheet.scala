@@ -50,7 +50,7 @@ object MobileTearSheet {
   }
 
   val component = ScalaComponent.builder[Unit]("MobileTearSheet")
-    .renderBackend[Backend]
+    .renderBackendWithChildren[Backend]
     .build
 
   def apply(children: ReactNode*) = component(children: _*)

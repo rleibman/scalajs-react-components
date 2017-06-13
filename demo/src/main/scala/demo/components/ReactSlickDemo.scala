@@ -41,7 +41,7 @@ object ReactSlickDemo {
               infinite = false,
               draggable = true
             )(
-                cats map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }: _*
+                cats.map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }: _*
               )
           )
         )

@@ -243,7 +243,7 @@ object ReactPopOver {
     title: String = "",
     placement: String = "right",
     style: Style = new Style {}
-  )(children: CtorType.ChildArg*) =
+  )(children: VdomNode*) =
 
     //    component.set(key = key, ref = ref)(
     //      Props(title, placement, style),
