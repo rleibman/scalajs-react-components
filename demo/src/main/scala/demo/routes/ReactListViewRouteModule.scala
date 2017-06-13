@@ -7,9 +7,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactListViewRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactListViewInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactListViewInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactListViewDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactListViewDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

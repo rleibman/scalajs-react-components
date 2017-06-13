@@ -6,9 +6,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactSlickRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactSlickInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactSlickInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

@@ -7,15 +7,15 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactTableRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactTableInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactTableInfo().vdomElement)
 
-  case object Basic extends LeftRoute("Search ,Pagination", "basic", () => ReactTableBasic())
+  case object Basic extends LeftRoute("Search ,Pagination", "basic", () => ReactTableBasic().vdomElement)
 
-  case object Sorting extends LeftRoute("Sorting", "sort", () => ReactTableSorting())
+  case object Sorting extends LeftRoute("Sorting", "sort", () => ReactTableSorting().vdomElement)
 
-  case object CustomCell extends LeftRoute("Custom Cell", "customcell", () => ReactTableCustomCell())
+  case object CustomCell extends LeftRoute("Custom Cell", "customcell", () => ReactTableCustomCell().vdomElement)
 
-  case object CustomColumn extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize())
+  case object CustomColumn extends LeftRoute("Custom Colum Size", "customcolumsize", () => ReactTableCustomColumnSize().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Basic, Sorting, CustomCell, CustomColumn)
 

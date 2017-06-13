@@ -7,11 +7,11 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactSelectRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactSelectInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactSelectInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactSelectDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactSelectDemo().vdomElement)
 
-  case object AsyncDemo extends LeftRoute("Async demo", "async", () => ReactSelectAsyncDemo())
+  case object AsyncDemo extends LeftRoute("Async demo", "async", () => ReactSelectAsyncDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo, AsyncDemo)
 

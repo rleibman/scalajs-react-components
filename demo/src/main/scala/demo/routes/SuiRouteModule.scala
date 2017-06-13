@@ -5,25 +5,25 @@ import demo.components.semanticui._
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object SuiRouteModule {
-  case object Info extends LeftRoute("Info", "info", () => SuiInfo())
+  case object Info extends LeftRoute("Info", "info", () => SuiInfo().vdomElement)
 
-  case object Button extends LeftRoute("Button", "button", () => SuiButtonDemo())
+  case object Button extends LeftRoute("Button", "button", () => SuiButtonDemo().vdomElement)
 
-  case object Container extends LeftRoute("Container", "container", () => SuiContainerDemo())
+  case object Container extends LeftRoute("Container", "container", () => SuiContainerDemo().vdomElement)
 
-  case object Divider extends LeftRoute("Divider", "divider", () => SuiDividerDemo())
+  case object Divider extends LeftRoute("Divider", "divider", () => SuiDividerDemo().vdomElement)
 
-  case object Flag extends LeftRoute("Flag", "flag", () => SuiFlagDemo())
+  case object Flag extends LeftRoute("Flag", "flag", () => SuiFlagDemo().vdomElement)
 
-  case object Header extends LeftRoute("Header", "header", () => SuiHeaderDemo())
+  case object Header extends LeftRoute("Header", "header", () => SuiHeaderDemo().vdomElement)
 
-  case object Icon extends LeftRoute("Icon", "icon", () => SuiIconDemo())
+  case object Icon extends LeftRoute("Icon", "icon", () => SuiIconDemo().vdomElement)
 
-  case object Input extends LeftRoute("Input", "input", () => SuiInputDemo())
+  case object Input extends LeftRoute("Input", "input", () => SuiInputDemo().vdomElement)
 
-  case object SuiList extends LeftRoute("List", "list", () => SuiListDemo())
+  case object SuiList extends LeftRoute("List", "list", () => SuiListDemo().vdomElement)
 
-  case object Grid extends LeftRoute("Grid", "grid", () => SuiGridDemo())
+  case object Grid extends LeftRoute("Grid", "grid", () => SuiGridDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(
     Info,

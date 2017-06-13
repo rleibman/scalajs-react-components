@@ -7,9 +7,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactInfiniteRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactInfiniteInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactInfiniteInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactInfiniteDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactInfiniteDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

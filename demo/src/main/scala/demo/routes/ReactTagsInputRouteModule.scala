@@ -7,9 +7,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactTagsInputRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactTagsInputInfo())
+  case object Info extends LeftRoute("Info", "info", () => ReactTagsInputInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactTagsInputDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactTagsInputDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

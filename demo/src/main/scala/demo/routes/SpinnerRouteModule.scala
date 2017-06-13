@@ -7,9 +7,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object SpinnerRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => SpinnerInfo())
+  case object Info extends LeftRoute("Info", "info", () => SpinnerInfo().vdomElement)
 
-  case object Demo extends LeftRoute("Demo", "demo", () => SpinnerDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => SpinnerDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

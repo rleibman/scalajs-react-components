@@ -16,17 +16,17 @@ object MuiRouteModule {
 
   case object Avatar extends LeftRoute("Avatar", "avatar", () => MuiAvatarDemo())
 
-  case object Tabs extends LeftRoute("Tabs", "tabs", () => MuiTabsDemo())
+  case object Tabs extends LeftRoute("Tabs", "tabs", () => MuiTabsDemo().vdomElement)
 
-  case object Buttons extends LeftRoute("Buttons", "buttons", () => MuiButtonsDemo())
+  case object Buttons extends LeftRoute("Buttons", "buttons", () => MuiButtonsDemo().vdomElement)
 
-  case object DatePicker extends LeftRoute("Date Picker", "datepicker", () => MuiDatePickerDemo())
+  case object DatePicker extends LeftRoute("Date Picker", "datepicker", () => MuiDatePickerDemo().vdomElement)
 
-  case object Dialog extends LeftRoute("Dialog", "dialog", () => MuiDialogDemo())
+  case object Dialog extends LeftRoute("Dialog", "dialog", () => MuiDialogDemo().vdomElement)
 
-  case object DropDownMenu extends LeftRoute("DropDown Menu", "dropdownmenu", () => MuiDropDownMenuDemo())
+  case object DropDownMenu extends LeftRoute("DropDown Menu", "dropdownmenu", () => MuiDropDownMenuDemo().vdomElement)
 
-  case object Paper extends LeftRoute("Paper", "paper", () => MuiPaperDemo())
+  case object Paper extends LeftRoute("Paper", "paper", () => MuiPaperDemo().vdomElement)
 
   case object Popover extends LeftRoute("Popover", "popover", () => MuiPopoverDemo())
 
@@ -34,29 +34,29 @@ object MuiRouteModule {
 
   case object ThemeProvider extends LeftRoute("Themes", "themes", () => MuiThemeProviderDemo())
 
-  case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo())
+  case object Progress extends LeftRoute("Progress Bars", "progress", () => MuiProgressDemo().vdomElement)
 
   case object SelectField extends LeftRoute("Select Field", "selectfield", () => MuiSelectFieldDemo())
 
-  case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackbarDemo())
+  case object SnackBar extends LeftRoute("SnackBar", "snackbar", () => MuiSnackbarDemo().vdomElement)
 
-  case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo())
+  case object Slider extends LeftRoute("Slider", "slider", () => MuiSliderDemo().vdomElement)
 
-  case object SvgIcon extends LeftRoute("Svg icons", "svgicon", () => MuiSvgIconDemo())
+  case object SvgIcon extends LeftRoute("Svg icons", "svgicon", () => MuiSvgIconDemo().vdomElement)
 
-  case object TimePicker extends LeftRoute("Time Picker", "timepicker", () => MuiTimePickerDemo())
+  case object TimePicker extends LeftRoute("Time Picker", "timepicker", () => MuiTimePickerDemo().vdomElement)
 
   case object Switches extends LeftRoute("Switches", "switches", () => MuiSwitchesDemo())
 
-  case object Toolbar extends LeftRoute("Toolbar", "toolbar", () => MuiToolbarDemo())
+  case object Toolbar extends LeftRoute("Toolbar", "toolbar", () => MuiToolbarDemo().vdomElement)
 
-  case object Drawer extends LeftRoute("Drawer", "drawer", () => MuiDrawerDemo())
+  case object Drawer extends LeftRoute("Drawer", "drawer", () => MuiDrawerDemo().vdomElement)
 
-  case object Menu extends LeftRoute("Menus", "menus", () => MuiMenuDemo())
+  case object Menu extends LeftRoute("Menus", "menus", () => MuiMenuDemo().vdomElement)
 
-  case object MList extends LeftRoute("List", "list", () => MuiListDemo())
+  case object MList extends LeftRoute("List", "list", () => MuiListDemo().vdomElement)
 
-  case object Table extends LeftRoute("Table", "table", () => MuiTableDemo())
+  case object Table extends LeftRoute("Table", "table", () => MuiTableDemo().vdomElement)
 
   val menu: List[LeftRoute] = List(
     Info,

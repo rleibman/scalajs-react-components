@@ -7,17 +7,17 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object GoogleMapRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => GoogleMapInfo())
+  case object Info extends LeftRoute("Info", "info", () => GoogleMapInfo().vdomElement)
 
-  case object Basic extends LeftRoute("Basic Map", "basic", () => GoogleMapBasic())
+  case object Basic extends LeftRoute("Basic Map", "basic", () => GoogleMapBasic().vdomElement)
 
-  case object Marker extends LeftRoute("Map With Markers", "markers", () => GoogleMapMarkers())
+  case object Marker extends LeftRoute("Map With Markers", "markers", () => GoogleMapMarkers().vdomElement)
 
-  case object MutableMarker extends LeftRoute("Mutable Markers", "mutableMarkers", () => MutableGoogleMapMarkers())
+  case object MutableMarker extends LeftRoute("Mutable Markers", "mutableMarkers", () => MutableGoogleMapMarkers().vdomElement)
 
-  case object MarkerIcon extends LeftRoute("Custom Marker Icon", "markericon", () => GoogleMapCustomMarkerIcon())
+  case object MarkerIcon extends LeftRoute("Custom Marker Icon", "markericon", () => GoogleMapCustomMarkerIcon().vdomElement)
 
-  case object MarkerInfoWindow extends LeftRoute("Marker Info Window", "markerinfowindow", () => GoogleMapMarkerInfoWindow())
+  case object MarkerInfoWindow extends LeftRoute("Marker Info Window", "markerinfowindow", () => GoogleMapMarkerInfoWindow().vdomElement)
 
   val menu: List[LeftRoute] = List(Info, Basic, Marker, MutableMarker, MarkerIcon, MarkerInfoWindow)
 
