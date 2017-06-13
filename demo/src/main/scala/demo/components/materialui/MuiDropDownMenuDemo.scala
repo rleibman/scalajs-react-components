@@ -39,7 +39,7 @@ object MuiDropDownMenuDemo {
           )(
             items map {
               case item => MuiMenuItem[Item](key = item.id, value = item, primaryText = item.name)()
-            }: _*
+            }
           )
         )
       )

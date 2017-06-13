@@ -6,6 +6,7 @@ import chandu0101.scalajs.react.components.reactselect._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
 import japgolly.scalajs.react.vdom._
@@ -38,7 +39,7 @@ object ReactSelectAsyncDemo {
         t.modState(_.copy(value = chosen)) >>
           Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")
 
-    val valueRenderer: ValueOption[MyValue] => VdomNode =
+    val valueRenderer: ValueOption[MyValue] => ReactNode =
       vo =>
         <.div(
           <.h3(vo.title),
@@ -46,7 +47,7 @@ object ReactSelectAsyncDemo {
           <.small(vo.value.toString)
         )
 
-    val optionRenderer: ValueOption[MyValue] => VdomNode =
+    val optionRenderer: ValueOption[MyValue] => ReactNode =
       vo =>
         <.div(
           "Option: ",

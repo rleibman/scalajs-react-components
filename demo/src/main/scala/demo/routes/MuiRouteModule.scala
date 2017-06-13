@@ -12,7 +12,7 @@ object MuiRouteModule {
 
   case object AppBar extends LeftRoute("AppBar", "appbar", () => MuiAppBarDemo().vdomElement)
 
-  case object AutoComplete extends LeftRoute("AutoComplete", "autocomplete", () => MuiAutoCompleteDemo())
+  case object AutoComplete extends LeftRoute("AutoComplete", "autocomplete", () => MuiAutoCompleteDemo().vdomElement)
 
   case object Avatar extends LeftRoute("Avatar", "avatar", () => MuiAvatarDemo())
 
@@ -60,7 +60,7 @@ object MuiRouteModule {
 
   val menu: List[LeftRoute] = List(
     Info,
-    Updates,
+    //    Updates,
     AppBar,
     AutoComplete,
     Avatar,

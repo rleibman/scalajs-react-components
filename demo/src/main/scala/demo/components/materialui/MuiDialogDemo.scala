@@ -8,7 +8,6 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
-import japgolly.scalajs.react.vdom._
 
 object MuiDialogDemo {
   val code = GhPagesMacros.exampleSource
@@ -31,7 +30,7 @@ object MuiDialogDemo {
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {
-      val actions: VdomNode = js.Array(
+      val actions = TagMod(
         MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
         MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
       )

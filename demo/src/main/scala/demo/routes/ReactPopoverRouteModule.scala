@@ -8,18 +8,18 @@ import demo.pages.ReactPopoverPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactPopoverRouteModule {
-  case object Info extends LeftRoute("Info", "info", () => <.div()())
+  case object Info extends LeftRoute("Info", "info", () => ReactPopoverInfo().vdomElement)
 
-  //  case object Demo extends LeftRoute("Demo", "demo", () => ReactPopoverDemo())
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactPopoverDemo().vdomElement)
 
-  val menu: List[LeftRoute] = List(Info) //, Demo)
+  val menu: List[LeftRoute] = List(Info, Demo)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
 
     import dsl._
 
     menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => <.div())).reduce(_ | _)
+      staticRoute(i.route, i) ~> renderR(r => ReactPopoverPage(i, r))).reduce(_ | _)
 
   }
 }

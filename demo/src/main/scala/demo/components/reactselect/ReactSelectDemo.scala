@@ -5,6 +5,7 @@ package reactselect
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.reactselect._
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js

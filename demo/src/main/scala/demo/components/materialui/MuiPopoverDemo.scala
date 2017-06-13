@@ -19,9 +19,9 @@ object MuiPopoverDemo {
       (e, idx, any) => set(ts(idx))
 
     val items: VdomNode =
-      ts.map(
+      ts map (
         t => MuiMenuItem[String](value = str(t), primaryText = str(t))()
-      ).toTagMod
+      )
 
     def menu(S: State): VdomElement =
       <.div(
