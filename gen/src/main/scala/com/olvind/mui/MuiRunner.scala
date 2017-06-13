@@ -2,7 +2,7 @@ package com.olvind
 package mui
 
 import ammonite.ops.FileType.Dir
-import ammonite.ops.{ Path, cwd }
+import ammonite.ops.{ Path, pwd }
 
 import scala.util.{ Failure, Success, Try }
 
@@ -10,12 +10,12 @@ object MuiRunner extends App {
   object ExistingFolder {
     def unapply(s: String): Option[Path] =
       Try {
-        val p = Path(s, cwd)
+        val p = Path(s, pwd)
         (p, p.fileType)
       } match {
         case Success((p, Dir)) =>
           Some(p)
-        case Success((p, other)) =>
+        case Success((p, _)) =>
           System.err.println(s"Illegal argument: s. must be folder")
           None
         case Failure(th) =>

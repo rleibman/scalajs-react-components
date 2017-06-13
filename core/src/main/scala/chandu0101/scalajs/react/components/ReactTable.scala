@@ -5,7 +5,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.collection.immutable
 import scala.scalajs.js.Date
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
 
 object ReactTable {

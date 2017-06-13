@@ -5,7 +5,7 @@ package reactselect
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 
 object ReactSelectInfo {
 

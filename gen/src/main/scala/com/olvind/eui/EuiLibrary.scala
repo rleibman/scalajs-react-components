@@ -21,7 +21,7 @@ case class EuiLibrary(base: Path) extends Library {
 
   val components: Seq[ComponentDef] =
     Seq(
-      ComponentDef(CompName("ElementalAlert")),
+      // ComponentDef(CompName("ElementalAlert")),
       // ComponentDef(CompName("BlankState")),
       // ComponentDef(CompName("BlankStateHeading")),
       // ComponentDef(CompName("ButtonGroup")),

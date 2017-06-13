@@ -2,7 +2,7 @@ package demo.components
 
 import japgolly.scalajs.react._
 
-import scalacss.Defaults._
+import scalacss.ProdDefaults._
 
 object ReactSlickInfo {
 

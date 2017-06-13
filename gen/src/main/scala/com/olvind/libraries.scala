@@ -27,7 +27,7 @@ trait Library {
   def indexNames: Set[String]
   def packageName: String
 
-  @deprecated
+  @deprecated("", "")
   final def prefix: String =
     prefixOpt getOrElse ""
 }

@@ -17,7 +17,7 @@ object JSMacro {
     val toJS: js.Object
   }
 
-  implicit def apply[T]: T => js.Object = macro applyImpl[T]
+  def apply[T]: T => js.Object = macro applyImpl[T]
 
   def applyImpl[T: c.WeakTypeTag](c: blackbox.Context): c.Tree = {
     import c.universe._
@@ -90,13 +90,14 @@ object JSMacro {
         val name = f.asTerm.name
         val decoded = name.decodedName.toString
 
-        if (isOptional(f.typeSignature)) {
+        val res = if (isOptional(f.typeSignature)) {
           val valueTree = getJSValueTree(q"v", f.typeSignature.typeArgs.head)
           q"""$target.$name.foreach(v => $props.updateDynamic($decoded)($valueTree))"""
         } else {
           val valueTree = getJSValueTree(q"$target.$name", f.typeSignature)
           q"""$props.updateDynamic($decoded)($valueTree)"""
         }
+        res
     }
 
     q""" ($target: $tpe) => {
