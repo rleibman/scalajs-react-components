@@ -9,77 +9,32 @@ lazy val macros =
     .settings(
       name := "scalajs-react-components-macros",
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core" % "1.0.0" withSources(),
-        "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.0" withSources(),
+        "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1" withSources(),
+        "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1" withSources(),
 	"org.scalatest"  %%% "scalatest"  % "3.0.3" % Test
       )
     )
 
-lazy val generateMui = TaskKey[Seq[File]]("generateMui")
-lazy val MuiVersion = "0.18.1"
-lazy val MuiLocation = "/home/rleibman/workspace.scala/material-ui/node_modules/material-ui"
-
-lazy val generateEui = TaskKey[Seq[File]]("generateEui")
-lazy val EuiVersion = "0.6.1"
-lazy val EuiLocation = "/home/rleibman/workspace.scala/elemental/node_modules/elemental"
-
-lazy val generateSui = TaskKey[Seq[File]]("generateSui")
-lazy val SuiVersion = "0.68.5"
-lazy val SuiLocation = "/home/rleibman/workspace.scala/semantic/node_modules/semantic-ui-react/dist/commonjs"
-
 lazy val gen =
   project
     .in(file("gen"))
-    .settings(commonSettings)
+    .enablePlugins(ScalaJSBundlerPlugin)
+    .settings(commonSettings, preventPublication, npmGenSettings, npmDevSettings)
     .settings(
       organization := "com.olvind",
       name := "generator",
-      generateMui := {
-        val cp = (fullClasspath in Runtime).value
-	val r  = runner.value
-	val genDir = sourceManaged.value
-	val s = streams.value
-	
-	val options = List(MuiLocation, genDir.absolutePath)
-	
-        val res = r.run("com.olvind.mui.MuiRunner", cp.files, options, s.log)
-	val pathFinder: PathFinder = genDir ** "*.scala"
-	val files = pathFinder.get.filter(_.getAbsolutePath.contains("material"))
-	files
-      },
-      generateEui := {
-        val cp = (fullClasspath in Runtime).value
-	val r  = runner.value
-	val genDir = sourceManaged.value
-	val s = streams.value
-	genDir.mkdirs()
-	val options = List(EuiLocation, genDir.absolutePath)
-	
-        val res = r.run("com.olvind.eui.EuiRunner", cp.files, options, s.log)
-
-	val pathFinder: PathFinder = genDir ** "*.scala"
-	val files = pathFinder.get.filter(_.getAbsolutePath.contains("elemental"))
-	files
-      },
-      generateSui := {
-        val cp = (fullClasspath in Runtime).value
-	val r  = runner.value
-	val genDir = sourceManaged.value
-	val s = streams.value
-	genDir.mkdirs()
-	val options = List(SuiLocation, genDir.absolutePath)
-	
-        val res = r.run("com.olvind.sui.SuiRunner", cp.files, options, s.log)
-
-	val pathFinder: PathFinder = genDir ** "*.scala"
-	val files = pathFinder.get.filter(_.getAbsolutePath.contains("semanticui"))
-	files
-      },
+      version in webpack := "2.6.1",
+      version in installWebpackDevServer := "2.6.1",
+      webpackConfigFile := Some(baseDirectory.value / "bundles" / "custom.webpack.config.js"),
       libraryDependencies ++= Seq(
         "com.lihaoyi"   %% "ammonite-ops"   % "0.9.5",
         "org.scalatest" %% "scalatest"      % "3.0.3" % Test
       )
     )
+
+lazy val generateMui = TaskKey[Seq[File]]("generateMui")
+lazy val generateEui = TaskKey[Seq[File]]("generateEui")
+lazy val generateSui = TaskKey[Seq[File]]("generateSui")
 
 lazy val core =
   project
@@ -88,14 +43,58 @@ lazy val core =
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings)
     .settings(
-      sourceGenerators in Compile += (generateMui in gen),
-      sourceGenerators in Compile += (generateEui in gen),
-//      sourceGenerators in Compile += (generateSui in gen),
+      generateEui := {
+        val res = runner.value.run(
+          "com.olvind.eui.EuiRunner",
+          (fullClasspath in (gen, Runtime)).value.files,
+          List(
+            (npmUpdate in (gen, Compile)).value / "node_modules" / "elemental",
+            sourceManaged.value
+          ) map (_.absolutePath),
+          streams.value.log
+        )
+
+        val pathFinder: PathFinder = sourceManaged.value ** "*.scala"
+        pathFinder.get.filter(_.getAbsolutePath.contains("elemental"))
+      },
+      generateMui := {
+        val res = runner.value.run(
+          "com.olvind.mui.MuiRunner",
+          (fullClasspath in (gen, Runtime)).value.files,
+          List(
+            (npmUpdate in (gen, Compile)).value / "node_modules" / "material-ui",
+            sourceManaged.value
+          ) map (_.absolutePath),
+          streams.value.log
+        )
+        val pathFinder: PathFinder = sourceManaged.value ** "*.scala"
+        pathFinder.get.filter(_.getAbsolutePath.contains("material"))
+      },
+      generateSui := {
+        val res = runner.value.run(
+          "com.olvind.sui.SuiRunner",
+          (fullClasspath in (gen, Runtime)).value.files,
+          List(
+            (npmUpdate in (gen, Compile)).value / "node_modules" / "semantic-ui-react" / "dist" / "commonjs",
+            sourceManaged.value
+          ) map (_.absolutePath),
+          streams.value.log
+        )
+        val pathFinder: PathFinder = sourceManaged.value ** "*.scala"
+        pathFinder.get.filter(_.getAbsolutePath.contains("semanticui"))
+      },
+      generateSui <<= generateSui.dependsOn(npmUpdate in (gen, Compile)),
+      generateEui <<= generateEui.dependsOn(npmUpdate in (gen, Compile)),
+      generateMui <<= generateMui.dependsOn(npmUpdate in (gen, Compile))
+    )
+    
+    .settings(
+      sourceGenerators in Compile += generateMui,
+      sourceGenerators in Compile += generateEui,
+      sourceGenerators in Compile += generateSui,
       libraryDependencies ++= Seq(
-	"me.lessis" %%% "semverfi" % "0.1.8" withSources(),
-	"com.lihaoyi" %%% "upickle" % "0.4.4" withSources(),
-        "com.github.japgolly.scalajs-react" %%% "core" % "1.0.0" withSources(),
-        "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.0" withSources(),
+        "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1" withSources(),
+        "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1" withSources(),
 	"com.github.japgolly.scalacss" %%% "core" % "0.5.3"  withSources(),
 	"com.github.japgolly.scalacss" %%% "ext-react" % "0.5.3"  withSources(),
         "org.scala-js" %%% "scalajs-dom" % "0.9.2" withSources(),
@@ -152,21 +151,26 @@ lazy val commonSettings =
                  url("http://www.apache.org/licenses/LICENSE-2.0")),
     mappings.in(Compile, packageBin) += baseDirectory.in(ThisBuild).value / "LICENSE" -> "LICENSE",
 	scalacOptions ++= Seq(
-	  "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
 	  "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
-	  "-encoding", "utf-8",                // Specify character encoding used by source files.
 	  "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
+	  "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
+	  "-language:implicitConversions",     // Allow definition of implicit functions called views
+	  "-language:postfixOps",
+	  "-Ypatmat-exhaust-depth","80",
+	  "-language:existentials"             // Existential types (besides wildcard types) can be written and inferred
+	),
+/*
+	scalacOptions ++= Seq(
+"-Xprint:typer", // Give detail info about macros
+	  "-encoding", "utf-8",                // Specify character encoding used by source files.
 	//  "-Ywarn-dead-code",                  // Warn when dead code is identified.
 	//  "-Yno-adapted-args",                 // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
 	  "-Ywarn-numeric-widen",              // Warn when numerics are widened.
-	  "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
+//RL	  "-Ywarn-value-discard",              // Warn when non-Unit expression results are unused.
 	  "-Xfuture",                          // Turn on future language features.
-	  "-Ywarn-unused:imports",             // Warn if an import selector is not referenced.
-	  "-language:existentials",            // Existential types (besides wildcard types) can be written and inferred
+//RL	  "-Ywarn-unused:imports",             // Warn if an import selector is not referenced.
 	  "-language:experimental.macros",     // Allow macro definition (besides implementation and application)
 	  "-language:higherKinds",             // Allow higher-kinded types
-	  "-language:implicitConversions",      // Allow definition of implicit functions called views
-	  "-language:postfixOps",
 	  "-explaintypes",                     // Explain type errors in more detail.
 	  "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
 	//  "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
@@ -194,14 +198,14 @@ lazy val commonSettings =
 	  "-Ywarn-infer-any",                  // Warn when a type argument is inferred to be `Any`.
 	  "-Ywarn-nullary-override",           // Warn when non-nullary `def f()' overrides nullary `def f'.
 //	  "-Xlog-implicits",                   // Increase info about for some errors
-	
-	  "-Ywarn-nullary-unit",               // Warn when nullary methods return Unit.
-	  "-Ywarn-unused:implicits",           // Warn if an implicit parameter is unused.
-	  "-Ywarn-unused:locals",              // Warn if a local definition is unused.
-	  "-Ywarn-unused:params",              // Warn if a value parameter is unused.
-	  "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
-	  "-Ywarn-unused:privates"            // Warn if a private member is unused.
+	  "-Ywarn-nullary-unit"               // Warn when nullary methods return Unit.
+//RL	  "-Ywarn-unused:implicits",           // Warn if an implicit parameter is unused.
+//RL	  "-Ywarn-unused:locals",              // Warn if a local definition is unused.
+//RL	  "-Ywarn-unused:params",              // Warn if a value parameter is unused.
+//RL	  "-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
+//RL	  "-Ywarn-unused:privates"            // Warn if a private member is unused.
 ),
+*/
     unmanagedSourceDirectories.in(Compile) := Seq(scalaSource.in(Compile).value),
     unmanagedSourceDirectories.in(Test) := Seq(scalaSource.in(Test).value)
 )
@@ -232,20 +236,39 @@ lazy val publicationSettings = Seq(
           </developers>
 )
 
-val reactVersion = "15.5.4"
+lazy val SuiVersion = "0.68.5"
+lazy val EuiVersion = "0.6.1"
+lazy val MuiVersion = "0.18.1"
+lazy val reactVersion = "15.5.4"
 
-lazy val npmSettings = Seq(
+lazy val npmGenSettings = Seq(
   npmDependencies.in(Compile) := Seq(
-    "elemental" ->  "0.6.1",
-    "highlight.js" ->  "9.9.0",
-    "material-ui" ->  "0.18.1",
     "react" ->  reactVersion,
     "react-dom" ->  reactVersion,
     "react-addons-create-fragment" ->  reactVersion,
-    "react-addons-css-transition-group" ->  "2.5.2",
-    "react-addons-pure-render-mixin" ->  "2.5.2",
-    "react-addons-transition-group" ->  "2.5.2",
-    "react-addons-update" ->  "2.5.2",
+    "react-addons-css-transition-group" ->  "15.0.2",
+    "react-addons-pure-render-mixin" ->  "15.5.2",
+    "react-addons-transition-group" ->  "15.0.0",
+    "react-addons-update" ->  "15.5.2",
+    "react-tap-event-plugin" ->  "2.0.1",
+    "elemental" ->  EuiVersion,
+    "material-ui" ->  MuiVersion,
+    "semantic-ui-react" ->  SuiVersion
+  )
+)
+
+lazy val npmSettings = Seq(
+  npmDependencies.in(Compile) := Seq(
+    "elemental" ->  EuiVersion,
+    "highlight.js" ->  "9.9.0",
+    "material-ui" ->  MuiVersion,
+    "react" ->  reactVersion,
+    "react-dom" ->  reactVersion,
+    "react-addons-create-fragment" ->  reactVersion,
+    "react-addons-css-transition-group" ->  "15.0.2",
+    "react-addons-pure-render-mixin" ->  "15.5.2",
+    "react-addons-transition-group" ->  "15.0.0",
+    "react-addons-update" ->  "15.5.2",
     "react-geomicons" ->  "2.1.0",
     "react-infinite" ->  "0.11.0",
     "react-select" ->  "1.0.0-rc.5",
@@ -253,7 +276,7 @@ lazy val npmSettings = Seq(
     "react-spinner" ->  "0.2.7",
     "react-tagsinput" ->  "3.16.1",
     "react-tap-event-plugin" ->  "2.0.1",
-    "semantic-ui-react" ->  "0.68.3",
+    "semantic-ui-react" ->  SuiVersion,
     "svg-loader" ->  "0.0.2"
   )
 )
