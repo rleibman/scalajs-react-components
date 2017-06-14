@@ -41,7 +41,6 @@ object EuiModalDemo {
                 label = "Email",
                 `type` = "email",
                 name = "email",
-                placeholder = "name@example.com",
                 required = true
               )()
             ),
@@ -50,7 +49,6 @@ object EuiModalDemo {
                 label = "Password",
                 `type` = "password",
                 name = "password",
-                placeholder = "Min 8 chars",
                 required = true
               )()
             ),
@@ -93,7 +91,6 @@ object EuiModalDemo {
                   label = "Email",
                   `type` = "email",
                   name = "email",
-                  placeholder = "name@example.com",
                   required = true
                 )()
               ),
@@ -102,7 +99,6 @@ object EuiModalDemo {
                   label = "Password",
                   `type` = "password",
                   name = "password",
-                  placeholder = "Min 8 chars",
                   required = true
                 )()
               )

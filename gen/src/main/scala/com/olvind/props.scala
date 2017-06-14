@@ -8,8 +8,21 @@ final case class ParsedComponent(
 
   def name = definition.name
 
-  val childrenOpt: Option[ParsedProp] =
-    fields.find(_.name.value == "children")
+  val childrenOpt: Option[ParsedProp] = {
+    val field = fields.find(_.name.value == "children")
+    if (field.isEmpty && definition.forceChildren) {
+      Some(ParsedProp(
+        name = PropName("chidren"),
+        isRequired = true,
+        baseType = Normal("VdomNode"),
+        commentOpt = None,
+        deprecatedMsg = None,
+        inheritedFrom = None
+      ))
+    } else {
+      field
+    }
+  }
 
   val genericParams: Seq[ParsedGeneric] =
     fields.foldLeft(Map.empty[String, Boolean]) {

@@ -25,7 +25,7 @@ object EuiButtonsDemo {
 
     def renderButtonVariants(list: (ButtonType, String)*) =
       <.div(
-        list.map(t => EuiButton(`type` = t._1)(t._2))
+        list.map(t => EuiButton(`type` = t._1)(t._2)).toTagMod
       )
 
     def render =
@@ -37,7 +37,7 @@ object EuiButtonsDemo {
           <.h2("Fill Buttons"),
           renderButtonVariants(
             (ButtonType.primary, "Primary"),
-            (ButtonType.succcess, "Success"),
+            (ButtonType.success, "Success"),
             (ButtonType.warning, "Warning"),
             (ButtonType.danger, "Danger")
           ),

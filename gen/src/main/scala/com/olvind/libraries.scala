@@ -6,7 +6,8 @@ final case class ComponentDef(
   name: CompName,
   shared: Option[ComponentDef] = None,
   multipleChildren: Boolean = true,
-  domeTypeOpt: Option[DomType] = Some(DomElement)
+  domeTypeOpt: Option[DomType] = Some(DomElement),
+  forceChildren: Boolean = false
 )
 
 trait TypeMapper {

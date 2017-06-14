@@ -60,7 +60,7 @@ object EuiFormsDemo {
     }
 
     def validateConfirm(password: String) = {
-      $.state.map(_.inputPassword == password).runNow()
+      $.state.map(_.inputPassword == password)
     }
 
     def handleSearch(e: ReactEventFromHtml) = {
@@ -81,7 +81,7 @@ object EuiFormsDemo {
             EuiFormInput(autofocus = true, `type` = "password", name = "basic-form-input-password")()
           ),
           EuiFormField()(
-            EuiCheckBox(label = "Check It")()
+            EuiCheckbox(label = "Check It")()
           ),
           EuiButton()("Submit")
         )
@@ -98,10 +98,10 @@ object EuiFormsDemo {
             FormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
           ),
           EuiFormField(offsetAbsentLabel = true)(
-            CheckBox(label = "Check It")()
+            EuiCheckbox(label = "Check It")()
           ),
           EuiFormField(offsetAbsentLabel = true)(
-            Button()("Submit")
+            EuiButton()("Submit")
           )
         )
       )
@@ -117,10 +117,10 @@ object EuiFormsDemo {
             EuiFormInput(autofocus = true, `type` = "password", name = "inline-input-password")()
           ),
           EuiFormField()(
-            CheckBox(label = "Check It")()
+            EuiCheckbox(label = "Check It")()
           ),
           EuiFormField()(
-            Button()("Submit")
+            EuiButton()("Submit")
           )
         )
       )
@@ -188,20 +188,20 @@ object EuiFormsDemo {
           onChange = updateSelect _
         )(),
         EuiFormField(label = "Checkboxes")(
-          EuiCheckBox(label = "Check me out")(),
-          EuiCheckBox(label = "I'm disabled", disabled = true)()
+          EuiCheckbox(label = "Check me out")(),
+          EuiCheckbox(label = "I'm disabled", disabled = true)()
         ),
         EuiFormField(label = "Radios")(
-          EuiRadio(name = "default_radios", label = "Pick Me")(),
-          EuiRadio(name = "default_radios", label = "No, pick me!")()
+          EuiRadio(label = "Pick Me")(),
+          EuiRadio(label = "No, pick me!")()
         ),
         EuiFormField(label = "Inline Checkboxes")(
-          EuiCheckBox(label = "Check me out", inline = true)(),
-          EuiCheckBox(label = "I'm disabled", disabled = true, inline = true)()
+          EuiCheckbox(label = "Check me out", inline = true)(),
+          EuiCheckbox(label = "I'm disabled", disabled = true, inline = true)()
         ),
         EuiFormField(label = "Inline Radios")(
-          EuiRadio(name = "default_radios", label = "Pick Me", inline = true)(),
-          EuiRadio(name = "default_radios", label = "No, pick me!", inline = true)()
+          EuiRadio(label = "Pick Me", inline = true)(),
+          EuiRadio(label = "No, pick me!", inline = true)()
         )
       )
 
@@ -245,7 +245,6 @@ object EuiFormsDemo {
           )(
             FormInput(
               pattern = "[0-9]",
-              placeholder = "123",
               name = "credit-card-security"
             )()
           )
@@ -257,7 +256,6 @@ object EuiFormsDemo {
             htmlFor = "first-name"
           )(
             EuiFormInput(
-              placeholder = "First Name",
               name = "first-name"
             )()
           ),
@@ -267,7 +265,6 @@ object EuiFormsDemo {
             htmlFor = "last-name"
           )(
             EuiFormInput(
-              placeholder = "Last Name",
               name = "last-name"
             )()
           )
@@ -277,25 +274,23 @@ object EuiFormsDemo {
           htmlFor = "billing-address"
         )(
           EuiFormInput(
-            placeholder = "Address Line 1",
             name = "address-street1"
           )()
         ),
         EuiFormField()(
           EuiFormInput(
-            placeholder = "Address Line 2",
             name = "address-street2"
           )()
         ),
         EuiFormRow()(
           EuiFormField(width = FormFieldWidth.two_thirds)(
-            EuiFormInput(placeholder = "City", name = "city")()
+            EuiFormInput(name = "city")()
           ),
           EuiFormField(width = FormFieldWidth.one_third)(
-            EuiFormInput(placeholder = "State", name = "state")()
+            EuiFormInput(name = "state")()
           ),
           EuiFormField(width = FormFieldWidth.one_third)(
-            EuiFormInput(placeholder = "Postal Code", name = "postal-code")()
+            EuiFormInput(name = "postal-code")()
           ),
           EuiFormField(width = FormFieldWidth.two_thirds)(
             EuiFormSelect(options = js.Array(
@@ -311,38 +306,37 @@ object EuiFormsDemo {
       <.div(
         <.h3("Alignment"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.LEFT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
-            EuiFormInput(placeholder = "Left Aligned", name = "icon-alignment-left")()
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.left, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
+            EuiFormInput(name = "icon-alignment-left")()
           ),
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.RIGHT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
-            FormInput(placeholder = "Right Aligned", name = "icon-alignment-right")()
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.right, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
+            FormInput(name = "icon-alignment-right")()
           )
         ),
 
         <.h3("Context Variants Color"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput()())
         ),
 
         <.h3("Context Variants Fill"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput()())
         ),
 
         <.h3("Loading Indicator"),
-        EuiFormIconField(iconPosition = FormIconFieldPosition.RIGHT, iconKey = Octicons.search, iconColor = IconColorVariant.DEFAULT, iconIsLoading = S.searching)(
+        EuiFormIconField(iconPosition = LeftRight.right, iconKey = Octicons.search, iconColor = IconColorVariant.DEFAULT, iconIsLoading = S.searching)(
           EuiFormInput(
             onChange = handleSearch _,
             `type` = "search",
-            placeholder = "Search...",
             name = "icon-form-search"
           )()
         )
@@ -355,7 +349,6 @@ object EuiFormsDemo {
           value = S.inlineRadioGroup,
           onChange = updateInlineRadios _,
           options = flavors,
-          name = "inlineRadioGroup",
           required = true,
           inline = true
         )(),

@@ -9,15 +9,15 @@ object EuiTypeMapperFunction {
       case ("Dropzone", "onDrop") => Callback //TODO
       case ("Page", "onSelect") => Callback //TODO
       case ("Dropdown", "onSelect") => Callback //TODO
-      case ("EmailInputGroup", "onChange") => Callback //TODO
+      case ("EmailInputGroup", "onChange") => "ReactEventFromInput => Callback"
       case ("FileUpload", "onChange") => Callback //TODO
-      case ("FormInput", "onChange") => Callback //TODO
-      case ("FormSelect", "onChange") => Callback //TODO
-      case ("ModalHeader", "onClose") => Callback //TODO
-      case ("Modal", "onCancel") => Callback //TODO
-      case ("Pagination", "onPageSelect") => Callback //TODO
-      case ("PasswordInputGroup", "onChange") => Callback //TODO
-      case ("PasswordInputGroup", "validatePassword") => Callback //TODO
+      case ("FormInput", "onChange") => "ReactEventFromHtml => Callback"
+      case ("FormSelect", "onChange") => "String => Callback"
+      case ("ModalHeader", "onClose") => "ReactEventFromHtml => Callback"
+      case ("Modal", "onCancel") => "ReactEventFromHtml => Callback"
+      case ("Pagination", "onPageSelect") => "Int => Callback" //TODO
+      case ("PasswordInputGroup", "onChange") => "ReactEventFromInput => Callback" //TODO
+      case ("PasswordInputGroup", "validatePassword") => "String => Callback"
       case ("Pill", "onClear") => "ReactEvent => Callback"
       case ("Pill", "onClick") => "ReactEventFromHtml => Callback"
       case ("RadioGroup", "onChange") => Callback

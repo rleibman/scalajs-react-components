@@ -19,6 +19,7 @@ object EuiTypeMapper extends TypeMapper {
       //      case ("AutoComplete", "dataSource", "Mui.array") => Normal("js.Array[String]")
       //
       //      /* general */
+      case ("Dropdown", "items", _) => Normal("js.Array[EuiDropdownMenuItem]")
       case ("Modal", "width", _) => Enum(compName, Seq("ModalSize", "Double"))
       case (_, _, "array") => Normal("js.Array[js.Any]")
       case (_, "children", "any") => Normal("VdomNode")
@@ -45,13 +46,6 @@ object EuiTypeMapper extends TypeMapper {
           Seq("lg", "sm", "xs"),
           "ButtonSize"
         )
-      case (_, _, "React.oneOf(BUTTON_SIZES)") =>
-        Enum(
-          compName,
-          Seq("lg", "sm", "xs"),
-          "ButtonSize"
-        )
-
       case ("FormField", "width", enum) => Enum(compName, split(1, enum), "FormFieldWidth")
       case ("Glyph", "type", enum) => Enum(compName, split(1, enum), "GlyphType")
       case ("Form", "type", enum) => Enum(compName, split(1, enum), "FormType")
@@ -67,7 +61,6 @@ object EuiTypeMapper extends TypeMapper {
       case (_, "children", "React.arrayOf(React.element)") => Normal("js.Array[VdomElement]")
       case (_, _, "React.array") => Normal("js.Array[js.Object]")
       case ("FormSelect", "options", array) => Normal("js.Array[FormSelectOption]")
-      case ("Dropdown", "items", _) => Normal("js.Array[EuiDropdownMenuItem]")
       case (_, _, "func") => Normal(EuiTypeMapperFunction(compName, fieldName))
       case (_, _, "React.func") => Normal(EuiTypeMapperFunction(compName, fieldName))
       //      case a=>
