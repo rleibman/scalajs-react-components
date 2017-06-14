@@ -88,12 +88,11 @@ case class Normal(name: String, genericOpt: Option[Generic] = None) extends Type
     copy(genericOpt = Some(Generic(name, jsObject = true)))
 }
 
-case class Enum(component: CompName, ss: Seq[String]) extends Type {
+case class Enum(component: CompName, ss: Seq[String], specialName: String = "") extends Type {
   val fixedNames: Seq[(Identifier, String)] =
     ss.map { m => (Identifier.safe(m), m) }
 
-  override val name: String =
-    fixedNames.map(_._1.value.capitalize).mkString("")
+  override val name: String = if (specialName.isEmpty()) fixedNames.map(_._1.value.capitalize).mkString("") else specialName
 
   def enumClass: ParsedEnumClass =
     ParsedEnumClass(name, fixedNames)

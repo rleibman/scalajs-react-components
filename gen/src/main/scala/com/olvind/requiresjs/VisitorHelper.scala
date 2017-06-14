@@ -16,7 +16,7 @@ abstract class VisitorHelper[N <: Node, Out](n: N) extends NodeVisitor(new Block
 
   lazy val value: Out = {
     n accept this
-    assertions()
+    //    assertions()
     fetchValue()
   }
 }

@@ -28,16 +28,16 @@ object EuiModalDemo {
 
     def renderLiveDemo(S: State) =
       <.div(
-        Button(toggleModal _)("Show it"),
-        Modal(
+        EuiButton(toggleModal _)("Show it"),
+        EuiModal(
           isOpen = S.modalIsOpen,
           backdropClosesModal = true,
           onCancel = toggleModal _
         )(
-          ModalHeader(text = "Modal Header")(),
-          ModalBody()(
-            FormField(label = "Email")(
-              FormInput(
+          EuiModalHeader(text = "Modal Header")(),
+          EuiModalBody()(
+            EuiFormField(label = "Email")(
+              EuiFormInput(
                 label = "Email",
                 `type` = "email",
                 name = "email",
@@ -45,8 +45,8 @@ object EuiModalDemo {
                 required = true
               )()
             ),
-            FormField(label = "Password")(
-              FormInput(
+            EuiFormField(label = "Password")(
+              EuiFormInput(
                 label = "Password",
                 `type` = "password",
                 name = "password",
@@ -72,9 +72,9 @@ object EuiModalDemo {
             <.p("In his 16th-century alchemical work Liber de Nymphis, sylphis, pygmaeis et salamandris et de caeteris spiritibus, Paracelsus identified mythological beings as belonging to one of the four elements. Part of the Philosophia Magna, this book was first printed in 1566 after Paracelsus' death. He wrote the book to \"describe the creatures that are outside the cognizance of the light of nature, how they are to be understood, what marvellous works God has created\". He states that there is more bliss in describing these \"divine objects\" than in describing fencing, court etiquette, cavalry, and other worldly pursuits."),
             <.p("The concept of elementals seems to have been conceived by Paracelsus in the 16th century, though he did not in fact use the term \"elemental\" or a German equivalent.[5] He regarded them not so much as spirits but as beings between creatures and spirits, generally being invisible to mankind but having physical and commonly humanoid bodies, as well as eating, sleeping, and wearing clothes like humans. Paracelsus gave common names for the elemental types, as well as correct names, which he seems to have considered somewhat more proper, \"recht namen\". He also referred to them by purely German terms which are roughly equivalent to \"water people,\" \"mountain people,\" and so on, using all the different forms interchangeably.")
           ),
-          ModalFooter()(
-            Button(onClick = toggleModal _, `type` = ButtonType.PRIMARY)("Submit"),
-            Button(onClick = toggleModal _, `type` = ButtonType.LINK_CANCEL)("Cancel")
+          EuiModalFooter()(
+            EuiButton(onClick = toggleModal _, `type` = ButtonType.primary)("Submit"),
+            EuiButton(onClick = toggleModal _, `type` = ButtonType.link_cancel)("Cancel")
           )
         )
       )
@@ -86,10 +86,10 @@ object EuiModalDemo {
           ^.className := "code-example__example",
           <.div(
             ^.className := "Modal-content",
-            ModalHeader(text = "Modal Header")(),
-            ModalBody()(
-              FormField(label = "Email")(
-                FormInput(
+            EuiModalHeader(text = "Modal Header")(),
+            EuiModalBody()(
+              EuiFormField(label = "Email")(
+                EuiFormInput(
                   label = "Email",
                   `type` = "email",
                   name = "email",
@@ -97,8 +97,8 @@ object EuiModalDemo {
                   required = true
                 )()
               ),
-              FormField(label = "Password")(
-                FormInput(
+              EuiFormField(label = "Password")(
+                EuiFormInput(
                   label = "Password",
                   `type` = "password",
                   name = "password",
@@ -107,9 +107,9 @@ object EuiModalDemo {
                 )()
               )
             ),
-            ModalFooter()(
-              Button()("Submit"),
-              Button()("Cancel")
+            EuiModalFooter()(
+              EuiButton()("Submit"),
+              EuiButton()("Cancel")
             )
           )
         )
@@ -117,27 +117,27 @@ object EuiModalDemo {
 
     def renderSizes(S: State) =
       <.div(
-        Button(onClick = toggleSizeModal("small") _)("small"),
-        Button(onClick = toggleSizeModal("large") _)("large"),
-        Button(onClick = toggleSizeModal(768) _)("768"),
-        Modal(
+        EuiButton(onClick = toggleSizeModal("small") _)("small"),
+        EuiButton(onClick = toggleSizeModal("large") _)("large"),
+        EuiButton(onClick = toggleSizeModal(768) _)("768"),
+        EuiModal(
           isOpen = S.sizeModalIsOpen,
           onCancel = toggleSizeModal("small") _,
           backdropClosesModal = true,
           width = S.modalSize
         )(
-            ModalHeader(
+            EuiModalHeader(
               text = s"${S.modalSize}",
               showCloseButton = true,
               onClose = toggleSizeModal("small") _
             )(),
-            ModalBody()(<.p("&hellip;"))
+            EuiModalBody()(<.p("&hellip;"))
           )
       )
 
     def render(S: State) =
       CodeExample(code, "EuiModal")(
-        Container()(
+        EuiContainer()(
           <.h1("Modal"),
           <.h2("Static Example"),
           renderStaticExample,

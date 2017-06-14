@@ -19,22 +19,60 @@ object EuiTypeMapper extends TypeMapper {
       //      case ("AutoComplete", "dataSource", "Mui.array") => Normal("js.Array[String]")
       //
       //      /* general */
+      case ("Modal", "width", _) => Enum(compName, Seq("ModalSize", "Double"))
+      case (_, _, "array") => Normal("js.Array[js.Any]")
+      case (_, "children", "any") => Normal("VdomNode")
+      case (_, _, "any") => Normal("js.Any")
       case (_, _, "bool") => Normal("Boolean")
+      case (_, _, "Form") => Normal("Form")
       case (_, _, "React.bool") => Normal("Boolean")
       case (_, _, "string") => Normal("String")
       case (_, _, "React.string") => Normal("String")
       case (_, _, "React.object") => Normal("js.Object")
+      case (_, _, "object") => Normal("js.Object")
       case (_, "children", "React.node") => Normal("VdomNode")
+      case (_, "children", "node") => Normal("VdomNode")
       case (_, _, "React.node") => Normal("ReactNode")
-      case (_, "children", "React.element") => Normal("VdomElement")
+      case (_, "children", "React.element") => Normal("VdomNode")
       case (_, _, "React.element") => Normal("ReactElement")
       case (_, _, "number") => Normal("Double")
       case (_, _, "React.number") => Normal("Double")
-      case (_, _, enum) if enum.contains("React.oneOf") => Enum(compName, split(1, enum))
+      case ("Glyph", "icon", _) => Normal("Octicons")
+
+      case (_, _, "React.oneOf(BUTTON_SIZES)") =>
+        Enum(
+          compName,
+          Seq("lg", "sm", "xs"),
+          "ButtonSize"
+        )
+      case (_, _, "React.oneOf(BUTTON_SIZES)") =>
+        Enum(
+          compName,
+          Seq("lg", "sm", "xs"),
+          "ButtonSize"
+        )
+
+      case ("FormField", "width", enum) => Enum(compName, split(1, enum), "FormFieldWidth")
+      case ("Glyph", "type", enum) => Enum(compName, split(1, enum), "GlyphType")
+      case ("Form", "type", enum) => Enum(compName, split(1, enum), "FormType")
+      case (_, _, "React.oneOf(BUTTON_TYPES)") =>
+        Enum(
+          compName,
+          Seq("default", "default-primary", "default-success", "default-warning", "default-danger", "hollow-primary", "hollow-success", "hollow-warning", "hollow-danger", "primary", "success", "warning", "danger", "link", "link-text", "link-primary", "link-success", "link-warning", "link-danger", "link-cancel", "link-delete"),
+          "ButtonType"
+        )
+      case (_, _, "React.oneOf(ALERT_TYPES)") => Enum(compName, Seq("danger", "error", "info", "primary", "success", "warning", "success_inverted"), "AlertType")
       case (_, _, enum) if enum.contains("oneOfType") => Normal(split(1, enum) map (t => apply(compName, fieldName, t)) map (_.name) mkString " | ")
+      case (_, _, enum) if enum.contains("oneOf") => Enum(compName, split(1, enum))
       case (_, "children", "React.arrayOf(React.element)") => Normal("js.Array[VdomElement]")
+      case (_, _, "React.array") => Normal("js.Array[js.Object]")
+      case ("FormSelect", "options", array) => Normal("js.Array[FormSelectOption]")
+      case ("Dropdown", "items", _) => Normal("js.Array[EuiDropdownMenuItem]")
+      case (_, _, "func") => Normal(EuiTypeMapperFunction(compName, fieldName))
       case (_, _, "React.func") => Normal(EuiTypeMapperFunction(compName, fieldName))
-      //        Normal("js.Function")
+      //      case a=>
+      //        println(a)
+      //        throw new Error()
 
     }
   }

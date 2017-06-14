@@ -6,8 +6,6 @@ object SuiTypeMapperFunction {
 
   def apply(compName: CompName, name: PropName): String =
     (compName.value, name.value) match {
-      case (_, _) =>
-        println(s"(${compName.value}, ${name.value}) MapperFunction is missing")
-        Callback
+      case _ => throw new Error(s"""case ("${compName.value}", "${name.value}") => Callback  //TODO: Add function type mapping in ${getClass().getName}""")
     }
 }

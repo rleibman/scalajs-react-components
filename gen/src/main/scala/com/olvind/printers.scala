@@ -108,12 +108,19 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
     else lines.flatMap(_.split("\n")).mkString(s"${indent(1)}/* ", s"\n${indent(2)} ", " */\n")
   }
 
+  def safeName(name: String): String = {
+    val safeSubstitutions = Map(
+      ("super" -> "`super`"),
+      ("type" -> "`type`")
+    )
+    safeSubstitutions.get(name).getOrElse(name)
+  }
+
   def outProp(p: ParsedProp, fs: FieldStats): String = {
     val comment = outComment(p.commentOpt, p.inheritedFrom)
 
     val intro: String = {
-      val fixedName: String =
-        if (p.name.value == "type") "`type`" else p.name.value
+      val fixedName: String = safeName(p.name.value)
       val deprecation: String =
         (p.deprecatedMsg, p.commentOpt.exists(_.anns.contains(Ignore))) match {
           case (Some(msg), _) => s"""${indent(1)}@deprecated("$msg", "")\n"""
@@ -138,10 +145,10 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
          |${
       c.identifiers.map {
         case (ident, original) =>
-          s"""${indent(1)}val ${ident.value} = new ${c.name}("$original")"""
+          s"""${indent(1)}val ${safeName(ident.value)} = new ${c.name}("$original")"""
       }.mkString("\n")
     }
-         |${indent(1)}val values = ${c.identifiers.map(_._1.value).toList}
+         |${indent(1)}val values = ${c.identifiers.map(_._1.value).map(safeName).toList}
          |}""".stripMargin
     )
 

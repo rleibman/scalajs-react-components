@@ -42,12 +42,10 @@ object MuiTypeMapper extends TypeMapper {
 
       /* specific */
       case ("AutoComplete", "dataSource", "Mui.array") => Normal("js.Array[String]")
-      case ("AutoComplete", "menuProps", "Mui.object") => Normal("js.Object")
       case ("DatePicker", "value", _) => Normal("js.Date")
       case ("DatePicker", "defaultDate", "Mui.object") => Normal("js.Date")
       case ("DatePicker", "maxDate", "Mui.object") => Normal("js.Date")
       case ("DatePicker", "minDate", "Mui.object") => Normal("js.Date")
-      case ("DatePicker", "wordings", "Mui.object") => Normal("js.Object")
       case ("DatePicker", "initialDate", "Mui.object") => Normal("js.Date")
       case ("Dialog", "width", "Mui.any") => Normal("Int")
       case ("DropDownMenu", "value", "Mui.any") => typeT
@@ -73,7 +71,6 @@ object MuiTypeMapper extends TypeMapper {
       case ("TimePicker", "value", "Mui.object") => Normal("js.Date")
 
       /* TODO: dubious */
-      case ("AutoComplete", "dataSourceConfig", "Mui.object") => Normal("js.Object")
       case ("EnhancedTextarea", "defaultValue", "Mui.any") => Normal("js.Any")
       case ("GridTile", "rootClass", "Mui.object") => Normal("js.Any")
       case ("Popover", "anchorEl", "Mui.object") => Normal("js.Any")
@@ -84,6 +81,7 @@ object MuiTypeMapper extends TypeMapper {
       case (_, _, "Mui.string") if is("color") => Normal("MuiColor")
       case (_, _, "Mui.object") if is("style") => Normal("CssProperties")
       case (_, _, "Mui.object") if is("muiTheme") => Normal("MuiTheme")
+      case (_, _, "Mui.object") => Normal("js.Object")
       case (_, "label", "validateLabel") => Normal("String")
       case (_, "zDepth", _) => Normal("ZDepth")
       case (_, _, "Mui.origin") => Normal("Origin")

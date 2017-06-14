@@ -5,6 +5,7 @@ import jdk.nashorn.internal.ir._
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
+import jdk.nashorn.internal.ir.LiteralNode.StringLiteralNode
 
 case class VisitorComponents(n: FunctionNode) extends VisitorHelperNameStack[FunctionNode, Map[CompName, ObjectNode]](n) {
   private val ret: mutable.Map[CompName, ObjectNode] =
@@ -12,6 +13,21 @@ case class VisitorComponents(n: FunctionNode) extends VisitorHelperNameStack[Fun
 
   override def enterBinaryNode(bn: BinaryNode): Boolean = {
     bn.lhs match {
+      case a: AccessNode if a.getProperty == "exports" =>
+        bn.rhs match {
+          case right: CallNode =>
+            right.getArgs.asScala.collect {
+              case o: ObjectNode =>
+                o.getElements.asScala.collect {
+                  case a: PropertyNode if a.getKeyName == "displayName" =>
+                    val name = a.getValue.asInstanceOf[LiteralNode[String]].getValue
+                    nameStack = VarName(name) :: nameStack
+                  //                    ret(CompName(name)) = o
+                }
+            }
+          case right =>
+            println(right)
+        }
       case a: AccessNode if a.getProperty == "propTypes" ⇒
         bn.rhs match {
           /* inline object*/
@@ -31,7 +47,7 @@ case class VisitorComponents(n: FunctionNode) extends VisitorHelperNameStack[Fun
             }
             foundOpt.foreach(found ⇒ ret(CompName(a.getBase.asInstanceOf[IdentNode].getName)) = found)
         }
-      case other ⇒
+      case other =>
         ()
     }
     true

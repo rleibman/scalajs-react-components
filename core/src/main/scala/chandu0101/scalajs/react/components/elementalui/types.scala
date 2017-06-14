@@ -3,64 +3,8 @@ package chandu0101.scalajs.react.components.elementalui
 import chandu0101.macros.tojs.JSMacro
 import scala.scalajs.js
 
-case class AlertType private (val value: String) extends AnyVal
-object AlertType {
-  val INFO = AlertType("info")
-  val PRIMARY = AlertType("primary")
-  val SUCCESS = AlertType("success")
-  val WARNING = AlertType("warning")
-  val DANGER = AlertType("danger")
-}
-
-case class ButtonSize private (value: String) extends AnyVal
-
-object ButtonSize {
-  val LG = ButtonSize("lg")
-  val SM = ButtonSize("sm")
-  val XS = ButtonSize("xs")
-
-  val values = List(LG, SM, XS)
-}
-
-case class ButtonType private (val value: String) extends AnyVal
-
-object ButtonType {
-  val DEFAULT = ButtonType("default")
-  val DEFAULT_PRIMARY = ButtonType("default-primary")
-  val DEFAULT_SUCCESS = ButtonType("default-success")
-  val DEFAULT_WARNING = ButtonType("default-warning")
-  val DEFAULT_DANGER = ButtonType("default-danger")
-  val HOLLOW_PRIMARY = ButtonType("hollow-primary")
-  val HOLLOW_SUCCESS = ButtonType("hollow-success")
-  val HOLLOW_WARNING = ButtonType("hollow-warning")
-  val HOLLOW_DANGER = ButtonType("hollow-danger")
-  val PRIMARY = ButtonType("primary")
-  val SUCCESS = ButtonType("success")
-  val WARNING = ButtonType("warning")
-  val DANGER = ButtonType("danger")
-  val LINK = ButtonType("link")
-  val LINK_TEXT = ButtonType("link-text")
-  val LINK_CANCEL = ButtonType("link-cancel")
-  val LINK_DELETE = ButtonType("link-delete")
-  val values = List(
-    DEFAULT,
-    DEFAULT_PRIMARY,
-    DEFAULT_SUCCESS,
-    DEFAULT_WARNING,
-    DEFAULT_DANGER,
-    HOLLOW_PRIMARY,
-    HOLLOW_SUCCESS,
-    HOLLOW_WARNING,
-    HOLLOW_DANGER,
-    PRIMARY,
-    SUCCESS,
-    WARNING,
-    DANGER,
-    LINK,
-    LINK_TEXT,
-    LINK_CANCEL,
-    LINK_DELETE
-  )
+case class FormSelectOption(label: String, value: String) {
+  val toJS = JSMacro[FormSelectOption](this)
 }
 
 case class ColBasis private (val value: String) extends AnyVal
@@ -69,14 +13,14 @@ object ColBasis {
   val number = ColBasis("number")
   val string = ColBasis("string")
 }
-case class DropdownMenuItemType private (value: String) extends AnyVal
+case class EuiDropdownMenuItemType private (value: String) extends AnyVal
 
-object DropdownMenuItemType {
-  val DIVIDER = DropdownMenuItemType("divider")
-  val HEADER = DropdownMenuItemType("header")
-  val DEFAULT = DropdownMenuItemType("")
+object EuiDropdownMenuItemType {
+  val DIVIDER = EuiDropdownMenuItemType("divider")
+  val HEADER = EuiDropdownMenuItemType("header")
+  val DEFAULT = EuiDropdownMenuItemType("")
 
-  def fromString(str: String): DropdownMenuItemType = str match {
+  def fromString(str: String): EuiDropdownMenuItemType = str match {
     case "divider" => DIVIDER
     case "header" => HEADER
     case _ => DEFAULT
@@ -84,12 +28,12 @@ object DropdownMenuItemType {
 
 }
 
-case class DropdownMenuItem(label: String = "", `type`: DropdownMenuItemType = DropdownMenuItemType.DEFAULT) {
-  val toJS = JSMacro[DropdownMenuItem](this)
+case class EuiDropdownMenuItem(label: String = "", `type`: EuiDropdownMenuItemType = EuiDropdownMenuItemType.DEFAULT) {
+  val toJS = JSMacro[EuiDropdownMenuItem](this)
 }
 
-object DropdownMenuItem {
-  def fromJson(obj: js.Dynamic) = DropdownMenuItem(label = obj.label.toString, `type` = DropdownMenuItemType.fromString(obj.`type`.toString))
+object EuiDropdownMenuItem {
+  def fromJson(obj: js.Dynamic) = EuiDropdownMenuItem(label = obj.label.toString, `type` = EuiDropdownMenuItemType.fromString(obj.`type`.toString))
 }
 
 case class File(lastModifiedDate: String, name: String, isClosed: Boolean, size: Long, `type`: String) {
@@ -105,24 +49,6 @@ object File {
     `type` = obj.`type`.toString
   )
 
-}
-case class FormFieldWidth private (val value: String) extends AnyVal
-
-object FormFieldWidth {
-  val one_half = FormFieldWidth("one-half")
-  val two_quarters = FormFieldWidth("two-quarters")
-  val three_sixths = FormFieldWidth("three-sixths")
-  val one_quarter = FormFieldWidth("one-quarter")
-  val three_quarters = FormFieldWidth("three-quarters")
-  val one_third = FormFieldWidth("one-third")
-  val two_sixths = FormFieldWidth("two-sixths")
-  val two_thirds = FormFieldWidth("two-thirds")
-  val four_sixths = FormFieldWidth("four-sixths")
-  val one_fifth = FormFieldWidth("one-fifth")
-  val two_fifths = FormFieldWidth("two-fifths")
-  val three_fifths = FormFieldWidth("three-fifths")
-  val four_fifths = FormFieldWidth("four-fifths")
-  val one_sixth = FormFieldWidth("one-sixth")
 }
 
 case class IconColorVariant private (val value: String) extends AnyVal
@@ -168,26 +94,6 @@ object NoteType {
   val WARNING = NoteType("warning")
 }
 
-case class FormType private (val value: String) extends AnyVal
-
-object FormType {
-  val BASIC = FormType("basic")
-  val HORIZONTAL = FormType("horizontal")
-  val INLINE = FormType("inline")
-}
-
-case class GlyphType private (val value: String) extends AnyVal
-
-object GlyphType {
-  val DEFAULT = GlyphType("default")
-  val DANGER = GlyphType("danger")
-  val MUTED = GlyphType("muted")
-  val PRIMARY = GlyphType("primary")
-  val SUCCESS = GlyphType("success")
-  val WARNING = GlyphType("warning")
-
-  val values = List(DEFAULT, DANGER, MUTED, PRIMARY, SUCCESS, WARNING)
-}
 case class ModalWidth private (val value: String) extends AnyVal
 
 object ModalWidth {

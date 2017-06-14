@@ -1,7 +1,7 @@
 package demo.components.elementalui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.elementalui.{ Glyph, Octicons, _ }
+import chandu0101.scalajs.react.components.elementalui.{ EuiGlyph, Octicons, _ }
 import demo.components.CodeExample
 import demo.components.CodeExample.Props
 import japgolly.scalajs.react._
@@ -15,27 +15,27 @@ object EuiGlyphsDemo {
   case class Backend($: BackendScope[_, _]) {
     val renderButtons =
       <.div(
-        Button(`type` = ButtonType.PRIMARY)(Glyph(icon = Octicons.beaker)()),
-        Button(`type` = ButtonType.DANGER)(Glyph(icon = Octicons.flame)()),
-        Button(`type` = ButtonType.SUCCESS)(Glyph(icon = Octicons.squirrel)()),
-        Button(`type` = ButtonType.WARNING)(Glyph(icon = Octicons.bug)())
+        EuiButton(`type` = ButtonType.primary)(EuiGlyph(icon = Octicons.beaker)()),
+        EuiButton(`type` = ButtonType.danger)(EuiGlyph(icon = Octicons.flame)()),
+        EuiButton(`type` = ButtonType.success)(EuiGlyph(icon = Octicons.squirrel)()),
+        EuiButton(`type` = ButtonType.warning)(EuiGlyph(icon = Octicons.bug)())
       )
 
     val renderLinkButtons =
       <.div(
-        Button(`type` = ButtonType.LINK)(Glyph(icon = Octicons.beaker)()),
-        Button(`type` = ButtonType.LINK_CANCEL)(Glyph(icon = Octicons.flame)()),
-        Button(`type` = ButtonType.LINK_DELETE)(Glyph(icon = Octicons.squirrel)()),
-        Button(`type` = ButtonType.LINK_TEXT)(Glyph(icon = Octicons.bug)())
+        EuiButton(`type` = ButtonType.link)(EuiGlyph(icon = Octicons.beaker)()),
+        EuiButton(`type` = ButtonType.link_cancel)(EuiGlyph(icon = Octicons.flame)()),
+        EuiButton(`type` = ButtonType.link_delete)(EuiGlyph(icon = Octicons.squirrel)()),
+        EuiButton(`type` = ButtonType.link_text)(EuiGlyph(icon = Octicons.bug)())
       )
 
     val renderGlyphGrid =
       Octicons.values.grouped(10).zipWithIndex.map {
         case (list, index) =>
-          Row(key = s"row_$index")(list.map { icon =>
-            Col(key = s"col_${icon.value}", sm = "1/10")(
-              Card(className = "code-example--glyph__icon")(
-                Glyph(key = icon.value, icon = icon)(),
+          EuiRow(key = s"row_$index")(list.map { icon =>
+            EuiCol(key = s"col_${icon.value}", sm = "1/10")(
+              EuiCard(className = "code-example--glyph__icon")(
+                EuiGlyph(key = icon.value, icon = icon)(),
                 <.div(
                   ^.className := "code-example--glyph__icon-name",
                   icon.value
@@ -50,15 +50,15 @@ object EuiGlyphsDemo {
         <.div(
           ^.key := s"${glyphType.value}-${icon.value}",
           ^.className := "code-example__example-element--inline",
-          Glyph(icon = icon, `type` = glyphType)(), glyphType.value
+          EuiGlyph(icon = icon, `type` = glyphType)(), glyphType.value
         ))
 
-    def render: ReactComponentU[Props, Unit, CodeExample.Backend, TopNode] =
+    def render =
       CodeExample(code, "EuiGlyphs")(
         <.div(
           <.h1("Glyphs"),
           <.h2("Basic Example"),
-          Glyph(icon = Octicons.thumbsup)(),
+          EuiGlyph(icon = Octicons.thumbsup)(),
           <.h2("Icons"),
           renderGlyphGrid,
           <.h2("Colors"),

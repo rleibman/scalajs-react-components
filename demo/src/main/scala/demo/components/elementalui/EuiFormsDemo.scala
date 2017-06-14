@@ -16,10 +16,10 @@ object EuiFormsDemo {
   // EXAMPLE:START
 
   val flavors = js.Array(
-    SelectOption("Caramel", "caramel"),
-    SelectOption("Chocolate", "chocolate"),
-    SelectOption("Vanilla", "vanilla"),
-    SelectOption("Strawberry", "strawberry")
+    FormSelectOption("Caramel", "caramel"),
+    FormSelectOption("Chocolate", "chocolate"),
+    FormSelectOption("Vanilla", "vanilla"),
+    FormSelectOption("Strawberry", "strawberry")
   )
 
   case class State(
@@ -73,34 +73,34 @@ object EuiFormsDemo {
     val renderBasicExample =
       <.div(
         ^.className := "code-example__example",
-        Form()(
-          FormField(label = "Email address", htmlFor = "basic-form-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "basic-form-input-email")()
+        EuiForm()(
+          EuiFormField(label = "Email address", htmlFor = "basic-form-input-email")(
+            EuiFormInput(autofocus = true, `type` = "email", name = "basic-form-input-email")()
           ),
-          FormField(label = "Password", htmlFor = "basic-form-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "basic-form-input-password")()
+          EuiFormField(label = "Password", htmlFor = "basic-form-input-password")(
+            EuiFormInput(autofocus = true, `type` = "password", name = "basic-form-input-password")()
           ),
-          FormField()(
-            CheckBox(label = "Check It")()
+          EuiFormField()(
+            EuiCheckBox(label = "Check It")()
           ),
-          Button()("Submit")
+          EuiButton()("Submit")
         )
       )
 
     val renderBasicExampleHorizontal =
       <.div(
         ^.className := "code-example__example",
-        Form(`type` = FormType.HORIZONTAL)(
-          FormField(label = "Email address", htmlFor = "horizontal-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "horizontal-input-email")()
+        EuiForm(`type` = FormType.horizontal)(
+          EuiFormField(label = "Email address", htmlFor = "horizontal-input-email")(
+            EuiFormInput(autofocus = true, `type` = "email", name = "horizontal-input-email")()
           ),
-          FormField(label = "Password", htmlFor = "horizontal-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "horizontal-input-password")()
+          EuiFormField(label = "Password", htmlFor = "horizontal-input-password")(
+            FormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
           ),
-          FormField(offsetAbsentLabel = true)(
+          EuiFormField(offsetAbsentLabel = true)(
             CheckBox(label = "Check It")()
           ),
-          FormField(offsetAbsentLabel = true)(
+          EuiFormField(offsetAbsentLabel = true)(
             Button()("Submit")
           )
         )
@@ -109,17 +109,17 @@ object EuiFormsDemo {
     val renderBasicExampleInline =
       <.div(
         ^.className := "code-example__example",
-        Form(`type` = FormType.INLINE)(
-          FormField(label = "Email address", htmlFor = "inline-input-email")(
-            FormInput(autofocus = true, `type` = "email", placeholder = "Enter email", name = "inline-input-email")()
+        EuiForm(`type` = FormType.inline)(
+          EuiFormField(label = "Email address", htmlFor = "inline-input-email")(
+            EuiFormInput(autofocus = true, `type` = "email", name = "inline-input-email")()
           ),
-          FormField(label = "Password", htmlFor = "inline-input-password")(
-            FormInput(autofocus = true, `type` = "password", placeholder = "Enter Password", name = "inline-input-password")()
+          EuiFormField(label = "Password", htmlFor = "inline-input-password")(
+            EuiFormInput(autofocus = true, `type` = "password", name = "inline-input-password")()
           ),
-          FormField()(
+          EuiFormField()(
             CheckBox(label = "Check It")()
           ),
-          FormField()(
+          EuiFormField()(
             Button()("Submit")
           )
         )
@@ -127,120 +127,118 @@ object EuiFormsDemo {
 
     val renderInputGroupsContiguous =
       <.div(
-        InputGroup(contiguous = true)(
-          InputGroup.Section(grow = true)(
-            FormInput(`type` = "text", placeholder = "Input Group Field")()
+        EuiInputGroup(contiguous = true)(
+          EuiInputGroup.Section(grow = true)(
+            EuiFormInput(`type` = "text")()
           ),
-          InputGroup.Section()(
-            Button()("Button")
+          EuiInputGroup.Section()(
+            EuiButton()("Button")
           )
         ),
-        InputGroup(contiguous = true)(
-          InputGroup.Section(`type` = "primary")(
-            Button()(Glyph(icon = Octicons.pencil)())
+        EuiInputGroup(contiguous = true)(
+          EuiInputGroup.Section(`type` = "primary")(
+            EuiButton()(EuiGlyph(icon = Octicons.pencil)())
           ),
-          InputGroup.Section()(
-            FormInput(`type` = "text", placeholder = "Input Group Field")()
+          EuiInputGroup.Section()(
+            EuiFormInput(`type` = "text")()
           )
         )
       )
 
     val renderInputGroupsSeparate =
       <.div(
-        InputGroup()(
-          InputGroup.Section(grow = true)(
-            FormInput(`type` = "text", placeholder = "Input Group Field")()
+        EuiInputGroup()(
+          EuiInputGroup.Section(grow = true)(
+            EuiFormInput(`type` = "text")()
           ),
-          InputGroup.Section()(
-            Button()("Button")
+          EuiInputGroup.Section()(
+            EuiButton()("Button")
           )
         ),
-        InputGroup()(
-          InputGroup.Section(`type` = "primary")(
-            Button()(Glyph(icon = Octicons.pencil)())
+        EuiInputGroup()(
+          EuiInputGroup.Section(`type` = "primary")(
+            EuiButton()(EuiGlyph(icon = Octicons.pencil)())
           ),
-          InputGroup.Section()(
-            FormInput(`type` = "text", placeholder = "Input Group Field")()
+          EuiInputGroup.Section()(
+            EuiFormInput(`type` = "text")()
           )
         )
       )
 
     val renderSizes =
       <.div(
-        FormField(label = "Input", htmlFor = "supported-controls-input")(
-          FormInput(placeholder = "Input", name = "supported-controls-input")()
+        EuiFormField(label = "Input", htmlFor = "supported-controls-input")(
+          EuiFormInput(name = "supported-controls-input")()
         ),
-        FormField(label = "Large Input", htmlFor = "supported-controls-input-lg")(
-          FormInput(placeholder = "Input", name = "supported-controls-input-lg", size = FormInputSize.LG)()
+        EuiFormField(label = "Large Input", htmlFor = "supported-controls-input-lg")(
+          EuiFormInput(name = "supported-controls-input-lg", size = FormInputSize.LG)()
         ),
-        FormField(label = "Small Input", htmlFor = "supported-controls-input-sm")(
-          FormInput(placeholder = "Input", name = "supported-controls-input-sm", size = FormInputSize.SM)()
+        EuiFormField(label = "Small Input", htmlFor = "supported-controls-input-sm")(
+          EuiFormInput(name = "supported-controls-input-sm", size = FormInputSize.SM)()
         )
       )
 
     val renderSupportedControls =
       <.div(
-        FormInput(placeholder = "Input")(),
-        FormInput(placeholder = "TextArea", multiline = true)(),
-        FormSelect(
+        EuiFormInput()(),
+        EuiFormInput(multiline = true)(),
+        EuiFormSelect(
           options = flavors,
           firstOption = "Select",
           onChange = updateSelect _
         )(),
-        FormField(label = "Checkboxes")(
-          CheckBox(label = "Check me out")(),
-          CheckBox(label = "I'm disabled", disabled = true)()
+        EuiFormField(label = "Checkboxes")(
+          EuiCheckBox(label = "Check me out")(),
+          EuiCheckBox(label = "I'm disabled", disabled = true)()
         ),
-        FormField(label = "Radios")(
-          Radio(name = "default_radios", label = "Pick Me")(),
-          Radio(name = "default_radios", label = "No, pick me!")()
+        EuiFormField(label = "Radios")(
+          EuiRadio(name = "default_radios", label = "Pick Me")(),
+          EuiRadio(name = "default_radios", label = "No, pick me!")()
         ),
-        FormField(label = "Inline Checkboxes")(
-          CheckBox(label = "Check me out", inline = true)(),
-          CheckBox(label = "I'm disabled", disabled = true, inline = true)()
+        EuiFormField(label = "Inline Checkboxes")(
+          EuiCheckBox(label = "Check me out", inline = true)(),
+          EuiCheckBox(label = "I'm disabled", disabled = true, inline = true)()
         ),
-        FormField(label = "Inline Radios")(
-          Radio(name = "default_radios", label = "Pick Me", inline = true)(),
-          Radio(name = "default_radios", label = "No, pick me!", inline = true)()
+        EuiFormField(label = "Inline Radios")(
+          EuiRadio(name = "default_radios", label = "Pick Me", inline = true)(),
+          EuiRadio(name = "default_radios", label = "No, pick me!", inline = true)()
         )
       )
 
     val renderNotes =
-      FormField(label = "Input with Notes")(
-        FormInput()(),
-        FormNote()(
+      EuiFormField(label = "Input with Notes")(
+        EuiFormInput()(),
+        EuiFormNote()(
           "A note to help the user understand it's associated field, may extend beyond one line"
         ),
-        FormNote(`type` = NoteType.WARNING)(
+        EuiFormNote(`type` = NoteType.WARNING)(
           "A warning to help the user understand it's associated field, may extend beyond one line"
         )
       )
 
     val renderComplexForms =
       <.div(
-        FormRow()(
-          FormField(
+        EuiFormRow()(
+          EuiFormField(
             width = FormFieldWidth.one_half,
             label = "Credit Card Number",
             htmlFor = "credit-card-number"
           )(
-            FormInput(
+            EuiFormInput(
               pattern = "[0-9]",
-              placeholder = "Card Number",
               name = "credit-card-number"
             )()
           ),
-          FormField(
+          EuiFormField(
             width = FormFieldWidth.one_quarter,
             label = "Expiration",
             htmlFor = "credit-card-expiration"
           )(
-            FormInput(
-              placeholder = "MM/YYYY",
+            EuiFormInput(
               name = "credit-card-expiration"
             )()
           ),
-          FormField(
+          EuiFormField(
             width = FormFieldWidth.one_quarter,
             label = "Security Code (CCV)",
             htmlFor = "credit-card-security"
@@ -252,55 +250,55 @@ object EuiFormsDemo {
             )()
           )
         ),
-        FormRow()(
-          FormField(
+        EuiFormRow()(
+          EuiFormField(
             width = FormFieldWidth.one_half,
             label = "First Name",
             htmlFor = "first-name"
           )(
-            FormInput(
+            EuiFormInput(
               placeholder = "First Name",
               name = "first-name"
             )()
           ),
-          FormField(
+          EuiFormField(
             width = FormFieldWidth.one_half,
             label = "Last Name",
             htmlFor = "last-name"
           )(
-            FormInput(
+            EuiFormInput(
               placeholder = "Last Name",
               name = "last-name"
             )()
           )
         ),
-        FormField(
+        EuiFormField(
           label = "Billing Address",
           htmlFor = "billing-address"
         )(
-          FormInput(
+          EuiFormInput(
             placeholder = "Address Line 1",
             name = "address-street1"
           )()
         ),
-        FormField()(
-          FormInput(
+        EuiFormField()(
+          EuiFormInput(
             placeholder = "Address Line 2",
             name = "address-street2"
           )()
         ),
-        FormRow()(
-          FormField(width = FormFieldWidth.two_thirds)(
-            FormInput(placeholder = "City", name = "city")()
+        EuiFormRow()(
+          EuiFormField(width = FormFieldWidth.two_thirds)(
+            EuiFormInput(placeholder = "City", name = "city")()
           ),
-          FormField(width = FormFieldWidth.one_third)(
-            FormInput(placeholder = "State", name = "state")()
+          EuiFormField(width = FormFieldWidth.one_third)(
+            EuiFormInput(placeholder = "State", name = "state")()
           ),
-          FormField(width = FormFieldWidth.one_third)(
-            FormInput(placeholder = "Postal Code", name = "postal-code")()
+          EuiFormField(width = FormFieldWidth.one_third)(
+            EuiFormInput(placeholder = "Postal Code", name = "postal-code")()
           ),
-          FormField(width = FormFieldWidth.two_thirds)(
-            FormSelect(options = js.Array(
+          EuiFormField(width = FormFieldWidth.two_thirds)(
+            EuiFormSelect(options = js.Array(
               SelectOption("Esperantujo", "esperantujo"),
               SelectOption("Volapuko", "volapuko"),
               SelectOption("Usono", "usono")
@@ -312,36 +310,36 @@ object EuiFormsDemo {
     def renderIcons(S: State) =
       <.div(
         <.h3("Alignment"),
-        FormRow()(
-          FormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.LEFT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
-            FormInput(placeholder = "Left Aligned", name = "icon-alignment-left")()
+        EuiFormRow()(
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.LEFT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
+            EuiFormInput(placeholder = "Left Aligned", name = "icon-alignment-left")()
           ),
-          FormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.RIGHT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = FormIconFieldPosition.RIGHT, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
             FormInput(placeholder = "Right Aligned", name = "icon-alignment-right")()
           )
         ),
 
         <.h3("Context Variants Color"),
-        FormRow()(
-          FormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
+        EuiFormRow()(
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
         ),
 
         <.h3("Context Variants Fill"),
-        FormRow()(
-          FormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
-          FormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
+        EuiFormRow()(
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput(placeholder = "default")()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput(placeholder = "default")())
         ),
 
         <.h3("Loading Indicator"),
-        FormIconField(iconPosition = FormIconFieldPosition.RIGHT, iconKey = Octicons.search, iconColor = IconColorVariant.DEFAULT, iconIsLoading = S.searching)(
-          FormInput(
+        EuiFormIconField(iconPosition = FormIconFieldPosition.RIGHT, iconKey = Octicons.search, iconColor = IconColorVariant.DEFAULT, iconIsLoading = S.searching)(
+          EuiFormInput(
             onChange = handleSearch _,
             `type` = "search",
             placeholder = "Search...",
@@ -351,8 +349,8 @@ object EuiFormsDemo {
       )
 
     def renderValidation(S: State) =
-      Form()(
-        RadioGroup(
+      EuiForm()(
+        EuiRadioGroup(
           label = "Radios",
           value = S.inlineRadioGroup,
           onChange = updateInlineRadios _,
@@ -362,7 +360,7 @@ object EuiFormsDemo {
           inline = true
         )(),
 
-        FormSelect(
+        EuiFormSelect(
           label = "Select",
           value = S.inputSelect,
           onChange = updateSelect _,
@@ -371,21 +369,21 @@ object EuiFormsDemo {
           prependEmptyOption = true
         )(),
 
-        EmailInputGroup(
+        EuiEmailInputGroup(
           label = "Email",
           value = S.inputEmail,
           onChange = updateEmail _,
           required = true
         )(),
 
-        PasswordInputGroup(
+        EuiPasswordInputGroup(
           label = "Password",
           value = S.inputPassword,
           onChange = updatePassword _,
           required = true
         )(),
 
-        PasswordInputGroup(
+        EuiPasswordInputGroup(
           label = "Confirm",
           value = S.inputConfirmPassword,
           onChange = updateConfirmPassword _,
@@ -396,16 +394,16 @@ object EuiFormsDemo {
       )
 
     def renderFileUpload(S: State) =
-      Form(`type` = FormType.HORIZONTAL)(
-        FormField(label = "Image")(
-          FileUpload(
+      EuiForm(`type` = FormType.horizontal)(
+        EuiFormField(label = "Image")(
+          EuiFileUpload(
             buttonLabelInitial = "Upload Image",
             buttonLabelChange = "Change Image",
             accept = "image/jpg, image/gif, image/png"
           )()
         ),
-        FormField()(
-          FileDragAndDrop(files = S.files, onDrop = onDrop _)()
+        EuiFormField()(
+          EuiFileDragAndDrop(files = S.files, onDrop = onDrop _)()
         )
       )
 

@@ -123,5 +123,6 @@ object MuiTypeMapperFunction {
       /*Added by roberto@leibman.net*/
       case ("DropDownMenu", "selectionRenderer") => Callback //TODO ???
       case ("SelectField", "selectionRenderer") => Callback //TODO ???
+      case _ => throw new Error(s"""case ("${compName.value}", "${name.value}") => Callback  //TODO: Add function type mapping in ${getClass().getName}""")
     }
 }
