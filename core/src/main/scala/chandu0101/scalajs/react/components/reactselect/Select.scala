@@ -8,6 +8,7 @@ import japgolly.scalajs.react.raw._
 import scala.scalajs.js
 
 import TODO._
+import scala.scalajs.js.`|`
 
 case class Select[T](
     /* placeholder displayed when you want to add a label on a multi-value input */
@@ -95,7 +96,7 @@ case class Select[T](
     /* optional tab index of the control */
     tabIndex: js.UndefOr[String] = js.undefined,
     /* initial field value */
-    value: JsCollection[T] = js.undefined,
+    value: js.UndefOr[T | js.Array[T]] = js.undefined,
     /* value component to render */
     //    valueComponent: js.UndefOr[JsComponent[ValueProps[T], js.Any, ReactNode]] = js.undefined,
     /* path of the label value in option objects */
@@ -107,8 +108,8 @@ case class Select[T](
 ) {
 
   def apply(): ReactComponentUntyped = {
-    //    implicit val hackEvidence: T => js.Any = _.asInstanceOf[js.Any]
 
+    implicit def ev2T(t: T | js.Array[T]): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[Select[T]](this)
     val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSelect)
     f(props).asInstanceOf[ReactComponentUntyped]

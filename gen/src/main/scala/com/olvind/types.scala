@@ -18,7 +18,7 @@ final case class PropName(value: String) extends AnyVal {
     PropName(value.replaceAll("Deprecated:", "").replaceAll("or children", "").trim)
 }
 
-final case class PropComment(value: Option[String], anns: Seq[Annotation])
+final case class PropComment(value: Option[String], anns: Seq[Annotation] = Seq.empty)
 
 object PropComment {
 
@@ -39,6 +39,8 @@ object PropComment {
 
     PropComment(if (_lines.nonEmpty) Some(_lines.mkString("\n")) else None, _ans.reverse)
   }
+
+  def apply(str: String) = new PropComment(Some(str), Seq.empty)
 }
 
 final case class VarName(value: String) extends Wrapper[String]
@@ -53,6 +55,6 @@ case class Identifier private (value: String) extends Wrapper[String]
 object Identifier {
   def safe(m: String): Identifier = {
     val memberName = if (m.head.isDigit) "_" + m else m
-    Identifier(memberName.replace("-", "_"))
+    Identifier(memberName.replaceAll("[-/]", "_"))
   }
 }

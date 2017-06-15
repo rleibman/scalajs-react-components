@@ -2,13 +2,27 @@ package chandu0101.scalajs.react.components.elementalui
 
 import chandu0101.macros.tojs.JSMacro
 import scala.scalajs.js
+import scala.scalajs.js.annotation.ScalaJSDefined
 
-case class FormSelectOption(label: String, value: String) {
+@ScalaJSDefined
+class FormSelectOption(val label: String, val value: String) extends js.Object {
   val toJS = JSMacro[FormSelectOption](this)
+}
+object FormSelectOption {
+  def apply(label: String, value: String) = new FormSelectOption(label, value)
+}
+
+class ModalSize(val value: String) extends js.Any
+object ModalSize {
+  val small = ModalSize("small")
+  val medium = ModalSize("medium")
+  val large = ModalSize("large")
+  val values = List(small, medium, large)
+
+  def apply(value: String) = new ModalSize(value)
 }
 
 case class ColBasis private (val value: String) extends AnyVal
-
 object ColBasis {
   val number = ColBasis("number")
   val string = ColBasis("string")
@@ -84,14 +98,6 @@ object VerticalAlignment {
   val text_bottom = VerticalAlignment("text-bottom")
   val text_top = VerticalAlignment("text-top")
   val top = VerticalAlignment("top'")
-}
-
-case class NoteType private (val value: String) extends AnyVal
-object NoteType {
-  val DEFAULT = NoteType("default")
-  val PRIMARY = NoteType("primary")
-  val SUCCESS = NoteType("success")
-  val WARNING = NoteType("warning")
 }
 
 case class ModalWidth private (val value: String) extends AnyVal

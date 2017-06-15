@@ -40,9 +40,10 @@ object ReactSlickDemo {
               beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
               infinite = false,
               draggable = true
-            )(
-                cats.map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }: _*
-              )
+            ) {
+                val ret = cats.map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }
+                ret
+              }
           )
         )
       )).build

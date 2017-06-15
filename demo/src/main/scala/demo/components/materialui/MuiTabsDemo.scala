@@ -10,6 +10,7 @@ import scala.scalajs.js
 
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
+import japgolly.scalajs.react.raw._
 
 object MuiTabsDemo {
 
@@ -27,7 +28,7 @@ object MuiTabsDemo {
 
   // EXAMPLE:START
   case class Backend($: BackendScope[Unit, Int]) {
-    val onChange: (Int, ReactEventFromHtml, VdomElement) => Callback =
+    val onChange: (Int, ReactEventFromHtml, ReactElement) => Callback =
       (chosen, _, _) ⇒ $.setState(chosen) >> Callback.info(s"chose $chosen")
 
     def render(current: Int) =

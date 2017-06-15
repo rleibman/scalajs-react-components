@@ -71,10 +71,10 @@ object ParseComponent {
 
     val domProps: Seq[ParsedProp] =
       comp.domeTypeOpt
-        .map(DomEventHandlers)
+        .map(domType => domType.handlers ++ domType.props)
         .toSeq
-        .flatMap(_.props)
-        .filterNot(p ⇒ parsedProps.exists(_.name == p.name) || true)
+        .flatten
+        .filterNot(p ⇒ parsedProps.exists(_.name == p.name))
 
     ParsedComponent(comp, basicFields ++ parsedProps ++ domProps, methodClassOpt)
   }

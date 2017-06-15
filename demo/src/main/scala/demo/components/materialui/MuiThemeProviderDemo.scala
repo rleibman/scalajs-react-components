@@ -57,12 +57,13 @@ object MuiThemeProviderDemo {
                 key = "colorDropdown",
                 onChange = onColorChanged,
                 value = S.backgroundColor
-              )(
-                colors.map {
+              ) {
+                val children = colors.map {
                   case (name, color) ⇒
                     MuiMenuItem[MuiColor](key = name, primaryText = name, value = color, style = js.Dynamic.literal(backgroundColor = color))()
-                }: _*
-              )
+                }
+                children: _*
+              }
             )
           )
         )

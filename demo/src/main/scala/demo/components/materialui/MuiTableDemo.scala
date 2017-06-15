@@ -60,7 +60,7 @@ object MuiTableDemo {
       Person("7", "Adam Moore", "Employed")
     )
 
-    def renderPersons(selecteds: String | js.Array[Int]): List[ScalaComponent.Unmounted[_, _, _]] =
+    def renderPersons(selecteds: String | js.Array[Int]) =
       persons.zipWithIndex.map {
         case (p, idx) =>
           val selected = selecteds match {
@@ -72,7 +72,7 @@ object MuiTableDemo {
             MuiTableRowColumn()(p.name),
             MuiTableRowColumn()(p.status)
           )
-      }
+      }.toTagMod
 
     def render(S: State) =
       CodeExample(code, "MuiTable")(

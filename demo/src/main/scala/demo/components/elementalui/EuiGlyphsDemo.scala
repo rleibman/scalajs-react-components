@@ -43,7 +43,7 @@ object EuiGlyphsDemo {
               )
             )
           })
-      }
+      }.toTagMod
 
     def renderGlyphColors(icon: Octicons) =
       GlyphType.values.map(glyphType =>
@@ -51,7 +51,7 @@ object EuiGlyphsDemo {
           ^.key := s"${glyphType.value}-${icon.value}",
           ^.className := "code-example__example-element--inline",
           EuiGlyph(icon = icon, `type` = glyphType)(), glyphType.value
-        ))
+        )).toTagMod
 
     def render =
       CodeExample(code, "EuiGlyphs")(

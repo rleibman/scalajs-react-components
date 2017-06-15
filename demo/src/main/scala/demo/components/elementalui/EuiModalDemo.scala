@@ -16,19 +16,19 @@ object EuiModalDemo {
   case class State(
     modalIsOpen: Boolean = false,
     sizeModalIsOpen: Boolean = false,
-    modalSize: String | Int = 0
+    modalSize: ModalSize | Double = 0.0
   )
 
   case class Backend($: BackendScope[Unit, State]) {
     def toggleModal(event: ReactEventFromHtml) =
       $.modState(state => state.copy(modalIsOpen = !state.modalIsOpen))
 
-    def toggleSizeModal(size: String | Int)(event: ReactEventFromHtml) =
+    def toggleSizeModal(size: ModalSize | Double)(event: ReactEventFromHtml) =
       $.modState(state => state.copy(sizeModalIsOpen = !state.sizeModalIsOpen, modalSize = size))
 
-    def renderLiveDemo(S: State) =
+    def renderLiveDemo(S: State) = {
       <.div(
-        EuiButton(toggleModal _)("Show it"),
+        EuiButton(onClick = toggleModal _)("Show it"),
         EuiModal(
           isOpen = S.modalIsOpen,
           backdropClosesModal = true,
@@ -38,7 +38,6 @@ object EuiModalDemo {
           EuiModalBody()(
             EuiFormField(label = "Email")(
               EuiFormInput(
-                label = "Email",
                 `type` = "email",
                 name = "email",
                 required = true
@@ -46,7 +45,6 @@ object EuiModalDemo {
             ),
             EuiFormField(label = "Password")(
               EuiFormInput(
-                label = "Password",
                 `type` = "password",
                 name = "password",
                 required = true
@@ -76,7 +74,7 @@ object EuiModalDemo {
           )
         )
       )
-
+    }
     val renderStaticExample =
       <.div(
         ^.className := "code-example",
@@ -88,7 +86,6 @@ object EuiModalDemo {
             EuiModalBody()(
               EuiFormField(label = "Email")(
                 EuiFormInput(
-                  label = "Email",
                   `type` = "email",
                   name = "email",
                   required = true
@@ -96,7 +93,6 @@ object EuiModalDemo {
               ),
               EuiFormField(label = "Password")(
                 EuiFormInput(
-                  label = "Password",
                   `type` = "password",
                   name = "password",
                   required = true
@@ -113,24 +109,23 @@ object EuiModalDemo {
 
     def renderSizes(S: State) =
       <.div(
-        EuiButton(onClick = toggleSizeModal("small") _)("small"),
-        EuiButton(onClick = toggleSizeModal("large") _)("large"),
+        EuiButton(onClick = toggleSizeModal(ModalSize.small) _)("small"),
+        EuiButton(onClick = toggleSizeModal(ModalSize.large) _)("large"),
         EuiButton(onClick = toggleSizeModal(768) _)("768"),
         EuiModal(
           isOpen = S.sizeModalIsOpen,
-          onCancel = toggleSizeModal("small") _,
+          onCancel = toggleSizeModal(ModalSize.small) _,
           backdropClosesModal = true,
           width = S.modalSize
         )(
             EuiModalHeader(
-              text = s"${S.modalSize}",
+              text = s"${S.modalSize.toString}",
               showCloseButton = true,
-              onClose = toggleSizeModal("small") _
+              onClose = toggleSizeModal(ModalSize.small) _
             )(),
             EuiModalBody()(<.p("&hellip;"))
           )
       )
-
     def render(S: State) =
       CodeExample(code, "EuiModal")(
         EuiContainer()(

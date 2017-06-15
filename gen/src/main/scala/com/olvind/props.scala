@@ -6,7 +6,7 @@ final case class ParsedComponent(
     methodClassOpt: Option[ParsedMethodClass]
 ) {
 
-  def name = definition.name
+  val name = definition.name
 
   val childrenOpt: Option[ParsedProp] = {
     val field = fields.find(_.name.value == "children")
@@ -46,8 +46,8 @@ final case class ParsedComponent(
           val bounds: String =
             (p.jsObject, withBounds) match {
               case (_, false) ⇒ ""
-              case (true, true) ⇒ " <: js.Any" //todo: revisit
-              case (false, true) ⇒ " <: js.Any"
+              case (true, true) ⇒ "" //" <% js.Any" //todo: revisit
+              case (false, true) ⇒ "" // <% js.Any"
             }
           s"${p.name}$bounds"
       }.mkString("[", ", ", "]")
@@ -73,11 +73,11 @@ case object Ignore extends Annotation
 
 final case class ParsedProp(
     name: PropName,
-    isRequired: Boolean,
-    baseType: Type,
-    commentOpt: Option[PropComment],
-    deprecatedMsg: Option[String],
-    inheritedFrom: Option[CompName]
+    isRequired: Boolean = false,
+    baseType: Type = Normal("js.Any"),
+    commentOpt: Option[PropComment] = None,
+    deprecatedMsg: Option[String] = None,
+    inheritedFrom: Option[CompName] = None
 ) {
 
   val typeName: String =

@@ -76,6 +76,7 @@ object MuiTypeMapper extends TypeMapper {
       case ("Popover", "anchorEl", "Mui.object") => Normal("js.Any")
       case ("Stepper", "createIcon", "Mui.func") => Normal("js.Function")
       case ("Stepper", "updateAvatarBackgroundColor", "Mui.func") => Normal("js.Function")
+      case (_, "valueLink", "Mui.object") => Normal("js.Any")
 
       /* mui general */
       case (_, _, "Mui.string") if is("color") => Normal("MuiColor")
@@ -93,7 +94,6 @@ object MuiTypeMapper extends TypeMapper {
       case (_, _, "Mui.stringOrNumber") => Normal("String | Double")
 
       /* general */
-      case (_, "valueLink", "Mui.object") => Normal("js.Any")
       case (_, _, "Mui.string") => Normal("String")
       case (_, _, "Mui.bool") => Normal("Boolean")
       case (_, "children", "Mui.element") => Normal("VdomElement")

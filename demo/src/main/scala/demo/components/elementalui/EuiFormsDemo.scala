@@ -95,7 +95,7 @@ object EuiFormsDemo {
             EuiFormInput(autofocus = true, `type` = "email", name = "horizontal-input-email")()
           ),
           EuiFormField(label = "Password", htmlFor = "horizontal-input-password")(
-            FormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
+            EuiFormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
           ),
           EuiFormField(offsetAbsentLabel = true)(
             EuiCheckbox(label = "Check It")()
@@ -171,10 +171,10 @@ object EuiFormsDemo {
           EuiFormInput(name = "supported-controls-input")()
         ),
         EuiFormField(label = "Large Input", htmlFor = "supported-controls-input-lg")(
-          EuiFormInput(name = "supported-controls-input-lg", size = FormInputSize.LG)()
+          EuiFormInput(name = "supported-controls-input-lg", size = LgSmXs.lg)()
         ),
         EuiFormField(label = "Small Input", htmlFor = "supported-controls-input-sm")(
-          EuiFormInput(name = "supported-controls-input-sm", size = FormInputSize.SM)()
+          EuiFormInput(name = "supported-controls-input-sm", size = LgSmXs.sm)()
         )
       )
 
@@ -211,7 +211,7 @@ object EuiFormsDemo {
         EuiFormNote()(
           "A note to help the user understand it's associated field, may extend beyond one line"
         ),
-        EuiFormNote(`type` = NoteType.WARNING)(
+        EuiFormNote(`type` = NoteType.warning)(
           "A warning to help the user understand it's associated field, may extend beyond one line"
         )
       )
@@ -243,7 +243,7 @@ object EuiFormsDemo {
             label = "Security Code (CCV)",
             htmlFor = "credit-card-security"
           )(
-            FormInput(
+            EuiFormInput(
               pattern = "[0-9]",
               name = "credit-card-security"
             )()
@@ -294,9 +294,9 @@ object EuiFormsDemo {
           ),
           EuiFormField(width = FormFieldWidth.two_thirds)(
             EuiFormSelect(options = js.Array(
-              SelectOption("Esperantujo", "esperantujo"),
-              SelectOption("Volapuko", "volapuko"),
-              SelectOption("Usono", "usono")
+              FormSelectOption("Esperantujo", "esperantujo"),
+              FormSelectOption("Volapuko", "volapuko"),
+              FormSelectOption("Usono", "usono")
             ), firstOption = "Country", onChange = updateSelect _)()
           )
         )
@@ -306,34 +306,34 @@ object EuiFormsDemo {
       <.div(
         <.h3("Alignment"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.left, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.left, iconColor = ColorVariant.default, iconKey = Octicons.star)(
             EuiFormInput(name = "icon-alignment-left")()
           ),
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.right, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(
-            FormInput(name = "icon-alignment-right")()
+          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.right, iconColor = ColorVariant.default, iconKey = Octicons.star)(
+            EuiFormInput(name = "icon-alignment-right")()
           )
         ),
 
         <.h3("Context Variants Color"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput()())
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.default, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.primary, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.success, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.warning, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.danger, iconKey = Octicons.star)(EuiFormInput()())
         ),
 
         <.h3("Context Variants Fill"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DEFAULT, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.PRIMARY, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.SUCCESS, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.WARNING, iconKey = Octicons.star)(FormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = IconColorVariant.DANGER, iconKey = Octicons.star)(FormInput()())
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.default, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.primary, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.success, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.warning, iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.danger, iconKey = Octicons.star)(EuiFormInput()())
         ),
 
         <.h3("Loading Indicator"),
-        EuiFormIconField(iconPosition = LeftRight.right, iconKey = Octicons.search, iconColor = IconColorVariant.DEFAULT, iconIsLoading = S.searching)(
+        EuiFormIconField(iconPosition = LeftRight.right, iconKey = Octicons.search, iconColor = ColorVariant.default, iconIsLoading = S.searching)(
           EuiFormInput(
             onChange = handleSearch _,
             `type` = "search",

@@ -8,6 +8,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
+import scala.scalajs.js.JSConverters._
 
 object MuiMenuDemo {
   val code = GhPagesMacros.exampleSource
@@ -27,8 +28,8 @@ object MuiMenuDemo {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
-    val onTouchTap: (TouchTapEvent, JsComponentM[HasValue[String], _, TopNode]) => Callback =
-      (e, elem) => $.modState(_.touched(elem.props.value))
+    val onTouchTap: (TouchTapEvent, MuiMenuItem[String]) => Callback =
+      (e, elem) => $.modState(_.touched(elem.value))
 
     def renderOpen(S: State) =
       <.div(
@@ -39,7 +40,7 @@ object MuiMenuDemo {
         MuiMenu[String](
           desktop = true,
           width = 320,
-          value = S.multiple.toJsArray,
+          value = S.multiple.toJSArray,
           multiple = true,
           onItemTouchTap = onTouchTap,
           onKeyDown = CallbackDebug.f1("onKeyDown"),

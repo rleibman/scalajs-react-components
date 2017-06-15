@@ -19,8 +19,9 @@ object EuiTypeMapper extends TypeMapper {
       //      case ("AutoComplete", "dataSource", "Mui.array") => Normal("js.Array[String]")
       //
       //      /* general */
+      case ("FormIconField", "iconKey", _) => Normal("Octicons")
       case ("Dropdown", "items", _) => Normal("js.Array[EuiDropdownMenuItem]")
-      case ("Modal", "width", _) => Enum(compName, Seq("ModalSize", "Double"))
+      case ("Modal", "width", _) => Normal("ModalSize | Double")
       case (_, _, "array") => Normal("js.Array[js.Any]")
       case (_, "children", "any") => Normal("VdomNode")
       case (_, _, "any") => Normal("js.Any")
@@ -40,15 +41,28 @@ object EuiTypeMapper extends TypeMapper {
       case (_, _, "React.number") => Normal("Double")
       case ("Glyph", "icon", _) => Normal("Octicons")
 
+      case ("FormField", "width", enum) => Enum(compName, split(1, enum), "FormFieldWidth")
+      case ("Glyph", "type", enum) => Enum(compName, split(1, enum), "GlyphType")
+      case ("Form", "type", enum) => Enum(compName, split(1, enum), "FormType")
+      case (_, _, "React.oneOf(COLOR_VARIANTS)") =>
+        Enum(
+          compName,
+          Seq("danger", "default", "primary", "success", "warning"),
+          "ColorVariant"
+        )
+
       case (_, _, "React.oneOf(BUTTON_SIZES)") =>
         Enum(
           compName,
           Seq("lg", "sm", "xs"),
           "ButtonSize"
         )
-      case ("FormField", "width", enum) => Enum(compName, split(1, enum), "FormFieldWidth")
-      case ("Glyph", "type", enum) => Enum(compName, split(1, enum), "GlyphType")
-      case ("Form", "type", enum) => Enum(compName, split(1, enum), "FormType")
+      case (_, _, "React.oneOf(NOTE_TYPES)") =>
+        Enum(
+          compName,
+          Seq("default", "primary", "success", "warning", "danger"),
+          "NoteType"
+        )
       case (_, _, "React.oneOf(BUTTON_TYPES)") =>
         Enum(
           compName,
