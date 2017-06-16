@@ -396,7 +396,7 @@ object EuiFormsDemo {
           )()
         ),
         EuiFormField()(
-          EuiDropzone(files = S.files, onDrop = onDrop _)()
+          EuiDropzone( /*files = S.files, */ onDrop = onDrop _)()
         )
       )
 

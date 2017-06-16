@@ -14,13 +14,9 @@ object SuiGridDemo {
 
   case class Backend($: BackendScope[Unit, Unit]) {
 
-    val columns = (1 to 16).map(i => SuiGridColumn(key = i.toString)(SuiImage(src = "http://semantic-ui.com/images/wireframe/image.png")()))
+    val columns = (1 to 16).map(i => (SuiGridColumn(key = i.toString)(SuiImage(src = "http://semantic-ui.com/images/wireframe/image.png")()).vdomElement))
     def render() =
-      <.div(
-        CodeExample(code, "SuiGrid")(
-          SuiGrid()(columns)
-        )
-      )
+      <.div(CodeExample(code, "SuiGrid")(SuiGrid()(columns: _*)))
   }
 
   val component = ScalaComponent.builder[Unit]("SuiGridDemo")

@@ -29,24 +29,27 @@ object EuiGlyphsDemo {
         EuiButton(`type` = ButtonType.link_text)(EuiGlyph(icon = Octicons.bug)())
       )
 
-    val renderGlyphGrid =
-      Octicons.values.grouped(10).zipWithIndex.map {
-        case (list, index) =>
-          EuiRow(key = s"row_$index") {
-            val seq = list.map { icon =>
-              EuiCol(key = s"col_${icon.value}", sm = "1/10")(
-                EuiCard(className = "code-example--glyph__icon")(
-                  EuiGlyph(key = icon.value, icon = icon)(),
-                  <.div(
-                    ^.className := "code-example--glyph__icon-name",
-                    icon.value
+    val renderGlyphGrid = {
+      val ret =
+        Octicons.values.grouped(10).zipWithIndex.map {
+          case (list, index) =>
+            EuiRow(key = s"row_$index") {
+              val seq = list.map { icon =>
+                EuiCol(key = s"col_${icon.value}", sm = "1/10")(
+                  EuiCard(className = "code-example--glyph__icon")(
+                    EuiGlyph(key = icon.value, icon = icon)(),
+                    <.div(
+                      ^.className := "code-example--glyph__icon-name",
+                      icon.value
+                    )
                   )
                 )
-              )
-            }.toSeq
-            seq: _*
-          }
-      }.toTagMod
+              }
+              VdomArray(seq.map(_.vdomElement): _*)
+            }
+        }
+      ret.map(_.vdomElement)
+    }
 
     def renderGlyphColors(icon: Octicons) =
       GlyphType.values.map(glyphType =>
@@ -63,7 +66,7 @@ object EuiGlyphsDemo {
           <.h2("Basic Example"),
           EuiGlyph(icon = Octicons.thumbsup)(),
           <.h2("Icons"),
-          renderGlyphGrid,
+          renderGlyphGrid.toTagMod,
           <.h2("Colors"),
           renderGlyphColors(Octicons.heart),
           <.h2("Buttons"),
