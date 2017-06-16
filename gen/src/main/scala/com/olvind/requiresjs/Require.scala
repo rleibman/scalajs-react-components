@@ -15,11 +15,11 @@ object Require {
     }
 
     def doRecurse(requiredPath: Path)(ctx: ScanCtx): Lazy[Required] = {
+
       val ResolvedPath(filePath: Path, folderPath: Path) =
         ResolvePath(requiredPath, indexNames)
 
-      val ParsedFile(_, fileStr: String, fileParsed: FunctionNode) =
-        ctx.parsedFile(filePath)
+      val ParsedFile(_, fileStr: String, fileParsed: FunctionNode) = ctx.parsedFile(filePath)
 
       val imports: Seq[Import] = VisitorImports(fileParsed, folderPath).value
       val components: Map[CompName, ObjectNode] = VisitorComponents(fileParsed).value

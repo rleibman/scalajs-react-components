@@ -94,7 +94,7 @@ lazy val core =
     .settings(
       sourceGenerators in Compile += generateMui,
       sourceGenerators in Compile += generateEui,
-//       sourceGenerators in Compile += generateSui,
+       sourceGenerators in Compile += generateSui,
       libraryDependencies ++= Seq(
         "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1" withSources(),
         "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1" withSources(),

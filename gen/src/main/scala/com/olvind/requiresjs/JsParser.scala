@@ -14,9 +14,12 @@ object JsParser {
   options.set("scripting", true)
   options.set("optimistic.types", true)
 
+  def cleanupLine(str: String) = {
+    str.replaceAll("//.*$", "") //remove end line (//) comments here, they break stuff, particularly in the middle of a declaration.
+  }
   def apply(jsFile: Path): ParsedFile = {
     println(s"reading $jsFile")
-    val content = read.lines(jsFile).toList.mkString("\n")
+    val content = read.lines(jsFile).map(cleanupLine).toList.mkString("\n")
 
     /* setup */
     val errors = new ErrorManager()

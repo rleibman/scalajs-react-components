@@ -26,11 +26,11 @@ object EuiModalDemo {
     def toggleSizeModal(size: ModalSize | Double)(event: ReactEventFromHtml) =
       $.modState(state => state.copy(sizeModalIsOpen = !state.sizeModalIsOpen, modalSize = size))
 
-    def renderLiveDemo(S: State) = {
+    def renderLiveDemo(state: State) = {
       <.div(
         EuiButton(onClick = toggleModal _)("Show it"),
         EuiModal(
-          isOpen = S.modalIsOpen,
+          isOpen = state.modalIsOpen,
           backdropClosesModal = true,
           onCancel = toggleModal _
         )(
@@ -75,7 +75,8 @@ object EuiModalDemo {
         )
       )
     }
-    val renderStaticExample =
+
+    val renderStaticExample = {
       <.div(
         ^.className := "code-example",
         <.div(
@@ -106,38 +107,42 @@ object EuiModalDemo {
           )
         )
       )
+    }
 
-    def renderSizes(S: State) =
+    def renderSizes(state: State) = {
       <.div(
         EuiButton(onClick = toggleSizeModal(ModalSize.small) _)("small"),
         EuiButton(onClick = toggleSizeModal(ModalSize.large) _)("large"),
         EuiButton(onClick = toggleSizeModal(768) _)("768"),
         EuiModal(
-          isOpen = S.sizeModalIsOpen,
+          isOpen = state.sizeModalIsOpen,
           onCancel = toggleSizeModal(ModalSize.small) _,
           backdropClosesModal = true,
-          width = S.modalSize
+          width = state.modalSize
         )(
             EuiModalHeader(
-              text = s"${S.modalSize.toString}",
+              text = s"${state.modalSize.toString}",
               showCloseButton = true,
               onClose = toggleSizeModal(ModalSize.small) _
             )(),
             EuiModalBody()(<.p("&hellip;"))
           )
       )
-    def render(S: State) =
+    }
+
+    def render(state: State) = {
       CodeExample(code, "EuiModal")(
         EuiContainer()(
           <.h1("Modal"),
           <.h2("Static Example"),
           renderStaticExample,
           <.h2("Live Demo"),
-          renderLiveDemo(S),
+          renderLiveDemo(state),
           <.h2("Sizes"),
-          renderSizes(S)
+          renderSizes(state)
         )
       )
+    }
   }
 
   val component = ScalaComponent.builder[Unit]("EuiModalDemo")

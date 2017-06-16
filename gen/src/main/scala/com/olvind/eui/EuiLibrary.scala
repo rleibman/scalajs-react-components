@@ -24,7 +24,6 @@ case class EuiLibrary(base: Path) extends Library {
     Seq(
       //      ComponentDef(CompName("BlankState")),
       //      ComponentDef(CompName("BlankStateHeading")), //Error, two components in one file
-      //      ComponentDef(CompName("Col")), // Error, comments
       //      ComponentDef(CompName("Section")),
       //      ComponentDef(CompName("Body")),
       //      ComponentDef(CompName("Footer")),
@@ -34,6 +33,7 @@ case class EuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("ButtonGroup")),
       ComponentDef(CompName("Button"), forceChildren = true, domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Card")),
+      ComponentDef(CompName("Col")), // Error, comments 
       ComponentDef(CompName("Container")),
       ComponentDef(CompName("Checkbox"), domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Dropdown")),
@@ -49,7 +49,7 @@ case class EuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("FormNote"), forceChildren = true),
       ComponentDef(CompName("FormRow"), forceChildren = true),
       ComponentDef(CompName("FormSelect"), forceChildren = true),
-      ComponentDef(CompName("Glyph")),
+      ComponentDef(CompName("Glyph"), forceChildren = true),
       ComponentDef(CompName("InputGroup"), forceChildren = true),
       ComponentDef(CompName("InputGroupSection"), forceChildren = true),
       ComponentDef(CompName("ModalBody"), forceChildren = true),

@@ -32,17 +32,20 @@ object EuiGlyphsDemo {
     val renderGlyphGrid =
       Octicons.values.grouped(10).zipWithIndex.map {
         case (list, index) =>
-          EuiRow(key = s"row_$index")(list.map { icon =>
-            EuiCol(key = s"col_${icon.value}", sm = "1/10")(
-              EuiCard(className = "code-example--glyph__icon")(
-                EuiGlyph(key = icon.value, icon = icon)(),
-                <.div(
-                  ^.className := "code-example--glyph__icon-name",
-                  icon.value
+          EuiRow(key = s"row_$index") {
+            val seq = list.map { icon =>
+              EuiCol(key = s"col_${icon.value}", sm = "1/10")(
+                EuiCard(className = "code-example--glyph__icon")(
+                  EuiGlyph(key = icon.value, icon = icon)(),
+                  <.div(
+                    ^.className := "code-example--glyph__icon-name",
+                    icon.value
+                  )
                 )
               )
-            )
-          })
+            }.toSeq
+            seq: _*
+          }
       }.toTagMod
 
     def renderGlyphColors(icon: Octicons) =

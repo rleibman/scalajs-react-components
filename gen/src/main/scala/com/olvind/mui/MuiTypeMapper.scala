@@ -11,6 +11,7 @@ object MuiTypeMapper extends TypeMapper {
     def split(drop: Int, s: String) =
       s.split("[\'\"\\(\\)\\[\\],\\s]").map(_.trim).filterNot(_.isEmpty).drop(drop)
 
+    //Please note that the following match statement is incredibly order-sensitive, if you change order around you can break things
     (compName.value, fieldName.value, typeString) match {
       // i dont have patience to do this properly (GridList)
       case (_, "cellHeight", _) => Normal("Int")
@@ -69,6 +70,8 @@ object MuiTypeMapper extends TypeMapper {
       case ("TextField", "defaultValue", "Mui.any") => Normal("String")
       case ("TimePicker", "defaultTime", "Mui.object") => Normal("js.Date")
       case ("TimePicker", "value", "Mui.object") => Normal("js.Date")
+      case ("DatePicker", "utils", "Mui.object") => Normal("DatePickerUtils") //TODO ???
+      case ("SelectField", "dropDownMenuProps", "Mui.object") => Normal("DropDownMenuProps") //TODO ???
 
       /* TODO: dubious */
       case ("EnhancedTextarea", "defaultValue", "Mui.any") => Normal("js.Any")
@@ -83,6 +86,7 @@ object MuiTypeMapper extends TypeMapper {
       case (_, _, "Mui.object") if is("style") => Normal("CssProperties")
       case (_, _, "Mui.object") if is("muiTheme") => Normal("MuiTheme")
       case (_, _, "Mui.object") => Normal("js.Object")
+      case (_, _, "Mui.any") => Normal("js.Any")
       case (_, "label", "validateLabel") => Normal("String")
       case (_, "zDepth", _) => Normal("ZDepth")
       case (_, _, "Mui.origin") => Normal("Origin")
@@ -103,13 +107,7 @@ object MuiTypeMapper extends TypeMapper {
       case (_, _, "Mui.number") => Normal("Double")
       case (_, "children", "Mui.arrayOf(Mui.element)") => Normal("js.Array[ReactElement]")
 
-      case ("AutoComplete", "popoverProps", "Mui.object") => Normal("js.Any")
-      case ("RadioButtonGroup", "defaultSelected", "Mui.any") => Normal("js.Any")
-      case ("RadioButtonGroup", "valueSelected", "Mui.any") => Normal("js.Any")
       case ("Stepper", "children", "Mui.arrayOf(Mui.node)") => Normal("js.Any")
-      /*Added by roberto@leibman.net*/
-      case ("DatePicker", "utils", "Mui.object") => Normal("DatePickerUtils") //TODO ???
-      case ("SelectField", "dropDownMenuProps", "Mui.object") => Normal("DropDownMenuProps") //TODO ???
 
       case (_, _, "Mui.func") =>
         Normal(MuiTypeMapperFunction(compName, fieldName))

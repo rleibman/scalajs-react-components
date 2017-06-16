@@ -6,7 +6,7 @@ object EuiTypeMapperFunction {
 
   def apply(compName: CompName, name: PropName): String =
     (compName.value, name.value) match {
-      case ("Dropzone", "onDrop") => Callback //TODO
+      case ("Dropzone", "onDrop") => "js.Array[File] => Callback" //TODO
       case ("Page", "onSelect") => Callback //TODO
       case ("Dropdown", "onSelect") => Callback //TODO
       case ("EmailInputGroup", "onChange") => "ReactEventFromInput => Callback"

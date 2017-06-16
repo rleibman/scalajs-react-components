@@ -128,18 +128,18 @@ object EuiFormsDemo {
     val renderInputGroupsContiguous =
       <.div(
         EuiInputGroup(contiguous = true)(
-          EuiInputGroup.Section(grow = true)(
+          EuiInputGroupSection(grow = true)(
             EuiFormInput(`type` = "text")()
           ),
-          EuiInputGroup.Section()(
+          EuiInputGroupSection()(
             EuiButton()("Button")
           )
         ),
         EuiInputGroup(contiguous = true)(
-          EuiInputGroup.Section(`type` = "primary")(
+          EuiInputGroupSection()(
             EuiButton()(EuiGlyph(icon = Octicons.pencil)())
           ),
-          EuiInputGroup.Section()(
+          EuiInputGroupSection()(
             EuiFormInput(`type` = "text")()
           )
         )
@@ -148,18 +148,18 @@ object EuiFormsDemo {
     val renderInputGroupsSeparate =
       <.div(
         EuiInputGroup()(
-          EuiInputGroup.Section(grow = true)(
+          EuiInputGroupSection(grow = true)(
             EuiFormInput(`type` = "text")()
           ),
-          EuiInputGroup.Section()(
+          EuiInputGroupSection()(
             EuiButton()("Button")
           )
         ),
         EuiInputGroup()(
-          EuiInputGroup.Section(`type` = "primary")(
+          EuiInputGroupSection()(
             EuiButton()(EuiGlyph(icon = Octicons.pencil)())
           ),
-          EuiInputGroup.Section()(
+          EuiInputGroupSection()(
             EuiFormInput(`type` = "text")()
           )
         )
@@ -348,7 +348,7 @@ object EuiFormsDemo {
           label = "Radios",
           value = S.inlineRadioGroup,
           onChange = updateInlineRadios _,
-          options = flavors,
+          options = flavors.map(_.asInstanceOf[js.Object]),
           required = true,
           inline = true
         )(),
@@ -396,7 +396,7 @@ object EuiFormsDemo {
           )()
         ),
         EuiFormField()(
-          EuiFileDragAndDrop(files = S.files, onDrop = onDrop _)()
+          EuiDropzone(files = S.files, onDrop = onDrop _)()
         )
       )
 

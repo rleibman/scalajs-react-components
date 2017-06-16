@@ -105,7 +105,7 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
       }
 
     if (lines.isEmpty) ""
-    else lines.flatMap(_.split("\n")).mkString(s"${indent(1)}/* ", s"\n${indent(2)} ", " */\n")
+    else lines.flatMap(_.split("\n")).mkString(s"${indent(1)}/** ", s"\n${indent(2)} ", " */\n")
   }
 
   def safeName(name: String): String = {
