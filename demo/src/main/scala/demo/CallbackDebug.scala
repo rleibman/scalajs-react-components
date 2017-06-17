@@ -1,4 +1,4 @@
-package demo.components
+package demo
 
 import japgolly.scalajs.react._
 
