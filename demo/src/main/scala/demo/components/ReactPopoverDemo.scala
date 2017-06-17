@@ -2,7 +2,6 @@ package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.ReactPopOver
-import chandu0101.scalajs.react.components.ReactPopOver.{ Props, State }
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.component.Scala.MutableRef
@@ -18,18 +17,15 @@ object ReactPopoverDemo {
   // EXAMPLE:START
 
   class Backend(t: BackendScope[_, _]) {
-    val topRef = ScalaComponent.mutableRefTo(ReactPopOver.component) //(ref = "top")
-    val rightRef = ScalaComponent.mutableRefTo(ReactPopOver.component) //(ref = "right")
-    val leftRef = ScalaComponent.mutableRefTo(ReactPopOver.component) //(ref = "left")
-    val bottomRef = ScalaComponent.mutableRefTo(ReactPopOver.component) //(ref = "bottom")
+    type Ref = MutableRef[ReactPopOver.Props, ReactPopOver.State, ReactPopOver.Backend, PropsAndChildren]
 
-    //    val topRef = Ref.to(ReactPopOver.component, "top")
-    //    val rightRef = Ref.to(ReactPopOver.component, "right")
-    //    val leftRef = Ref.to(ReactPopOver.component, "left")
-    //    val bottomRef = Ref.to(ReactPopOver.component, "bottom")
+    val topRef:    Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val rightRef:  Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val leftRef:   Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val bottomRef: Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
 
-    def toggleCB(ref: MutableRef[ReactPopOver.Props, ReactPopOver.State, ReactPopOver.Backend, PropsAndChildren]): ReactEventFromHtml => Callback =
-      e => CallbackOption.liftOptionLike(ref(t)).flatMap(_.backend.toggle(e.target))
+    def toggleCB(ref: Ref): ReactEventFromHtml => Callback =
+      e => ref.value.backend.toggle(e.target)
 
     def render = {
       <.div(
