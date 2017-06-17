@@ -1,9 +1,9 @@
 package chandu0101.macros.tojs
 
 import japgolly.scalajs.react.CallbackTo
-import japgolly.scalajs.react.vdom.{ VdomElement, VdomNode }
+import japgolly.scalajs.react.vdom.{TagOf, VdomElement, VdomNode}
 
-import scala.collection.{ GenMap, GenTraversableOnce }
+import scala.collection.{GenMap, GenTraversableOnce}
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js
@@ -67,6 +67,8 @@ object JSMacro {
         q"""$target.rawElement"""
       else if (rt <:< typeOf[VdomNode])
         q"""$target.rawNode"""
+      else if (rt <:< typeOf[TagOf[_]])
+        q"""$target.render"""
 
       /* Other values. Keep AnyVal below at least CallbackTo */
       else if (rt <:< typeOf[AnyVal] && isNotPrimitiveAnyVal(rt))

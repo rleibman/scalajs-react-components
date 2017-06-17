@@ -1,6 +1,7 @@
 package demo.components
 
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.ProdDefaults._
 
@@ -16,10 +17,7 @@ object ReactSlickInfo {
   }
 
   val component = ScalaComponent.builder[Unit]("SlickInfo")
-    .render(P => {
-      InfoTemplate(componentFilePath = "reactslick/ReactSlick.scala")()
-
-    }).build
+    .renderStatic(InfoTemplate(componentFilePath = "reactslick/ReactSlick.scala")()).build
 
   def apply() = component()
 }

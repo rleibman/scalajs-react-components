@@ -39,11 +39,9 @@ object ReactSlickDemo {
               afterChange = (num: Int) => Callback.info(s"afterChange: $num"),
               beforeChange = (from: Int, to: Int) => Callback.info(s"beforeChange: $from -> $to"),
               infinite = false,
-              draggable = true
-            ) {
-                val ret = cats.map { c => <.img(^.src := c, ^.height := "200px", ^.width := "200px") }
-                ret
-              }
+              draggable = true)(
+              cats.map(c => <.img(^.src := c, ^.height := "200px", ^.width := "200px")).toVdomArray
+            )
           )
         )
       )).build

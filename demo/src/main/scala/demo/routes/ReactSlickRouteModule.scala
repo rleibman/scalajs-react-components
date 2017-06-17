@@ -8,9 +8,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactSlickRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactSlickInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactSlickInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactSlickDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

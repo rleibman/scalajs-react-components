@@ -9,9 +9,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactJSDraggableRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactDraggableInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactDraggableInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactDraggableDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactDraggableDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

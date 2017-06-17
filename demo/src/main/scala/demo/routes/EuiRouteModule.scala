@@ -8,13 +8,13 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 object EuiRouteModule {
-  case object Info extends LeftRoute("Info", "info", () => EuiInfo().vdomElement)
-  case object Buttons extends LeftRoute("Buttons", "buttons", () => EuiButtonsDemo().vdomElement)
-  case object Glyphs extends LeftRoute("Glyphs", "glyphs", () => EuiGlyphsDemo().vdomElement)
-  case object Forms extends LeftRoute("Forms", "forms", () => EuiFormsDemo().vdomElement)
-  case object Spinner extends LeftRoute("Spinner", "spinner", () => EuiSpinnerDemo().vdomElement)
-  case object Modal extends LeftRoute("Modal", "modal", () => EuiModalDemo().vdomElement)
-  case object Misc extends LeftRoute("Misc", "misc", () => EuiMiscDemo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => EuiInfo())
+  case object Buttons extends LeftRoute("Buttons", "buttons", () => EuiButtonsDemo())
+  case object Glyphs extends LeftRoute("Glyphs", "glyphs", () => EuiGlyphsDemo())
+  case object Forms extends LeftRoute("Forms", "forms", () => EuiFormsDemo())
+  case object Spinner extends LeftRoute("Spinner", "spinner", () => EuiSpinnerDemo())
+  case object Modal extends LeftRoute("Modal", "modal", () => EuiModalDemo())
+  case object Misc extends LeftRoute("Misc", "misc", () => EuiMiscDemo())
   val menu: List[LeftRoute] = List(
     Info,
     Buttons,

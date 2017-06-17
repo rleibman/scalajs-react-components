@@ -157,7 +157,7 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
       c.className,
       s"""
          |@js.native
-         |class ${c.className} extends js.Object {
+         |trait ${c.className} extends js.Object {
          |${
       c.methods.map { m =>
         val deprecated: String =

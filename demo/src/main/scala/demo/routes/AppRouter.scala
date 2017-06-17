@@ -204,8 +204,8 @@ object AppRouter {
       name = "React Popover",
       imagePath = g.reactPopoverImage.toString,
       route = ReactPopoverPages(ReactPopoverRouteModule.Info),
-      tags = Stream("modal", "popover")), 
-      )
+      tags = Stream("modal", "popover"))
+    )
 
   //TODO, this, whatever this is, is not working, so we temporarily replaced it to make it wokr
   //  val baseUrl =
@@ -217,6 +217,6 @@ object AppRouter {
   println("---------------------------------")
   println(g.googleMapImage)
   println("---------------------------------")
-  val router = Router(BaseUrl.fromWindowUrl(a => ""), config)
+  val router = Router(BaseUrl.fromWindowOrigin, config)
 
 }

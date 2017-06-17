@@ -1,6 +1,7 @@
 package chandu0101.scalajs.react
 
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.VdomElement
 import org.scalajs.dom.html
 
 import scala.scalajs.js
@@ -29,6 +30,14 @@ package object components {
   @deprecated("We need to find a better solution here", "")
   private[components] implicit def UnionEvidence[A, B](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
     ab.asInstanceOf[js.Any]
+
+  private[components] implicit def StringOrElementEvidence(u: String | VdomElement): js.Any =
+    //noinspection ComparingUnrelatedTypes
+    if (u.isInstanceOf[String]) u.asInstanceOf[js.Any] else u.asInstanceOf[VdomElement].rawElement
+
+  private[components] implicit def VdomElementOrStringOrDoubleEvidence(u: VdomElement | String | Double): js.Any =
+    //noinspection ComparingUnrelatedTypes
+    if (u.isInstanceOf[VdomElement]) u.asInstanceOf[VdomElement].rawElement else u.asInstanceOf[js.Any]
 
   private[components] implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =

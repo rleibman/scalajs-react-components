@@ -8,9 +8,9 @@ import demo.pages.ReactPopoverPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactPopoverRouteModule {
-  case object Info extends LeftRoute("Info", "info", () => ReactPopoverInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactPopoverInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactPopoverDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactPopoverDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

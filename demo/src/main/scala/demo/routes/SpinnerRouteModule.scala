@@ -9,9 +9,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object SpinnerRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => SpinnerInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => SpinnerInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => SpinnerDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => SpinnerDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

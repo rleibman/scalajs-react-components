@@ -7,25 +7,25 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiRouteModule {
-  case object Info extends LeftRoute("Info", "info", () => SuiInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => SuiInfo())
 
-  case object Button extends LeftRoute("Button", "button", () => SuiButtonDemo().vdomElement)
+  case object Button extends LeftRoute("Button", "button", () => SuiButtonDemo())
 
-  case object Container extends LeftRoute("Container", "container", () => SuiContainerDemo().vdomElement)
+  case object Container extends LeftRoute("Container", "container", () => SuiContainerDemo())
 
-  case object Divider extends LeftRoute("Divider", "divider", () => SuiDividerDemo().vdomElement)
+  case object Divider extends LeftRoute("Divider", "divider", () => SuiDividerDemo())
 
-  case object Flag extends LeftRoute("Flag", "flag", () => SuiFlagDemo().vdomElement)
+  case object Flag extends LeftRoute("Flag", "flag", () => SuiFlagDemo())
 
-  case object Header extends LeftRoute("Header", "header", () => SuiHeaderDemo().vdomElement)
+  case object Header extends LeftRoute("Header", "header", () => SuiHeaderDemo())
 
-  case object Icon extends LeftRoute("Icon", "icon", () => SuiIconDemo().vdomElement)
+  case object Icon extends LeftRoute("Icon", "icon", () => SuiIconDemo())
 
-  case object Input extends LeftRoute("Input", "input", () => SuiInputDemo().vdomElement)
+  case object Input extends LeftRoute("Input", "input", () => SuiInputDemo())
 
-  case object SuiList extends LeftRoute("List", "list", () => SuiListDemo().vdomElement)
+  case object SuiList extends LeftRoute("List", "list", () => SuiListDemo())
 
-  case object Grid extends LeftRoute("Grid", "grid", () => SuiGridDemo().vdomElement)
+  case object Grid extends LeftRoute("Grid", "grid", () => SuiGridDemo())
 
   val menu: List[LeftRoute] = List(
     Info,

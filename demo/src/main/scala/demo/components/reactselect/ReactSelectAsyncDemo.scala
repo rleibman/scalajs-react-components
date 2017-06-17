@@ -5,11 +5,11 @@ import chandu0101.scalajs.react.components.JsCollection
 import chandu0101.scalajs.react.components.reactselect._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom._
 import japgolly.scalajs.react.vdom.html_<^._
-import japgolly.scalajs.react.raw._
+import org.scalajs.dom.html.Div
 
 import scala.scalajs.js
-import japgolly.scalajs.react.vdom._
 
 object ReactSelectAsyncDemo {
 
@@ -39,22 +39,23 @@ object ReactSelectAsyncDemo {
         t.modState(_.copy(value = chosen)) >>
           Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")
 
-    val valueRenderer: ValueOption[MyValue] => ReactNode =
-      vo =>
-        <.div(
-          <.h3(vo.title),
+    val valueRenderer: ValueOption[MyValue] => TagOf[Div] =
+      vo => <.div(
+          <.h3(vo.title.getOrElse[String]("No title")),
           <.p(vo.label),
           <.small(vo.value.toString)
         )
 
-    val optionRenderer: ValueOption[MyValue] => ReactNode =
+
+    val optionRenderer: ValueOption[MyValue] => TagOf[Div] =
       vo =>
         <.div(
           "Option: ",
-          <.h3(vo.title),
+          <.h3(vo.title.getOrElse[String]("No title")),
           <.p(vo.label),
           <.small(vo.value.toString)
         )
+
     val onValueClick: (ValueOption[MyValue], ReactEvent) => Callback =
       (vo, e) => Callback.info(s"Clicked on ${vo.value.value}")
 

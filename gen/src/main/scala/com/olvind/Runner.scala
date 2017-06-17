@@ -60,7 +60,7 @@ object Runner {
     library.locations.map(requiresjs.Require(_, library.indexNames)).flatMap(flattenScan)
   }
 
-  def apply(library: Library, outputFolder: Path) = {
+  def apply(library: Library, outputFolder: Path): Seq[Path] = {
     val foundComponents: Seq[FoundComponent] = foundComponentsFor(library)
 
     val allFound: Map[CompName, FoundComponent] = foundComponents.map(c => c.name -> c).toMap
@@ -82,7 +82,8 @@ object Runner {
     val prelude: String =
       preludeFor(library)
 
-    printToFile(fullOutputPath / "gen-types.scala") {
+    val secondary: Path = fullOutputPath / "gen-types.scala"
+    printToFile(secondary) {
       w =>
         w.println(prelude)
         secondaryFiles.sortBy(_.content).distinct.foreach {
@@ -92,9 +93,12 @@ object Runner {
         }
     }
 
-    mainFiles foreach {
-      case PrimaryOutFile(compName, content, secondaries) =>
-        printToFile(destinationPathFor(fullOutputPath, library.prefixOpt, compName)) {
+    val outs: Seq[(PrimaryOutFile, Path)] =
+      mainFiles map (f => (f, destinationPathFor(fullOutputPath, library.prefixOpt, f.filename)))
+
+    outs.foreach{
+      case (PrimaryOutFile(compName, content, secondaries), file) =>
+        printToFile(file) {
           w =>
             w.println(prelude + content)
             secondaries.foreach {
@@ -104,5 +108,6 @@ object Runner {
             }
         }
     }
+    outs.map(_._2) :+ secondary
   }
 }

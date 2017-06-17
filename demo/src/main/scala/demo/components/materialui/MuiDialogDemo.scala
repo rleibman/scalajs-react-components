@@ -30,15 +30,16 @@ object MuiDialogDemo {
       e => open >> Callback.info("Opened")
 
     def render(S: State) = {
-      val actions = TagMod(
+      val actions = VdomArray(
         MuiFlatButton(key = "1", label = "Cancel", secondary = true, onTouchTap = handleDialogCancel)(),
         MuiFlatButton(key = "2", label = "Submit", secondary = true, onTouchTap = handleDialogSubmit)()
       )
+
       <.div(
         CodeExample(code, "MuiDialog")(
           <.div(
             MuiDialog(
-              title = "Dialog With Actions",
+              title = js.defined("Dialog With Actions"),
               actions = actions,
               open = S.isOpen,
               onRequestClose = CallbackDebug.f1("onRequestClose")

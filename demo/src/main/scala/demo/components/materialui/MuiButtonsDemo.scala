@@ -9,6 +9,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
+import scala.scalajs.js
 
 object MuiButtonsDemo {
 
@@ -37,7 +38,7 @@ object MuiButtonsDemo {
           Style.container,
           <.h3("Buttons"),
           MuiTabs()(
-            MuiTab(key = "tab1", label = "Flat Buttons")(
+            MuiTab(key = "tab1", label = js.defined("Flat Buttons"))(
               <.div(
                 Style.content,
                 MuiFlatButton(key = "flat1", label = "Default",
@@ -55,7 +56,7 @@ object MuiButtonsDemo {
                 MuiFlatButton(key = "flat4", label = "Disabled", disabled = true)()
               )
             ),
-            MuiTab(key = "tab2", label = "Raised Buttons")(
+            MuiTab(key = "tab2", label = js.defined("Raised Buttons"))(
               <.div(
                 Style.content,
                 MuiRaisedButton(key = "raised1", label = "Default")(),
@@ -64,7 +65,7 @@ object MuiButtonsDemo {
                 MuiRaisedButton(key = "raised4", label = "Disabled", disabled = true)()
               )
             ),
-            MuiTab(key = "tab3", label = "Floating Action Buttons")(
+            MuiTab(key = "tab3", label = js.defined("Floating Action Buttons"))(
               <.div(
                 Style.content,
                 MuiFloatingActionButton(key = "floating1")(ActionGrade()()),
@@ -73,7 +74,7 @@ object MuiButtonsDemo {
                 MuiFloatingActionButton(key = "floating4", secondary = true, mini = true)(ActionGrade()())
               )
             ),
-            MuiTab(key = "tab4", label = "Icon Buttons")(
+            MuiTab(key = "tab4", label = js.defined("Icon Buttons"))(
               <.div(
                 Style.content,
                 MuiIconButton(onTouchTap = CallbackDebug.f1("onTouchTap"))(ActionGrade()())

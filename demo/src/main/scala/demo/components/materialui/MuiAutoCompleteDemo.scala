@@ -28,7 +28,7 @@ object MuiAutoCompleteDemo {
       CodeExample(code, "MuiAutoComplete")(
         <.div(
           MuiAutoComplete(
-            floatingLabelText = "Type t, fuzzy search",
+            floatingLabelText = js.defined("Type t, fuzzy search"),
             filter = js.defined(MuiAutoCompleteFilters.fuzzyFilter),
             dataSource = fruit,
             anchorOrigin = Origin(Vertical.bottom, Horizontal.middle),
@@ -38,7 +38,7 @@ object MuiAutoCompleteDemo {
         ),
         <.div(
           MuiAutoComplete(
-            floatingLabelText = "Type r, case insensitive",
+            floatingLabelText = js.defined("Type r, case insensitive"),
             filter = js.defined(MuiAutoCompleteFilters.caseInsensitiveFilter),
             dataSource = colors,
             onNewRequest = onNewRequest,

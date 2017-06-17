@@ -35,10 +35,10 @@ object MuiTabsDemo {
       <.div(
         CodeExample(code, "MuiTabs")(
           MuiTabs[Int](value = current, onChange = onChange)(
-            MuiTab[Int](label = "Tab1", value = 1)(
+            MuiTab[Int](label = js.defined("Tab1"), value = 1)(
               <.h3(Style.tabContent, "Tab1 Content")
             ),
-            MuiTab[Int](label = "Tab2", value = 2)(
+            MuiTab[Int](label = js.defined("Tab2"), value = 2)(
               <.h3(Style.tabContent, "Tab2 Content")
             )
           )

@@ -32,6 +32,126 @@ object EuiFormsDemo {
     files: scala.scalajs.js.Array[File] = scala.scalajs.js.Array()
   )
 
+
+  val renderBasicExample =
+    <.div(
+      ^.className := "code-example__example",
+      EuiForm()(
+        EuiFormField(label = "Email address", htmlFor = "basic-form-input-email")(
+          EuiFormInput(autofocus = true, `type` = "email", name = "basic-form-input-email")()
+        ),
+        EuiFormField(label = "Password", htmlFor = "basic-form-input-password")(
+          EuiFormInput(autofocus = true, `type` = "password", name = "basic-form-input-password")()
+        ),
+        EuiFormField()(
+          EuiCheckbox(label = "Check It")()
+        ),
+        EuiButton()("Submit")
+      )
+    )
+
+  val renderBasicExampleHorizontal =
+    <.div(
+      ^.className := "code-example__example",
+      EuiForm(`type` = FormType.horizontal)(
+        EuiFormField(label = "Email address", htmlFor = "horizontal-input-email")(
+          EuiFormInput(autofocus = true, `type` = "email", name = "horizontal-input-email")()
+        ),
+        EuiFormField(label = "Password", htmlFor = "horizontal-input-password")(
+          EuiFormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
+        ),
+        EuiFormField(offsetAbsentLabel = true)(
+          EuiCheckbox(label = "Check It")()
+        ),
+        EuiFormField(offsetAbsentLabel = true)(
+          EuiButton()("Submit")
+        )
+      )
+    )
+
+  val renderBasicExampleInline =
+    <.div(
+      ^.className := "code-example__example",
+      EuiForm(`type` = FormType.inline)(
+        EuiFormField(label = "Email address", htmlFor = "inline-input-email")(
+          EuiFormInput(autofocus = true, `type` = "email", name = "inline-input-email")()
+        ),
+        EuiFormField(label = "Password", htmlFor = "inline-input-password")(
+          EuiFormInput(autofocus = true, `type` = "password", name = "inline-input-password")()
+        ),
+        EuiFormField()(
+          EuiCheckbox(label = "Check It")()
+        ),
+        EuiFormField()(
+          EuiButton()("Submit")
+        )
+      )
+    )
+
+  val renderInputGroupsContiguous =
+    <.div(
+      EuiInputGroup(contiguous = true)(
+        EuiInputGroupSection(grow = true)(
+          EuiFormInput(`type` = "text")()
+        ),
+        EuiInputGroupSection()(
+          EuiButton()("Button")
+        )
+      ),
+      EuiInputGroup(contiguous = true)(
+        EuiInputGroupSection()(
+          EuiButton()(EuiGlyph(icon = Octicons.pencil)())
+        ),
+        EuiInputGroupSection()(
+          EuiFormInput(`type` = "text")()
+        )
+      )
+    )
+
+  val renderInputGroupsSeparate =
+    <.div(
+      EuiInputGroup()(
+        EuiInputGroupSection(grow = true)(
+          EuiFormInput(`type` = "text")()
+        ),
+        EuiInputGroupSection()(
+          EuiButton()("Button")
+        )
+      ),
+      EuiInputGroup()(
+        EuiInputGroupSection()(
+          EuiButton()(EuiGlyph(icon = Octicons.pencil)())
+        ),
+        EuiInputGroupSection()(
+          EuiFormInput(`type` = "text")()
+        )
+      )
+    )
+
+  val renderSizes =
+    <.div(
+      EuiFormField(label = "Input", htmlFor = "supported-controls-input")(
+        EuiFormInput(name = "supported-controls-input")()
+      ),
+      EuiFormField(label = "Large Input", htmlFor = "supported-controls-input-lg")(
+        EuiFormInput(name = "supported-controls-input-lg", size = LgSmXs.lg)()
+      ),
+      EuiFormField(label = "Small Input", htmlFor = "supported-controls-input-sm")(
+        EuiFormInput(name = "supported-controls-input-sm", size = LgSmXs.sm)()
+      )
+    )
+
+  val renderNotes =
+    EuiFormField(label = "Input with Notes")(
+      EuiFormInput()(),
+      EuiFormNote()(
+        "A note to help the user understand it's associated field, may extend beyond one line"
+      ),
+      EuiFormNote(`type` = NoteType.warning)(
+        "A warning to help the user understand it's associated field, may extend beyond one line"
+      )
+    )
+
   case class Backend($: BackendScope[Unit, State]) {
     def onDrop(files: scala.scalajs.js.Array[File]) = {
       scala.scalajs.js.Dynamic.global.alert(files)
@@ -70,113 +190,6 @@ object EuiFormsDemo {
       }
       result
     }
-    val renderBasicExample =
-      <.div(
-        ^.className := "code-example__example",
-        EuiForm()(
-          EuiFormField(label = "Email address", htmlFor = "basic-form-input-email")(
-            EuiFormInput(autofocus = true, `type` = "email", name = "basic-form-input-email")()
-          ),
-          EuiFormField(label = "Password", htmlFor = "basic-form-input-password")(
-            EuiFormInput(autofocus = true, `type` = "password", name = "basic-form-input-password")()
-          ),
-          EuiFormField()(
-            EuiCheckbox(label = "Check It")()
-          ),
-          EuiButton()("Submit")
-        )
-      )
-
-    val renderBasicExampleHorizontal =
-      <.div(
-        ^.className := "code-example__example",
-        EuiForm(`type` = FormType.horizontal)(
-          EuiFormField(label = "Email address", htmlFor = "horizontal-input-email")(
-            EuiFormInput(autofocus = true, `type` = "email", name = "horizontal-input-email")()
-          ),
-          EuiFormField(label = "Password", htmlFor = "horizontal-input-password")(
-            EuiFormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
-          ),
-          EuiFormField(offsetAbsentLabel = true)(
-            EuiCheckbox(label = "Check It")()
-          ),
-          EuiFormField(offsetAbsentLabel = true)(
-            EuiButton()("Submit")
-          )
-        )
-      )
-
-    val renderBasicExampleInline =
-      <.div(
-        ^.className := "code-example__example",
-        EuiForm(`type` = FormType.inline)(
-          EuiFormField(label = "Email address", htmlFor = "inline-input-email")(
-            EuiFormInput(autofocus = true, `type` = "email", name = "inline-input-email")()
-          ),
-          EuiFormField(label = "Password", htmlFor = "inline-input-password")(
-            EuiFormInput(autofocus = true, `type` = "password", name = "inline-input-password")()
-          ),
-          EuiFormField()(
-            EuiCheckbox(label = "Check It")()
-          ),
-          EuiFormField()(
-            EuiButton()("Submit")
-          )
-        )
-      )
-
-    val renderInputGroupsContiguous =
-      <.div(
-        EuiInputGroup(contiguous = true)(
-          EuiInputGroupSection(grow = true)(
-            EuiFormInput(`type` = "text")()
-          ),
-          EuiInputGroupSection()(
-            EuiButton()("Button")
-          )
-        ),
-        EuiInputGroup(contiguous = true)(
-          EuiInputGroupSection()(
-            EuiButton()(EuiGlyph(icon = Octicons.pencil)())
-          ),
-          EuiInputGroupSection()(
-            EuiFormInput(`type` = "text")()
-          )
-        )
-      )
-
-    val renderInputGroupsSeparate =
-      <.div(
-        EuiInputGroup()(
-          EuiInputGroupSection(grow = true)(
-            EuiFormInput(`type` = "text")()
-          ),
-          EuiInputGroupSection()(
-            EuiButton()("Button")
-          )
-        ),
-        EuiInputGroup()(
-          EuiInputGroupSection()(
-            EuiButton()(EuiGlyph(icon = Octicons.pencil)())
-          ),
-          EuiInputGroupSection()(
-            EuiFormInput(`type` = "text")()
-          )
-        )
-      )
-
-    val renderSizes =
-      <.div(
-        EuiFormField(label = "Input", htmlFor = "supported-controls-input")(
-          EuiFormInput(name = "supported-controls-input")()
-        ),
-        EuiFormField(label = "Large Input", htmlFor = "supported-controls-input-lg")(
-          EuiFormInput(name = "supported-controls-input-lg", size = LgSmXs.lg)()
-        ),
-        EuiFormField(label = "Small Input", htmlFor = "supported-controls-input-sm")(
-          EuiFormInput(name = "supported-controls-input-sm", size = LgSmXs.sm)()
-        )
-      )
 
     val renderSupportedControls =
       <.div(
@@ -202,17 +215,6 @@ object EuiFormsDemo {
         EuiFormField(label = "Inline Radios")(
           EuiRadio(label = "Pick Me", inline = true)(),
           EuiRadio(label = "No, pick me!", inline = true)()
-        )
-      )
-
-    val renderNotes =
-      EuiFormField(label = "Input with Notes")(
-        EuiFormInput()(),
-        EuiFormNote()(
-          "A note to help the user understand it's associated field, may extend beyond one line"
-        ),
-        EuiFormNote(`type` = NoteType.warning)(
-          "A warning to help the user understand it's associated field, may extend beyond one line"
         )
       )
 
@@ -302,6 +304,51 @@ object EuiFormsDemo {
         )
       )
 
+    def renderValidation(S: State) =
+      EuiForm()(
+        EuiRadioGroup(
+          label = "Radios",
+          value = S.inlineRadioGroup,
+          onChange = updateInlineRadios _,
+          options = flavors.map(_.asInstanceOf[js.Object]),
+          required = true,
+          inline = true
+        )(),
+
+        EuiFormSelect(
+          label = "Select",
+          value = S.inputSelect,
+          onChange = updateSelect _,
+          options = flavors,
+          required = true,
+          prependEmptyOption = true
+        )(),
+
+        EuiEmailInputGroup(
+          label = "Email",
+          value = S.inputEmail,
+          onChange = js.defined(updateEmail _),
+          required = true
+        )(),
+
+        EuiPasswordInputGroup(
+          label = "Password",
+          value = S.inputPassword,
+          onChange = js.defined(updatePassword _),
+          required = true
+        )(),
+
+        EuiPasswordInputGroup(
+          label = "Confirm",
+          value = S.inputConfirmPassword,
+          onChange = js.defined(updateConfirmPassword _),
+          required = true,
+          validatePassword = js.defined(validateConfirm _),
+          invalidMessage = "Password validation doesn't match password"
+        )()
+      )
+
+
     def renderIcons(S: State) =
       <.div(
         <.h3("Alignment"),
@@ -335,55 +382,11 @@ object EuiFormsDemo {
         <.h3("Loading Indicator"),
         EuiFormIconField(iconPosition = LeftRight.right, iconKey = Octicons.search, iconColor = ColorVariant.default, iconIsLoading = S.searching)(
           EuiFormInput(
-            onChange = handleSearch _,
+            onChange = js.defined(handleSearch _),
             `type` = "search",
             name = "icon-form-search"
           )()
         )
-      )
-
-    def renderValidation(S: State) =
-      EuiForm()(
-        EuiRadioGroup(
-          label = "Radios",
-          value = S.inlineRadioGroup,
-          onChange = updateInlineRadios _,
-          options = flavors.map(_.asInstanceOf[js.Object]),
-          required = true,
-          inline = true
-        )(),
-
-        EuiFormSelect(
-          label = "Select",
-          value = S.inputSelect,
-          onChange = updateSelect _,
-          options = flavors,
-          required = true,
-          prependEmptyOption = true
-        )(),
-
-        EuiEmailInputGroup(
-          label = "Email",
-          value = S.inputEmail,
-          onChange = updateEmail _,
-          required = true
-        )(),
-
-        EuiPasswordInputGroup(
-          label = "Password",
-          value = S.inputPassword,
-          onChange = updatePassword _,
-          required = true
-        )(),
-
-        EuiPasswordInputGroup(
-          label = "Confirm",
-          value = S.inputConfirmPassword,
-          onChange = updateConfirmPassword _,
-          required = true,
-          validatePassword = validateConfirm _,
-          invalidMessage = "Password validation doesn't match password"
-        )()
       )
 
     def renderFileUpload(S: State) =

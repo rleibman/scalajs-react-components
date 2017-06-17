@@ -7,6 +7,8 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object MuiAppBarDemo {
 
   val code = GhPagesMacros.exampleSource
@@ -17,7 +19,7 @@ object MuiAppBarDemo {
       <.div(
         CodeExample(code, "MuiAppBar")(
           MuiAppBar(
-            title = "Title",
+            title = js.defined("Title"),
             onLeftIconButtonTouchTap = CallbackDebug.f1("onLeftIconButtonTouchTap"),
             onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
             onTitleTouchTap = CallbackDebug.f1("onTitleTouchTap"),

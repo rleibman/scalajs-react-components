@@ -51,7 +51,7 @@ lazy val core =
           (fullClasspath in (gen, Runtime)).value.files,
           List(
             (npmUpdate in (gen, Compile)).value / "node_modules" / "elemental",
-            sourceManaged.value
+            sourceManaged.value / "main"
           ) map (_.absolutePath),
           streams.value.log
         )
@@ -67,7 +67,7 @@ lazy val core =
           (fullClasspath in (gen, Runtime)).value.files,
           List(
             (npmUpdate in (gen, Compile)).value / "node_modules" / "material-ui",
-            sourceManaged.value
+            sourceManaged.value / "main"
           ) map (_.absolutePath),
           streams.value.log
         )
@@ -82,7 +82,7 @@ lazy val core =
           (fullClasspath in (gen, Runtime)).value.files,
           List(
             (npmUpdate in (gen, Compile)).value / "node_modules" / "semantic-ui-react" / "dist" / "commonjs",
-            sourceManaged.value
+            sourceManaged.value / "main"
           ) map (_.absolutePath),
           streams.value.log
         )
@@ -157,10 +157,10 @@ lazy val commonSettings =
 	  "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
 	  "-feature",                          // Emit warning and location for usages of features that should be imported explicitly.
 	  "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
-	  "-language:implicitConversions",     // Allow definition of implicit functions called views
-	  "-language:postfixOps",
-	  "-Ypatmat-exhaust-depth","80",
-	  "-language:existentials"             // Existential types (besides wildcard types) can be written and inferred
+	  "-language:implicitConversions"     // Allow definition of implicit functions called views
+//	  "-language:postfixOps",
+//	  "-Ypatmat-exhaust-depth","80",
+//	  "-language:existentials"             // Existential types (besides wildcard types) can be written and inferred
 	),
 /*
 	scalacOptions ++= Seq(

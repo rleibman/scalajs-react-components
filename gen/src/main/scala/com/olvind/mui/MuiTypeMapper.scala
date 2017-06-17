@@ -53,7 +53,7 @@ object MuiTypeMapper extends TypeMapper {
       case ("EnhancedSwitch", "value", "Mui.any") => typeT
       case ("RadioButton", "value", "Mui.any") => typeT
       case ("Tab", "index", "Mui.any") => Normal("js.Any")
-      case ("ListItem", "nestedItems", "Mui.arrayOf(Mui.element)") => Normal("js.Array[ReactElement]")
+      case ("ListItem", "nestedItems", "Mui.arrayOf(Mui.element)") => Normal("js.Array[VdomElement]")
       case ("Menu", "value", "Mui.any") => Normal("T | js.Array[T]").generic("T")
       case ("MenuItem", "value", "Mui.any") => typeT
       case ("SelectField", "selectFieldRoot", "Mui.object") => Normal("CssProperties")
@@ -62,8 +62,8 @@ object MuiTypeMapper extends TypeMapper {
       case ("Slider", "max", "minMaxPropType") => Normal("Double")
       case ("Slider", "min", "minMaxPropType") => Normal("Double")
       case ("Slider", "value", "valueInRangePropType") => Normal("Double")
-      case ("Step", "controlButtonsGroup", "Mui.arrayOf(Mui.node)") => Normal("js.Array[ReactNode]")
-      case ("Step", "actions", "Mui.arrayOf(Mui.node)") => Normal("js.Array[ReactNode]")
+      case ("Step", "controlButtonsGroup", "Mui.arrayOf(Mui.node)") => Normal("js.Array[VdomNode]")
+      case ("Step", "actions", "Mui.arrayOf(Mui.node)") => Normal("js.Array[VdomNode]")
       case ("Tab", "value", "Mui.any") => typeTJs
       case ("Tabs", "value", "Mui.any") => typeTJs
       case ("TextField", "value", "Mui.any") => Normal("String")
@@ -101,11 +101,11 @@ object MuiTypeMapper extends TypeMapper {
       case (_, _, "Mui.string") => Normal("String")
       case (_, _, "Mui.bool") => Normal("Boolean")
       case (_, "children", "Mui.element") => Normal("VdomElement")
-      case (_, _, "Mui.element") => Normal("ReactElement")
+      case (_, _, "Mui.element") => Normal("VdomElement")
       case (_, "children", "Mui.node") => Normal("VdomNode")
-      case (_, _, "Mui.node") => Normal("ReactNode")
+      case (_, _, "Mui.node") => Normal("VdomNode")
       case (_, _, "Mui.number") => Normal("Double")
-      case (_, "children", "Mui.arrayOf(Mui.element)") => Normal("js.Array[ReactElement]")
+      case (_, "children", "Mui.arrayOf(Mui.element)") => Normal("js.Array[VdomElement]")
 
       case ("Stepper", "children", "Mui.arrayOf(Mui.node)") => Normal("js.Any")
 

@@ -8,6 +8,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.ScalaJSDefined
 
 object MuiDropDownMenuDemo {
 
@@ -15,7 +16,8 @@ object MuiDropDownMenuDemo {
 
   // EXAMPLE:START
 
-  case class Item(val id: String, val name: String) extends js.Any
+  @ScalaJSDefined
+  class Item(val id: String, val name: String) extends js.Object
 
   val items: Seq[Item] =
     Seq(
@@ -37,9 +39,9 @@ object MuiDropDownMenuDemo {
             onChange = onChange,
             value = chosen
           )(
-            items map {
-              case item => MuiMenuItem[Item](key = item.id, value = item, primaryText = item.name)()
-            }
+            items.map(
+              item => MuiMenuItem[Item](key = item.id, value = item, primaryText = js.defined(item.name))()
+            ).toVdomArray
           )
         )
       )

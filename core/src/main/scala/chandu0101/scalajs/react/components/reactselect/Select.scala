@@ -6,8 +6,9 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
-
 import TODO._
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
+
 import scala.scalajs.js.`|`
 
 case class Select[T](
@@ -107,11 +108,10 @@ case class Select[T](
     wrapperStyle: js.UndefOr[CssProperties] = js.undefined
 ) {
 
-  def apply(): ReactComponentUntyped = {
-
+  def apply(): UnmountedWithRawType[js.Object, Null, RawMounted] = {
     implicit def ev2T(t: T | js.Array[T]): js.Any = t.asInstanceOf[js.Any]
     val props = JSMacro[Select[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSelect)
-    f(props).asInstanceOf[ReactComponentUntyped]
+    val f = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect)
+    f(props)
   }
 }

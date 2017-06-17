@@ -7,6 +7,8 @@ import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
+
 object MuiTextFieldDemo {
   val code = GhPagesMacros.exampleSource
 
@@ -21,15 +23,15 @@ object MuiTextFieldDemo {
             ^.display.flex,
             ^.flexDirection.column,
             MuiTextField(
-              hintText = "Hint Text",
+              hintText = js.defined("Hint Text"),
               onBlur = CallbackDebug.f1("onBlur"),
               onChange = CallbackDebug.f2("onChange"),
               onFocus = CallbackDebug.f1("onFocus")
             )(),
-            MuiTextField(hintText = "Hint Text", floatingLabelText = "Floating Label Text")(),
-            MuiTextField(hintText = "Multi Line Text", multiLine = true)(),
-            MuiTextField(hintText = "Multi Line Text", multiLine = true, floatingLabelText = "Multi Line Floating Label Text")(),
-            MuiTextField(hintText = "Disabled Hint text", disabled = true)()
+            MuiTextField(hintText = js.defined("Hint Text"), floatingLabelText = js.defined("Floating Label Text"))(),
+            MuiTextField(hintText = js.defined("Multi Line Text"), multiLine = true)(),
+            MuiTextField(hintText = js.defined("Multi Line Text"), multiLine = true, floatingLabelText = js.defined("Multi Line Floating Label Text"))(),
+            MuiTextField(hintText = js.defined("Disabled Hint text"), disabled = true)()
           )
         )
       )

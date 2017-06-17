@@ -9,9 +9,9 @@ import japgolly.scalajs.react.extra.router.RouterConfigDsl
 
 object ReactGeomIcontRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactGeomIconInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactGeomIconInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactGeomIconDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactGeomIconDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

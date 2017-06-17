@@ -49,21 +49,25 @@ object MuiThemeProviderDemo {
             MuiPaper()(
               <.h3("Pick base theme"),
               MuiDropDownMenu[MuiRawTheme](key = "themeDropdown", value = S.baseTheme, onChange = onThemeChanged)(
-                MuiMenuItem[MuiRawTheme](key = "LightRawTheme", primaryText = "LightRawTheme", value = Mui.Styles.LightRawTheme)(),
-                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme", primaryText = "DarkRawTheme", value = Mui.Styles.DarkRawTheme)()
+                MuiMenuItem[MuiRawTheme](key = "LightRawTheme", primaryText = js.defined("LightRawTheme"), value = Mui.Styles.LightRawTheme)(),
+                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme", primaryText = js.defined("DarkRawTheme"), value = Mui.Styles.DarkRawTheme)()
               ),
               <.h3("Override theme canvas color"),
               MuiDropDownMenu[MuiColor](
                 key = "colorDropdown",
                 onChange = onColorChanged,
                 value = S.backgroundColor
-              ) {
-                val children = colors.map {
+              )(
+                colors.map {
                   case (name, color) ⇒
-                    MuiMenuItem[MuiColor](key = name, primaryText = name, value = color, style = js.Dynamic.literal(backgroundColor = color))()
-                }
-                children: _*
-              }
+                    MuiMenuItem[MuiColor](
+                      key = name,
+                      primaryText = js.defined(name),
+                      value = color,
+                      style = js.Dynamic.literal(backgroundColor = color)
+                    )(): VdomNode
+                } :_*
+              )
             )
           )
         )

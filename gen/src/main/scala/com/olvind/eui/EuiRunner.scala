@@ -1,33 +1,15 @@
 package com.olvind
 package eui
 
-import ammonite.ops.FileType.Dir
-import ammonite.ops.{ Path, pwd }
-
-import scala.util.{ Failure, Success, Try }
+import ammonite.ops.Path
 
 object EuiRunner extends App {
-  object ExistingFolder {
-    def unapply(s: String): Option[Path] =
-      Try {
-        val p = Path(s, pwd)
-        (p, p.fileType)
-      } match {
-        case Success((p, Dir)) =>
-          Some(p)
-        case Success((p, _)) =>
-          System.err.println(s"Illegal argument: s. must be folder")
-          None
-        case Failure(th) =>
-          System.err.println(s"Illegal argument $s: ${th.getMessage}")
-          None
-      }
-  }
-
   args.toList match {
-    case ExistingFolder(buildFolder) :: ExistingFolder(outputFolder) :: Nil =>
-      Runner(EuiLibrary(buildFolder), outputFolder)
+    case OutputFolder(buildFolder) :: OutputFolder(outputFolder) :: Nil =>
+      val outs: Seq[Path] = Runner(EuiLibrary(buildFolder), outputFolder)
+      outs foreach (out => println(out.toIO.getAbsolutePath))
     case _ =>
-      System.err.println("Syntax: EuiRunner <directory with transpiled javascript", "output folder")
+      System.err.println("Syntax: EuiRunner <directory with transpiled javascript> <output folder>")
+      System.exit(1)
   }
 }

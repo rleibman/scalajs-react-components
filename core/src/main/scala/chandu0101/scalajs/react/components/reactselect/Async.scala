@@ -3,7 +3,9 @@ package reactselect
 
 import chandu0101.macros.tojs.JSMacro
 import chandu0101.scalajs.react.components.TODO._
+import chandu0101.scalajs.react.components.materialui.Mui
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
 import japgolly.scalajs.react.raw._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
@@ -113,7 +115,7 @@ case class Async[T](
     /* option component to render in dropdown */
     //    optionComponent: js.UndefOr[JsComponent[OptionProps[T], js.Any]] = js.undefined,
     /* optionRenderer: function (option) {} */
-    optionRenderer: js.UndefOr[ValueOption[T] => ReactNode] = js.undefined,
+    optionRenderer: js.UndefOr[ValueOption[T] => VdomTag] = js.undefined,
     /* whether to enable searching feature or not */
     searchable: js.UndefOr[Boolean] = js.undefined,
     /* pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false */
@@ -129,14 +131,14 @@ case class Async[T](
     /* path of the label value in option objects */
     valueKey: js.UndefOr[String] = js.undefined,
     /* valueRenderer: function (option) {} */
-    valueRenderer: js.UndefOr[ValueOption[T] => ReactNode] = js.undefined,
+    valueRenderer: js.UndefOr[ValueOption[T] => VdomTag] = js.undefined,
     /* optional style to apply to the component wrapper */
     wrapperStyle: js.UndefOr[CssProperties] = js.undefined
 ) {
 
-  def apply(): ReactComponentUntyped = {
+  def apply(): UnmountedWithRawType[js.Object, Null, RawMounted] = {
     val props = JSMacro[Async[T]](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactSelect.Async)
-    f(props).asInstanceOf[ReactComponentUntyped]
+    val f = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect.Async)
+    f(props)
   }
 }

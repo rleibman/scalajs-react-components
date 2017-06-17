@@ -4,8 +4,10 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.{ Px, Reusability }
+import japgolly.scalajs.react.extra.{Px, Reusability}
+import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.html.Div
 
 import scala.scalajs.js
 
@@ -45,10 +47,10 @@ object MuiSvgIconDemo {
 
     /* rendering all icons turned out to be expensive, so
      *  we cache things based on search string */
-    val renderedIconsPx: Px[js.Array[JsComponentU[MuiSvgIconProps, js.Any, TopNode]]] =
+    val renderedIconsPx: Px[VdomNode]  =
       Px.callback($.props zip $.state.map(_.accepts)).withReuse.autoRefresh.map {
         case (p, accepts) =>
-          p.icons collect {
+          p.icons.collect{
             case (name, idx) if accepts(name) =>
               lookupIcon(name).apply(
                 key = idx.toString,
@@ -58,10 +60,10 @@ object MuiSvgIconDemo {
                 onMouseLeave = unselect,
                 viewBox = "0 0 30 30"
               )()
-          }
+          }.toVdomArray
       }
 
-    def render(P: Props, S: State) =
+    def render(P: Props, S: State): TagOf[Div] =
       <.div(
         CodeExample(code, "MuiSvgIcons")(
           <.div(
@@ -77,6 +79,7 @@ object MuiSvgIconDemo {
         )
       )
   }
+
   val component = ScalaComponent.builder[Props]("MuiSvgIconDemo")
     .initialState(State(Accepts(js.undefined), js.undefined))
     .renderBackend[Backend]

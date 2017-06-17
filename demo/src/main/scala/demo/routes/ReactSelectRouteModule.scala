@@ -9,11 +9,11 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactSelectRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactSelectInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactSelectInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactSelectDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactSelectDemo())
 
-  case object AsyncDemo extends LeftRoute("Async demo", "async", () => ReactSelectAsyncDemo().vdomElement)
+  case object AsyncDemo extends LeftRoute("Async demo", "async", () => ReactSelectAsyncDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo, AsyncDemo)
 

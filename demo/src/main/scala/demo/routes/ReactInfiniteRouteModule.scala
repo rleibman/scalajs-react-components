@@ -9,9 +9,9 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactInfiniteRouteModule {
 
-  case object Info extends LeftRoute("Info", "info", () => ReactInfiniteInfo().vdomElement)
+  case object Info extends LeftRoute("Info", "info", () => ReactInfiniteInfo())
 
-  case object Demo extends LeftRoute("Demo", "demo", () => ReactInfiniteDemo().vdomElement)
+  case object Demo extends LeftRoute("Demo", "demo", () => ReactInfiniteDemo())
 
   val menu: List[LeftRoute] = List(Info, Demo)
 

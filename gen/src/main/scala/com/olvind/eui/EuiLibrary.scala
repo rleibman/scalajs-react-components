@@ -34,7 +34,7 @@ case class EuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("Button"), forceChildren = true, domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Card")),
       ComponentDef(CompName("Col")), // Error, comments 
-      ComponentDef(CompName("Container")),
+      ComponentDef(CompName("Container"), forceChildren = true),
       ComponentDef(CompName("Checkbox"), domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Dropdown")),
       ComponentDef(CompName("EmailInputGroup"), domeTypeOpt = Some(DomInput)),

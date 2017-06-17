@@ -4,7 +4,9 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.elementalui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom.html.Div
 
 import scala.scalajs.js.`|`
 
@@ -20,13 +22,13 @@ object EuiModalDemo {
   )
 
   case class Backend($: BackendScope[Unit, State]) {
-    def toggleModal(event: ReactEventFromHtml) =
+    def toggleModal(event: ReactEventFromHtml): Callback =
       $.modState(state => state.copy(modalIsOpen = !state.modalIsOpen))
 
-    def toggleSizeModal(size: ModalSize | Double)(event: ReactEventFromHtml) =
+    def toggleSizeModal(size: ModalSize | Double)(event: ReactEventFromHtml): Callback =
       $.modState(state => state.copy(sizeModalIsOpen = !state.sizeModalIsOpen, modalSize = size))
 
-    def renderLiveDemo(state: State) = {
+    def renderLiveDemo(state: State): TagOf[Div] = {
       <.div(
         EuiButton(onClick = toggleModal _)("Show it"),
         EuiModal(
@@ -76,7 +78,7 @@ object EuiModalDemo {
       )
     }
 
-    val renderStaticExample = {
+    val renderStaticExample: TagOf[Div] =
       <.div(
         ^.className := "code-example",
         <.div(
@@ -107,9 +109,8 @@ object EuiModalDemo {
           )
         )
       )
-    }
 
-    def renderSizes(state: State) = {
+    def renderSizes(state: State): TagOf[Div] = {
       <.div(
         EuiButton(onClick = toggleSizeModal(ModalSize.small) _)("small"),
         EuiButton(onClick = toggleSizeModal(ModalSize.large) _)("large"),
@@ -130,7 +131,7 @@ object EuiModalDemo {
       )
     }
 
-    def render(state: State) = {
+    def render(state: State): VdomElement =
       CodeExample(code, "EuiModal")(
         EuiContainer()(
           <.h1("Modal"),
@@ -142,7 +143,6 @@ object EuiModalDemo {
           renderSizes(state)
         )
       )
-    }
   }
 
   val component = ScalaComponent.builder[Unit]("EuiModalDemo")

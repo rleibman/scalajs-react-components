@@ -25,7 +25,7 @@ object MuiSvgIcon {
       key: js.UndefOr[String] = js.undefined,
       ref: js.UndefOr[String] = js.undefined,
       color: js.UndefOr[String] = js.undefined,
-      hoverColor: js.UndefOr[String] = js.undefined,
+      hoverColor: js.UndefOr[MuiColor] = js.undefined,
       onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
       onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
       style: js.UndefOr[CssProperties] = js.undefined,

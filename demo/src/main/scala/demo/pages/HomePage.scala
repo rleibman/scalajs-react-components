@@ -83,7 +83,7 @@ object HomePage {
           LocalDemoButton(name = "Welcome Mama", linkButton = true, href = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
         ),
         <.div(Style.searchSection)(
-          ReactSearchBox(onTextChange = onTextChange),
+          ReactSearchBox(onTextChange = onTextChange, style = ReactSearchBox.DefaultStyle),
           <.strong(^.alignSelf := "center", ^.paddingLeft := "30px")(s"Results: ${S.results.length}").unless(S.filterText.isEmpty)
         ),
         <.div(Style.componentsGrid)(
