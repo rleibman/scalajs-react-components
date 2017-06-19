@@ -15,14 +15,17 @@ object GoogleMapBasic {
 
   val latlng = LatLng(16.3008, 80.4428)
 
-  val component = ScalaComponent.builder[Unit]("BasicMap")
-    .render(P =>
-      <.div(
-        <.h2(^.cls := "mui-font-style-headline")("Basic Map"),
-        CodeExample(code, "GoogleMapBasic")(
-          GoogleMap(width = "600px", height = "500px", center = latlng, zoom = 8)
-        )
-      )).build
+  val component = ScalaComponent
+    .builder[Unit]("BasicMap")
+    .render(
+      P =>
+        <.div(
+          <.h2(^.cls := "mui-font-style-headline")("Basic Map"),
+          CodeExample(code, "GoogleMapBasic")(
+            GoogleMap(width = "600px", height = "500px", center = latlng, zoom = 8)
+          )
+      ))
+    .build
 
   // EXAMPLE:END
 

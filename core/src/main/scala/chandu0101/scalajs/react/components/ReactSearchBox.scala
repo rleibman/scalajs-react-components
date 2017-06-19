@@ -41,13 +41,17 @@ object ReactSearchBox {
 
   object DefaultStyle extends Style
 
-  val component = ScalaComponent.builder[Props]("ReactSearchBox")
+  val component = ScalaComponent
+    .builder[Props]("ReactSearchBox")
     .stateless
     .renderBackend[Backend]
     .build
 
   case class Props(onTextChange: String => Callback, style: Style)
 
-  def apply(onTextChange: String => Callback, style: Style = DefaultStyle, ref: js.UndefOr[String] = "", key: js.Any = {}) = component /*.set(key, ref)*/ (Props(onTextChange, style))
+  def apply(onTextChange: String => Callback,
+            style: Style = DefaultStyle,
+            ref: js.UndefOr[String] = "",
+            key: js.Any = {}) = component /*.set(key, ref)*/ (Props(onTextChange, style))
 
 }

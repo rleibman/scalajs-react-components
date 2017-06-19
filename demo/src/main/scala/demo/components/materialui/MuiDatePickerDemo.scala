@@ -14,7 +14,8 @@ object MuiDatePickerDemo {
 
   // EXAMPLE:START
 
-  val component = ScalaComponent.builder[Unit]("MuiDatePickerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDatePickerDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiDatePicker")(
@@ -32,7 +33,8 @@ object MuiDatePickerDemo {
           )()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

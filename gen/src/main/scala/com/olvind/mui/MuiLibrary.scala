@@ -16,34 +16,36 @@ case class MuiLibrary(base: Path) extends Library {
       base / 'TextField / 'EnhancedTextarea
     )
 
-  override val prefixOpt = Some("Mui")
-  override val name = "materialui"
-  override val typeMapper = MuiTypeMapper
+  override val prefixOpt    = Some("Mui")
+  override val name         = "materialui"
+  override val typeMapper   = MuiTypeMapper
   override val memberMapper = MuiTypeMemberMethodMapper
-  override val indexNames = Set("index.js")
-  override val packageName = "chandu0101.scalajs.react.components.materialui"
+  override val indexNames   = Set("index.js")
+  override val packageName  = "chandu0101.scalajs.react.components.materialui"
 
   case object Internal {
-    val AppCanvas = ComponentDef(CompName("AppCanvas"))
+    val AppCanvas          = ComponentDef(CompName("AppCanvas"))
     val BeforeAfterWrapper = ComponentDef(CompName("BeforeAfterWrapper"))
-    val EnhancedButton = ComponentDef(CompName("EnhancedButton"))
-    val EnhancedSwitch = ComponentDef(CompName("EnhancedSwitch"))
-    val Overlay = ComponentDef(CompName("Overlay"))
-    val CircleRipple = ComponentDef(CompName("CircleRipple"))
-    val FocusRipple = ComponentDef(CompName("FocusRipple"))
-    val TouchRipple = ComponentDef(CompName("TouchRipple"))
-    val RenderToLayer = ComponentDef(CompName("RenderToLayer"))
-    val EnhancedTextarea = ComponentDef(CompName("EnhancedTextarea"))
-    val Tooltip = ComponentDef(CompName("Tooltip"))
+    val EnhancedButton     = ComponentDef(CompName("EnhancedButton"))
+    val EnhancedSwitch     = ComponentDef(CompName("EnhancedSwitch"))
+    val Overlay            = ComponentDef(CompName("Overlay"))
+    val CircleRipple       = ComponentDef(CompName("CircleRipple"))
+    val FocusRipple        = ComponentDef(CompName("FocusRipple"))
+    val TouchRipple        = ComponentDef(CompName("TouchRipple"))
+    val RenderToLayer      = ComponentDef(CompName("RenderToLayer"))
+    val EnhancedTextarea   = ComponentDef(CompName("EnhancedTextarea"))
+    val Tooltip            = ComponentDef(CompName("Tooltip"))
   }
 
   val DropDownMenu = ComponentDef(CompName("DropDownMenu"))
-  val List_ = ComponentDef(CompName("List"))
-  val ListItem = ComponentDef(CompName("ListItem"), Some(Internal.EnhancedButton))
-  val Menu = ComponentDef(CompName("Menu"), Some(List_))
-  val Paper = ComponentDef(CompName("Paper"))
-  val RadioButton = ComponentDef(CompName("RadioButton"), Some(Internal.EnhancedSwitch))
-  val TextField = ComponentDef(CompName("TextField"), Some(Internal.EnhancedTextarea), domeTypeOpt = Some(DomInput))
+  val List_        = ComponentDef(CompName("List"))
+  val ListItem     = ComponentDef(CompName("ListItem"), Some(Internal.EnhancedButton))
+  val Menu         = ComponentDef(CompName("Menu"), Some(List_))
+  val Paper        = ComponentDef(CompName("Paper"))
+  val RadioButton  = ComponentDef(CompName("RadioButton"), Some(Internal.EnhancedSwitch))
+  val TextField = ComponentDef(CompName("TextField"),
+                               Some(Internal.EnhancedTextarea),
+                               domeTypeOpt = Some(DomInput))
 
   val components: Seq[ComponentDef] =
     Seq(

@@ -14,7 +14,7 @@ object EuiButtonsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     val renderButtonSizes =
       <.div(
         EuiButton(size = ButtonSize.lg)("Large"),
@@ -93,7 +93,8 @@ object EuiButtonsDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("EuiButtonsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiButtonsDemo")
     .renderBackend[Backend]
     .build
 

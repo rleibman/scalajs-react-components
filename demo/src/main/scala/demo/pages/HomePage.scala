@@ -2,13 +2,13 @@ package demo
 package pages
 
 import chandu0101.scalajs.react.components._
-import demo.components.{ ComponentGridItem, LocalDemoButton }
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
-import japgolly.scalajs.react.component.Generic.toComponentCtor
-import japgolly.scalajs.react.extra.router.RouterCtl
+import demo.components.{ComponentGridItem, LocalDemoButton}
 import demo.routes.AppRouter
 import demo.routes.AppRouter._
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.component.Generic.toComponentCtor
+import japgolly.scalajs.react.extra.router.RouterCtl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object HomePage {
   import RCustomStyles._
@@ -79,12 +79,23 @@ object HomePage {
     def render(P: RouterCtl[Page], S: State) = {
       <.div(
         <.div(Style.info, ^.key := "info")(
-          <.h3(Style.infoContent)("Reusable ", <.a(^.href := "https://github.com/japgolly/scalajs-react", Style.infoLink, ^.target := "_blank")("scalajs-react"), " Components, want to Contribute ? "),
-          LocalDemoButton(name = "Welcome Mama", linkButton = true, href = "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
+          <.h3(Style.infoContent)(
+            "Reusable ",
+            <.a(^.href := "https://github.com/japgolly/scalajs-react",
+                Style.infoLink,
+                ^.target := "_blank")("scalajs-react"),
+            " Components, want to Contribute ? "
+          ),
+          LocalDemoButton(
+            name = "Welcome Mama",
+            linkButton = true,
+            href =
+              "https://github.com/chandu0101/scalajs-react-components/tree/master/doc/CONTRIBUTE.md")
         ),
         <.div(Style.searchSection)(
           ReactSearchBox(onTextChange = onTextChange, style = ReactSearchBox.DefaultStyle),
-          <.strong(^.alignSelf := "center", ^.paddingLeft := "30px")(s"Results: ${S.results.length}").unless(S.filterText.isEmpty)
+          <.strong(^.alignSelf := "center", ^.paddingLeft := "30px")(
+            s"Results: ${S.results.length}").unless(S.filterText.isEmpty)
         ),
         <.div(Style.componentsGrid)(
           S.results.map(c => ComponentGridItem(c.name, c.route, c.imagePath, P)).toTagMod
@@ -93,7 +104,8 @@ object HomePage {
     }
   }
 
-  val component = ScalaComponent.builder[RouterCtl[Page]]("homepage")
+  val component = ScalaComponent
+    .builder[RouterCtl[Page]]("homepage")
     .initialState(State("", AppRouter.homePageMenu))
     .renderBackend[Backend]
     .build

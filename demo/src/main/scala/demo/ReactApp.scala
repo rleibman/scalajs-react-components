@@ -5,7 +5,7 @@ import demo.routes.AppRouter
 import org.scalajs.dom
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{ global => g }
+import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
 
 object ReactApp extends JSApp {

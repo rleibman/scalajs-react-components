@@ -3,13 +3,10 @@ package reactselect
 
 import chandu0101.macros.tojs.JSMacro
 import chandu0101.scalajs.react.components.TODO._
-import chandu0101.scalajs.react.components.materialui.Mui
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.component.Js.{ RawMounted, UnmountedWithRawType }
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
 import japgolly.scalajs.react.raw._
 import japgolly.scalajs.react.vdom.html_<^._
-import org.scalajs.dom
-import org.scalajs.dom._
 
 import scala.scalajs.js
 
@@ -51,7 +48,6 @@ case class Async[T](
     searchingText: js.UndefOr[String] = js.undefined,
     // label to prompt for search input
     searchPromptText: js.UndefOr[String] = js.undefined,
-
     /* The following props inherited from `Select`: */
 
     /* placeholder displayed when you want to add a label on a multi-value input */
@@ -138,7 +134,7 @@ case class Async[T](
 
   def apply(): UnmountedWithRawType[js.Object, Null, RawMounted] = {
     val props = JSMacro[Async[T]](this)
-    val f = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect.Async)
+    val f     = JsComponent[js.Object, Children.None, Null](js.Dynamic.global.ReactSelect.Async)
     f(props)
   }
 }

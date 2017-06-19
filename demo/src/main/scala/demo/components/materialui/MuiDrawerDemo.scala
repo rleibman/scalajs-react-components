@@ -16,10 +16,10 @@ object MuiDrawerDemo {
   // EXAMPLE:START
 
   case class State(
-    selected: js.UndefOr[String],
-    isOpen: Boolean,
-    isDocked: Boolean,
-    isRight: Boolean
+      selected: js.UndefOr[String],
+      isOpen: Boolean,
+      isDocked: Boolean,
+      isRight: Boolean
   )
 
   case class Choice(id: String, text: String)
@@ -31,7 +31,7 @@ object MuiDrawerDemo {
     Choice("4", "Fourth option")
   )
 
-  class Backend($: BackendScope[Unit, State]) {
+  class Backend($ : BackendScope[Unit, State]) {
     val toggleOpenCb: Callback =
       $.modState(s => s.copy(isOpen = !s.isOpen))
 
@@ -47,7 +47,7 @@ object MuiDrawerDemo {
     val onRequestChange: (Boolean, String) => Callback =
       (open, reason) =>
         Callback.info(s"onRequestChange: open: $open, reason: $reason") >>
-          toggleOpenCb
+        toggleOpenCb
 
     val selectItem: String => TouchTapEvent => Callback =
       id => e => $.modState(s => s.copy(selected = id))
@@ -62,7 +62,6 @@ object MuiDrawerDemo {
               open = S.isOpen,
               docked = S.isDocked
             )(
-
               /* hack in a cheesy centered avatar */
               MuiAvatar(
                 key = "avatar",
@@ -70,26 +69,37 @@ object MuiDrawerDemo {
                 backgroundColor = Mui.Styles.colors.red400,
                 style = js.Dynamic.literal(margin = "auto", display = "block", padding = "10px")
               )(js.defined(":D")),
-
-              choices.map(c =>
-                MuiMenuItem(
-                  key = c.id,
-                  primaryText = js.defined(c.text),
-                  checked = S.selected == js.defined(c.id),
-                  onTouchTap = selectItem(c.id)
-                )()).toVdomArray
+              choices
+                .map(
+                  c =>
+                    MuiMenuItem(
+                      key = c.id,
+                      primaryText = js.defined(c.text),
+                      checked = S.selected == js.defined(c.id),
+                      onTouchTap = selectItem(c.id)
+                    )())
+                .toVdomArray
             ),
-
-            MuiToggle(key = "toggle1", toggled = S.isOpen, label = js.defined("Show drawer"), onToggle = toggleOpen)(),
-            MuiToggle(key = "toggle2", toggled = S.isDocked, label = js.defined("Show docked"), onToggle = toggleDocked)(),
-            MuiToggle(key = "toggle3", toggled = S.isRight, label = js.defined("Show on right side"), onToggle = toggleRight)()
+            MuiToggle(key = "toggle1",
+                      toggled = S.isOpen,
+                      label = js.defined("Show drawer"),
+                      onToggle = toggleOpen)(),
+            MuiToggle(key = "toggle2",
+                      toggled = S.isDocked,
+                      label = js.defined("Show docked"),
+                      onToggle = toggleDocked)(),
+            MuiToggle(key = "toggle3",
+                      toggled = S.isRight,
+                      label = js.defined("Show on right side"),
+                      onToggle = toggleRight)()
           )
         )
       )
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("MuiDrawerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDrawerDemo")
     .initialState(
       State(
         selected = js.undefined,

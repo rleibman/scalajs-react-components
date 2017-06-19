@@ -45,10 +45,13 @@ object GoogleMapCustomMarkerIcon {
     Marker(position = LatLng(-33.890542, 151.274856), title = "Bondi Beach", icon = image),
     Marker(position = LatLng(-33.923036, 151.259052), title = "Coogee Beach", icon = image),
     Marker(position = LatLng(-34.028249, 151.157507), title = "Cronulla Beach", icon = image),
-    Marker(position = LatLng(-33.80010128657071, 151.28747820854187), title = "Manly Beach", icon = image)
+    Marker(position = LatLng(-33.80010128657071, 151.28747820854187),
+           title = "Manly Beach",
+           icon = image)
   )
 
-  val component = ScalaComponent.builder[Unit]("plain")
+  val component = ScalaComponent
+    .builder[Unit]("plain")
     .render(P => {
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Custom Marker Icon"),
@@ -56,7 +59,8 @@ object GoogleMapCustomMarkerIcon {
           GoogleMap(center = latlng, markers = markers, zoom = 10)
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

@@ -21,24 +21,26 @@ object ReactListView {
       )
     )
 
-    val listItem = styleF.bool(selected => styleS(
-      position.relative,
-      display.block,
-      padding(v = 10.px, h = 15.px),
-      border :=! "1px solid #ecf0f1",
-      cursor.pointer,
-      mixinIfElse(selected)(
-        color.white,
-        fontWeight._500,
-        backgroundColor :=! "#146699"
-      )(
-          backgroundColor.white,
-          &.hover(
-            color :=! "#555555",
-            backgroundColor :=! "#ecf0f1"
+    val listItem = styleF.bool(
+      selected =>
+        styleS(
+          position.relative,
+          display.block,
+          padding(v = 10.px, h = 15.px),
+          border :=! "1px solid #ecf0f1",
+          cursor.pointer,
+          mixinIfElse(selected)(
+            color.white,
+            fontWeight._500,
+            backgroundColor :=! "#146699"
+          )(
+            backgroundColor.white,
+            &.hover(
+              color :=! "#555555",
+              backgroundColor :=! "#ecf0f1"
+            )
           )
-        )
-    ))
+      ))
 
   }
 
@@ -53,48 +55,51 @@ object ReactListView {
 
     def onItemSelect(onItemSelect: js.UndefOr[String => Callback])(value: String): Callback = {
       val setSelected = t.modState(_.copy(selectedItem = value))
-      val onSelect = onItemSelect.asCbo(value)
+      val onSelect    = onItemSelect.asCbo(value)
 
       setSelected >> onSelect
     }
 
     def render(P: Props, S: State) = {
-      val fItems = P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
+      val fItems =
+        P.items.filter(item => item.toString.toLowerCase.contains(S.filterText.toLowerCase))
       <.div(
         ReactSearchBox(onTextChange = onTextChange).when(P.showSearchBox),
         <.ul(
           P.style.listGroup,
           fItems.map { item =>
-          val selected = item.toString == S.selectedItem
-          <.li(
-            P.style.listItem(selected),
-            ^.onClick --> onItemSelect(P.onItemSelect)(item.toString), item
-          )
-        }.toTagMod
+            val selected = item.toString == S.selectedItem
+            <.li(
+              P.style.listItem(selected),
+              ^.onClick --> onItemSelect(P.onItemSelect)(item.toString),
+              item
+            )
+          }.toTagMod
         )
       )
     }
   }
 
-  val component = ScalaComponent.builder[Props]("ReactListView")
+  val component = ScalaComponent
+    .builder[Props]("ReactListView")
     .initialState(State(filterText = "", selectedItem = ""))
     .renderBackend[Backend]
     .build
 
   case class Props(
-    items: List[String],
-    onItemSelect: js.UndefOr[String => Callback],
-    showSearchBox: Boolean,
-    style: Style
+      items: List[String],
+      onItemSelect: js.UndefOr[String => Callback],
+      showSearchBox: Boolean,
+      style: Style
   )
 
   def apply(
-    items: List[String],
-    onItemSelect: js.UndefOr[String => Callback] = js.undefined,
-    showSearchBox: Boolean = false,
-    style: Style = DefaultStyle,
-    ref: js.UndefOr[String] = js.undefined,
-    key: js.Any = {}
+      items: List[String],
+      onItemSelect: js.UndefOr[String => Callback] = js.undefined,
+      showSearchBox: Boolean = false,
+      style: Style = DefaultStyle,
+      ref: js.UndefOr[String] = js.undefined,
+      key: js.Any = {}
   ) =
     component /*.set(key, ref)*/ (Props(items, onItemSelect, showSearchBox, style))
 

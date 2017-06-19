@@ -4,17 +4,14 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 import org.scalajs.dom.html
-import japgolly.scalajs.react.raw.RefFn
-
-import scala.scalajs.js
 
 object ReactPopOver {
   import RCustomStyles._
 
   object DomUtil {
     def offset(element: html.Element) = {
-      val rect = element.getBoundingClientRect()
-      var scrollTop = 0.0
+      val rect       = element.getBoundingClientRect()
+      var scrollTop  = 0.0
       var scrollLeft = 0.0
       if (dom.document.body.scrollTop > 0) {
         scrollTop = dom.document.body.scrollTop
@@ -67,11 +64,13 @@ object ReactPopOver {
 
     def popoverBottom = TagMod(^.marginTop := "10px")
 
-    def popoverTitle = TagMod(^.margin := "0", ^.padding := "8px 14px",
-      ^.fontSize := "15px",
-      ^.backgroundColor := "#f7f7f7",
-      ^.borderBottom := "1px solid #ebebeb",
-      ^.borderRadius := "5px 5px 0 0")
+    def popoverTitle =
+      TagMod(^.margin := "0",
+             ^.padding := "8px 14px",
+             ^.fontSize := "15px",
+             ^.backgroundColor := "#f7f7f7",
+             ^.borderBottom := "1px solid #ebebeb",
+             ^.borderRadius := "5px 5px 0 0")
 
     def popoverContent = TagMod(^.padding := "9px 14px")
 
@@ -159,7 +158,7 @@ object ReactPopOver {
 
   case class State(open: Boolean, top: Double = 0, left: Double = 0)
 
-  class Backend($: BackendScope[Props, State]) {
+  class Backend($ : BackendScope[Props, State]) {
 
     def toggle(node: html.Element): Callback =
       ($.props zip $.state).flatMap {
@@ -174,25 +173,25 @@ object ReactPopOver {
     def getPosition(P: Props)(node: html.Element): ClientRect = {
       val offset = DomUtil.offset(node)
       val height = node.offsetHeight
-      val width = node.offsetWidth
+      val width  = node.offsetWidth
 
       val popoverHeight = $.getDOMNode.asInstanceOf[html.Element].offsetHeight
-      val popoverWidth = $.getDOMNode.asInstanceOf[html.Element].offsetWidth
+      val popoverWidth  = $.getDOMNode.asInstanceOf[html.Element].offsetWidth
       P.placement match {
         case "right" =>
-          val top = offset.top + height / 2 - popoverHeight / 2
+          val top  = offset.top + height / 2 - popoverHeight / 2
           val left = offset.left + width
           ClientRect(top, left)
         case "left" =>
-          val top = offset.top + height / 2 - popoverHeight / 2
+          val top  = offset.top + height / 2 - popoverHeight / 2
           val left = offset.left - popoverWidth
           ClientRect(top, left)
         case "top" =>
-          val top = offset.top - popoverHeight
+          val top  = offset.top - popoverHeight
           val left = offset.left + width / 2 - popoverWidth / 2
           ClientRect(top, left)
         case "bottom" =>
-          val top = offset.top + height
+          val top  = offset.top + height
           val left = offset.left + width / 2 - popoverWidth / 2
           ClientRect(top, left)
         case _ => throw new Exception(s"unsupported placement: ${P.placement}")
@@ -200,10 +199,14 @@ object ReactPopOver {
     }
 
     def arrowAfter(P: Props): TagMod = {
-      if (P.placement == "top") <.span(P.style.popoverArrowAfter, P.style.popoverTopArrowAfter, " ")
-      else if (P.placement == "left") <.span(P.style.popoverArrowAfter, P.style.popoverLeftArrowAfter, " ")
-      else if (P.placement == "right") <.span(P.style.popoverArrowAfter, P.style.popoverRightArrowAfter, " ")
-      else if (P.placement == "bottom") <.span(P.style.popoverArrowAfter, P.style.popoverBottomArrowAfter, " ")
+      if (P.placement == "top")
+        <.span(P.style.popoverArrowAfter, P.style.popoverTopArrowAfter, " ")
+      else if (P.placement == "left")
+        <.span(P.style.popoverArrowAfter, P.style.popoverLeftArrowAfter, " ")
+      else if (P.placement == "right")
+        <.span(P.style.popoverArrowAfter, P.style.popoverRightArrowAfter, " ")
+      else if (P.placement == "bottom")
+        <.span(P.style.popoverArrowAfter, P.style.popoverBottomArrowAfter, " ")
       else ""
     }
 
@@ -217,22 +220,24 @@ object ReactPopOver {
         ^.top := S.top.toString(),
         (^.left := S.left.toString).when(S.open)
       )(
-          <.div(
-            P.style.popoverArrow,
-            P.style.popoverTopArrow.when(P.placement == "top"),
-            P.style.popoverLeftArrow.when(P.placement == "left"),
-            P.style.popoverRightArrow.when(P.placement == "right"),
-            P.style.popoverBottomArrow.when(P.placement == "bottom"), arrowAfter(P)
-          ),
-          (<.h3(P.style.popoverTitle)(P.title)).unless(P.title.isEmpty),
-          <.div(P.style.popoverContent)(
-            C
-          )
+        <.div(
+          P.style.popoverArrow,
+          P.style.popoverTopArrow.when(P.placement == "top"),
+          P.style.popoverLeftArrow.when(P.placement == "left"),
+          P.style.popoverRightArrow.when(P.placement == "right"),
+          P.style.popoverBottomArrow.when(P.placement == "bottom"),
+          arrowAfter(P)
+        ),
+        (<.h3(P.style.popoverTitle)(P.title)).unless(P.title.isEmpty),
+        <.div(P.style.popoverContent)(
+          C
         )
+      )
     }
   }
 
-  val component = ScalaComponent.builder[Props]("ReactPopover")
+  val component = ScalaComponent
+    .builder[Props]("ReactPopover")
     .initialState(State(open = false))
     .renderBackendWithChildren[Backend]
     .build
@@ -240,11 +245,10 @@ object ReactPopOver {
   case class Props(title: String = "", placement: String = "", style: Style = new Style {})
 
   def apply(
-    title: String = "",
-    placement: String = "right",
-    style: Style = new Style {}
+      title: String = "",
+      placement: String = "right",
+      style: Style = new Style {}
   )(children: VdomNode*) =
-
     //    component.set(key = key, ref = ref)(
     //      Props(title, placement, style),
     //      children

@@ -3,7 +3,7 @@ package components
 package googlemap
 
 import chandu0101.scalajs.react.components.GoogleMap
-import chandu0101.scalajs.react.components.fascades.{ LatLng, Marker }
+import chandu0101.scalajs.react.components.fascades.{LatLng, Marker}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
@@ -23,7 +23,8 @@ object GoogleMapMarkers {
       |  GoogleMap(center = latlng ,markers = markers ,zoom = 10)
       |
     """.stripMargin
-  val component = ScalaComponent.builder[Unit]("mapmarkers")
+  val component = ScalaComponent
+    .builder[Unit]("mapmarkers")
     .render(P => {
       <.div(
         <.h2(^.cls := "mui-font-style-headline")("Markers"),
@@ -31,7 +32,8 @@ object GoogleMapMarkers {
           GoogleMap(center = latlng, markers = markers, zoom = 10)
         )
       )
-    }).build
+    })
+    .build
 
   val latlng = LatLng(-33.9, 151.2)
 

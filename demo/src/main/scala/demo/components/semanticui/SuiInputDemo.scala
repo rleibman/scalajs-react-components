@@ -12,7 +12,7 @@ object SuiInputDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(
@@ -36,7 +36,8 @@ object SuiInputDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("SuiInputDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiInputDemo")
     .renderBackend[Backend]
     .build
 

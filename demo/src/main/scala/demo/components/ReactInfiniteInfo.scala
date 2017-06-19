@@ -18,7 +18,8 @@ object ReactInfiniteInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactInfiniteInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactInfiniteInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "listviews/ReactInfinite.scala")(
         <.div(
@@ -33,12 +34,14 @@ object ReactInfiniteInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "https://github.com/seatgeek/react-infinite#installation"))
+            <.p("Follow the installation guide from :",
+                RedLink("here", "https://github.com/seatgeek/react-infinite#installation"))
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

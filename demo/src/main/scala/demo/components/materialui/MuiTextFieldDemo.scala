@@ -13,9 +13,10 @@ object MuiTextFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  //TODO for some reason the vdomNodeFromString implicit is not working 
+  //TODO for some reason the vdomNodeFromString implicit is not working
 
-  val component = ScalaComponent.builder[Unit]("MuiTextFieldDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiTextFieldDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiTextField")(
@@ -28,14 +29,18 @@ object MuiTextFieldDemo {
               onChange = CallbackDebug.f2("onChange"),
               onFocus = CallbackDebug.f1("onFocus")
             )(),
-            MuiTextField(hintText = js.defined("Hint Text"), floatingLabelText = js.defined("Floating Label Text"))(),
+            MuiTextField(hintText = js.defined("Hint Text"),
+                         floatingLabelText = js.defined("Floating Label Text"))(),
             MuiTextField(hintText = js.defined("Multi Line Text"), multiLine = true)(),
-            MuiTextField(hintText = js.defined("Multi Line Text"), multiLine = true, floatingLabelText = js.defined("Multi Line Floating Label Text"))(),
+            MuiTextField(hintText = js.defined("Multi Line Text"),
+                         multiLine = true,
+                         floatingLabelText = js.defined("Multi Line Floating Label Text"))(),
             MuiTextField(hintText = js.defined("Disabled Hint text"), disabled = true)()
           )
         )
       )
-    }).build
+    })
+    .build
   // EXAMPLE:END
 
   def apply() = component()

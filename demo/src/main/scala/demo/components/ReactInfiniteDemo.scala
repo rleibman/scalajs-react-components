@@ -42,8 +42,7 @@ object ReactInfiniteDemo {
   class Backend(t: BackendScope[_, State]) {
 
     def renderRow(s: String): VdomElement = {
-      <.div(styles.item, s, ^.key := s,
-        <.div(styles.border))
+      <.div(styles.item, s, ^.key := s, <.div(styles.border))
     }
 
     def loadData() = {
@@ -56,17 +55,19 @@ object ReactInfiniteDemo {
           <.div(
             styles.container,
             if (S.isLoading) <.div("Loading ..")
-            else ReactInfinite(
-              elementHeight = 70,
-              containerHeight = 400
-            )(S.data.map(renderRow))
+            else
+              ReactInfinite(
+                elementHeight = 70,
+                containerHeight = 400
+              )(S.data.map(renderRow))
           )
         )
       )
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactSelectDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSelectDemo")
     .initialState(State())
     .renderBackend[Backend]
     .componentDidMount(scope => scope.backend.loadData())

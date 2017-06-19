@@ -28,7 +28,7 @@ object MuiDropDownMenuDemo {
       new Item("5", "Weekly")
     )
 
-  case class Backend($: BackendScope[Unit, Item]) {
+  case class Backend($ : BackendScope[Unit, Item]) {
     val onChange: (TouchTapEvent, Int, Item) => Callback =
       (e, idx, value) => $.setState(value) >> Callback.info(s"idx: $idx, value: $value")
 
@@ -39,14 +39,20 @@ object MuiDropDownMenuDemo {
             onChange = onChange,
             value = chosen
           )(
-            items.map(
-            item => MuiMenuItem[Item](key = item.id, value = item, primaryText = js.defined(item.name))()
-          ).toVdomArray
+            items
+              .map(
+                item =>
+                  MuiMenuItem[Item](key = item.id,
+                                    value = item,
+                                    primaryText = js.defined(item.name))()
+              )
+              .toVdomArray
           )
         )
       )
   }
-  val component = ScalaComponent.builder[Unit]("MuiDropDownMenuDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiDropDownMenuDemo")
     .initialState(items.head)
     .renderBackend[Backend]
     .build

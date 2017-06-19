@@ -4,8 +4,7 @@ import scala.scalajs.js
 
 @js.native
 trait IHighlightResultBase extends js.Object {
-  var language: String = js.native
+  var language: String  = js.native
   var relevance: Double = js.native
-  var value: String = js.native
+  var value: String     = js.native
 }
-

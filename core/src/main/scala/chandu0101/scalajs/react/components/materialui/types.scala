@@ -6,7 +6,7 @@ import scala.scalajs.js
 
 class Vertical(val value: String) extends AnyVal
 object Vertical {
-  val top = new Vertical("top")
+  val top    = new Vertical("top")
   val center = new Vertical("center")
   val bottom = new Vertical("bottom")
   val values = List(top, center, bottom)
@@ -14,9 +14,9 @@ object Vertical {
 
 class Horizontal(val value: String) extends AnyVal
 object Horizontal {
-  val left = new Horizontal("left")
+  val left   = new Horizontal("left")
   val middle = new Horizontal("middle")
-  val right = new Horizontal("right")
+  val right  = new Horizontal("right")
   val values = List(left, middle, right)
 }
 
@@ -36,30 +36,30 @@ object ZDepth {
 
 class Corners(val value: String) extends AnyVal
 object Corners {
-  val bottom_left = new Corners("bottom-left")
+  val bottom_left  = new Corners("bottom-left")
   val bottom_right = new Corners("bottom-right")
-  val top_left = new Corners("top-left")
-  val top_right = new Corners("top-right")
-  val values = List(bottom_left, bottom_right, top_left, top_right)
+  val top_left     = new Corners("top-left")
+  val top_right    = new Corners("top-right")
+  val values       = List(bottom_left, bottom_right, top_left, top_right)
 }
 
 class CornersAndCenter(val value: String) extends AnyVal
 object CornersAndCenter {
   val bottom_center = new CornersAndCenter("bottom-center")
-  val bottom_left = new CornersAndCenter("bottom-left")
-  val bottom_right = new CornersAndCenter("bottom-right")
-  val top_center = new CornersAndCenter("top-center")
-  val top_left = new CornersAndCenter("top-left")
-  val top_right = new CornersAndCenter("top-right")
-  val values = List(bottom_center, bottom_left, bottom_right, top_center, top_left, top_right)
+  val bottom_left   = new CornersAndCenter("bottom-left")
+  val bottom_right  = new CornersAndCenter("bottom-right")
+  val top_center    = new CornersAndCenter("top-center")
+  val top_left      = new CornersAndCenter("top-left")
+  val top_right     = new CornersAndCenter("top-right")
+  val values        = List(bottom_center, bottom_left, bottom_right, top_center, top_left, top_right)
 }
 
 class MuiFocusedState(val value: String) extends AnyVal
 object MuiFocusedState {
-  val none = new MuiFocusedState("none")
-  val focused = new MuiFocusedState("focused")
+  val none            = new MuiFocusedState("none")
+  val focused         = new MuiFocusedState("focused")
   val keyboardfocused = new MuiFocusedState("keyboardfocused")
-  val value = List(none, focused, keyboardfocused)
+  val value           = List(none, focused, keyboardfocused)
 }
 
 @js.native

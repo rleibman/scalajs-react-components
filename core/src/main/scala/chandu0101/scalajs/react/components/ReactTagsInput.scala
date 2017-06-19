@@ -2,9 +2,9 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
-import japgolly.scalajs.react.raw._
 
 case class ReactTagsInput(
     key: js.UndefOr[String] = js.undefined,
@@ -39,7 +39,7 @@ case class ReactTagsInput(
         <input type='text' onChange={onChange} value={value} {...other} />
       )
     }
-  */
+     */
     renderInput: js.UndefOr[js.Any] = js.undefined,
     /* Renders the layout of the component. Takes tagComponents and inputComponent as args. Default is:
     function defaultRenderLayout (tagComponents, inputComponent) {
@@ -58,7 +58,7 @@ case class ReactTagsInput(
 
   def apply() = {
     val props = JSMacro[ReactTagsInput](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactTagsInput)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.ReactTagsInput)
     f(props).asInstanceOf[ScalaComponent.Unmounted[_, _, _]]
   }
 
@@ -67,5 +67,5 @@ case class ReactTagsInput(
 @js.native
 trait ReactTagsInputM extends js.Object {
   def focus(): Unit = js.native
-  def blur(): Unit = js.native
+  def blur(): Unit  = js.native
 }

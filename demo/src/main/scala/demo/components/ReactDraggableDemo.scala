@@ -1,7 +1,7 @@
 package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ RElementPosition, ReactDraggable }
+import chandu0101.scalajs.react.components.{RElementPosition, ReactDraggable}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.raw.Event
@@ -12,7 +12,7 @@ object ReactDraggableDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render =
       <.div(
@@ -34,7 +34,8 @@ object ReactDraggableDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactDraggableDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactDraggableDemo")
     .renderBackend[Backend]
     .build
 

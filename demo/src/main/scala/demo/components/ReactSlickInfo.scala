@@ -16,8 +16,10 @@ object ReactSlickInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("SlickInfo")
-    .renderStatic(InfoTemplate(componentFilePath = "reactslick/ReactSlick.scala")()).build
+  val component = ScalaComponent
+    .builder[Unit]("SlickInfo")
+    .renderStatic(InfoTemplate(componentFilePath = "reactslick/ReactSlick.scala")())
+    .build
 
   def apply() = component()
 }

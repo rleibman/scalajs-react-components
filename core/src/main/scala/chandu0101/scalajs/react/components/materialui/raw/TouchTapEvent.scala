@@ -13,4 +13,3 @@ trait TouchTapEvent[+DOMEventTarget <: dom.Node] extends ReactEventFrom[DOMEvent
   def metaKey: Boolean
   def shiftKey: Boolean
 }
-

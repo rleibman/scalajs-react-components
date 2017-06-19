@@ -1,11 +1,11 @@
 package com.olvind
 
-import ammonite.ops.Path
+import java.io.File
+
+import ammonite.ops.{Path, RelPath}
 import com.olvind.requiresjs._
 
 import scala.collection.mutable
-import java.io.File
-import ammonite.ops.RelPath
 
 object Runner {
 
@@ -49,7 +49,7 @@ object Runner {
             Seq.empty
           } else {
             visited += path
-            val requireds: Seq[Required] = rs.map(_.run).toList
+            val requireds: Seq[Required]       = rs.map(_.run).toList
             val recursive: Seq[FoundComponent] = requireds flatMap flattenScan
             System.err.println(s"Found in path $path: ${recursive.map(_.name.value)}")
 
@@ -68,7 +68,6 @@ object Runner {
     val (mainFiles: Seq[PrimaryOutFile], secondaryFiles: Seq[SecondaryOutFile]) =
       library.components.foldLeft((Seq.empty[PrimaryOutFile], Seq.empty[SecondaryOutFile])) {
         case ((ps, ss), c) =>
-
           val parsed: ParsedComponent = ParseComponent(allFound, library, c)
 
           val (primaryFile, secondaryFile) = Printer(library.prefixOpt.getOrElse(""), parsed)
@@ -76,21 +75,21 @@ object Runner {
           (ps :+ primaryFile, ss ++ secondaryFile)
       }
 
-    val fullOutputPath = outputFolder / RelPath(library.packageName.replaceAll("\\.", File.separator))
+    val fullOutputPath = outputFolder / RelPath(
+      library.packageName.replaceAll("\\.", File.separator))
     fullOutputPath.toIO.mkdirs()
 
     val prelude: String =
       preludeFor(library)
 
     val secondary: Path = fullOutputPath / "gen-types.scala"
-    printToFile(secondary) {
-      w =>
-        w.println(prelude)
-        secondaryFiles.sortBy(_.content).distinct.foreach {
-          case file =>
-            w.println(file.content)
-            w.println("")
-        }
+    printToFile(secondary) { w =>
+      w.println(prelude)
+      secondaryFiles.sortBy(_.content).distinct.foreach {
+        case file =>
+          w.println(file.content)
+          w.println("")
+      }
     }
 
     val outs: Seq[(PrimaryOutFile, Path)] =
@@ -98,14 +97,13 @@ object Runner {
 
     outs.foreach {
       case (PrimaryOutFile(compName, content, secondaries), file) =>
-        printToFile(file) {
-          w =>
-            w.println(prelude + content)
-            secondaries.foreach {
-              case SecondaryOutFile(_, c) =>
-                w.println("")
-                w.println(c)
-            }
+        printToFile(file) { w =>
+          w.println(prelude + content)
+          secondaries.foreach {
+            case SecondaryOutFile(_, c) =>
+              w.println("")
+              w.println(c)
+          }
         }
     }
     outs.map(_._2) :+ secondary

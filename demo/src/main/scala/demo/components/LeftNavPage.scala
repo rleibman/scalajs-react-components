@@ -1,14 +1,13 @@
 package demo
 package components
 
+import demo.routes.LeftRoute
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scala.scalajs.js
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._
-import demo.routes.LeftRoute
-import japgolly.scalajs.react.extra.router.RouterCtl
 
 object LeftNavPage {
 
@@ -30,7 +29,7 @@ object LeftNavPage {
     )
   }
 
-  case class Backend($: BackendScope[Props, Unit]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props) = {
       <.div(
         Style.container,
@@ -39,14 +38,16 @@ object LeftNavPage {
       )
     }
   }
-  val component = ScalaComponent.builder[Props]("LeftNavPage")
+  val component = ScalaComponent
+    .builder[Props]("LeftNavPage")
     .renderBackend[Backend]
     .build
 
   case class Props(menu: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(menu: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = {
+  def apply(menu: List[LeftRoute],
+            selectedPage: LeftRoute,
+            ctrl: RouterCtl[LeftRoute]): VdomElement = {
     component(Props(menu, selectedPage, ctrl))
-    //    component.set(key, ref)(Props(menu, selectedPage, ctrl))
   }
 }

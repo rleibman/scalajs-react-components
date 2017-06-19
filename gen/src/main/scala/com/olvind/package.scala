@@ -16,7 +16,7 @@ package object olvind {
 
   def add(_p: Path, frags: String): Path =
     frags.split("/").filterNot(_.isEmpty).foldLeft(_p) {
-      case (p, ".") ⇒ p
+      case (p, ".")  ⇒ p
       case (p, "..") ⇒ p.copy(segments = p.segments.dropRight(1))
       case (p, frag) ⇒ p / frag
     }

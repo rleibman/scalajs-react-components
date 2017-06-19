@@ -3,8 +3,8 @@ package chandu0101.macros.tojs
 import scala.reflect.macros.blackbox.Context
 
 /**
- * Shamelessly stolen from https://github.com/japgolly/scalajs-react/blob/master/gh-pages-macros/src/main/scala/ghpages/ReactMacroUtils.scala
- */
+  * Shamelessly stolen from https://github.com/japgolly/scalajs-react/blob/master/gh-pages-macros/src/main/scala/ghpages/ReactMacroUtils.scala
+  */
 abstract class ReactMacroUtils {
   val c: Context
   import c.universe._
@@ -55,7 +55,7 @@ abstract class ReactMacroUtils {
     def paramType(name: TermName): Type =
       T.decl(name).typeSignatureIn(T) match {
         case NullaryMethodType(t) => t
-        case t => t
+        case t                    => t
       }
 
     val a = s.asTerm.name
@@ -64,16 +64,16 @@ abstract class ReactMacroUtils {
   }
 
   /**
-   * Create code for a function that will call .apply() on a given type's type companion object.
-   */
+    * Create code for a function that will call .apply() on a given type's type companion object.
+    */
   final def tcApplyFn(t: Type): Select = {
     val sym = t.typeSymbol
-    val tc = sym.companion
+    val tc  = sym.companion
     if (tc == NoSymbol)
       fail(s"Companion object not found for $sym")
     val pre = t match {
       case TypeRef(p, _, _) => p
-      case x => fail(s"Don't know how to extract `pre` from ${showRaw(x)}")
+      case x                => fail(s"Don't know how to extract `pre` from ${showRaw(x)}")
     }
 
     pre match {
@@ -90,7 +90,7 @@ abstract class ReactMacroUtils {
   final def tryInferImplicit(t: Type): Option[Tree] =
     c.inferImplicitValue(t, silent = true) match {
       case EmptyTree => None
-      case i => Some(i)
+      case i         => Some(i)
     }
 
   final def needInferImplicit(t: Type): Tree =
@@ -99,8 +99,8 @@ abstract class ReactMacroUtils {
   final def replaceMacroMethod(newMethod: String) =
     c.macroApplication match {
       case TypeApply(Select(r, _), _) => Select(r, TermName(newMethod))
-      case Select(r, _) => Select(r, TermName(newMethod))
-      case x => fail(s"Don't know how to parse macroApplication: ${showRaw(x)}")
+      case Select(r, _)               => Select(r, TermName(newMethod))
+      case x                          => fail(s"Don't know how to parse macroApplication: ${showRaw(x)}")
     }
 
 }

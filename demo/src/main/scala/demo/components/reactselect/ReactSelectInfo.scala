@@ -20,7 +20,8 @@ object ReactSelectInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactSelectInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSelectInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "reactselect/Select.scala")(
         <.div(
@@ -35,12 +36,14 @@ object ReactSelectInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "https://github.com/JedWatson/react-select#installation"))
+            <.p("Follow the installation guide from :",
+                RedLink("here", "https://github.com/JedWatson/react-select#installation"))
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

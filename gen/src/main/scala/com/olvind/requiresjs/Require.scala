@@ -2,7 +2,7 @@ package com.olvind
 package requiresjs
 
 import ammonite.ops._
-import jdk.nashorn.internal.ir.{ FunctionNode, Node, ObjectNode }
+import jdk.nashorn.internal.ir.{FunctionNode, Node, ObjectNode}
 
 import scala.language.postfixOps
 
@@ -19,11 +19,11 @@ object Require {
 
       ctx.parsedFile(filePath) match {
         case ParsedFile(_, fileStr: String, fileParsed: FunctionNode) =>
-
-          val imports: Seq[Import] = VisitorImports(fileParsed, folderPath).value
+          val imports: Seq[Import]                  = VisitorImports(fileParsed, folderPath).value
           val components: Map[CompName, ObjectNode] = VisitorComponents(fileParsed).value
-          val memberMethods: Map[CompName, Set[MemberMethod]] = VisitorComponentMembers(fileParsed).value
-          val exports: Seq[Node] = VisitorExports(fileParsed).value
+          val memberMethods
+            : Map[CompName, Set[MemberMethod]] = VisitorComponentMembers(fileParsed).value
+          val exports: Seq[Node]               = VisitorExports(fileParsed).value
 
           //todo: split require/react parsing!
           def component(compName: CompName, o: ObjectNode) =

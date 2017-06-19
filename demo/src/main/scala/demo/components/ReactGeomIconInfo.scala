@@ -18,7 +18,8 @@ object ReactGeomIconInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactGeomIconInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactGeomIconInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "icons/ReactGeomIcon.scala")(
         <.div(
@@ -33,12 +34,14 @@ object ReactGeomIconInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "https://github.com/jxnblk/react-geomicons#getting-started"))
+            <.p("Follow the installation guide from :",
+                RedLink("here", "https://github.com/jxnblk/react-geomicons#getting-started"))
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

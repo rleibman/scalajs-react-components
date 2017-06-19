@@ -1,7 +1,7 @@
 package com.olvind
 package requiresjs
 
-import ammonite.ops.{ Path, exists }
+import ammonite.ops.{Path, exists}
 
 case class ResolvedPath(file: Path, folder: Path)
 

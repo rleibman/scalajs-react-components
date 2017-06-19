@@ -3,16 +3,16 @@ package chandu0101.scalajs.react.components
 import scala.scalajs.js
 
 /**
- * This represents the dubious construction
- *  where in javascript one might return
- *  one in three things:
- *
- *  - undefined
- *  - an instance of T
- *  - an array of T
- *
- *  BEWARE: `JsCollection[js.Array[T]]` wont work
- */
+  * This represents the dubious construction
+  *  where in javascript one might return
+  *  one in three things:
+  *
+  *  - undefined
+  *  - an instance of T
+  *  - an array of T
+  *
+  *  BEWARE: `JsCollection[js.Array[T]]` wont work
+  */
 @js.native
 trait JsCollection[T] extends js.Any
 
@@ -20,7 +20,8 @@ object JsCollection extends JsCollectionLower {
   @inline implicit final def toJsCollectionArray[T <: js.Any](t: js.Array[T]): JsCollection[T] =
     t.asInstanceOf[JsCollection[T]]
 
-  @inline implicit final def toJsCollectionUndefOr[T <: js.Any](t: js.UndefOr[T]): JsCollection[T] =
+  @inline implicit final def toJsCollectionUndefOr[T <: js.Any](
+      t: js.UndefOr[T]): JsCollection[T] =
     t.asInstanceOf[JsCollection[T]]
 
   @inline final implicit class JsCollectionX[T <: js.Any](private val c: JsCollection[T]) {

@@ -12,14 +12,18 @@ import scalacss.ScalaCssReact._
 
 case class RPoint(x: Int, y: Int)
 case class RGrid(width: Int, height: Int)
-case class RElementPosition(element: Element, top: Int = 0, left: Int = 0, right: Int = 0, bottom: Int = 0)
+case class RElementPosition(element: Element,
+                            top: Int = 0,
+                            left: Int = 0,
+                            right: Int = 0,
+                            bottom: Int = 0)
 case class ClientRect(top: Double, left: Double)
 
 object ReactDraggable {
 
   object Style extends StyleSheet.Inline {
     import dsl._
-    val draggable = style(position.relative)
+    val draggable       = style(position.relative)
     val draggableActive = style(userSelect := "none")
   }
 
@@ -44,10 +48,10 @@ object ReactDraggable {
     //    }
 
     /**
-     *  https://developer.mozilla.org/en-US/docs/Web/API/Element.matches#Browser_compatibility
-     * @param element dom element
-     * @param selector css selector
-     */
+      *  https://developer.mozilla.org/en-US/docs/Web/API/Element.matches#Browser_compatibility
+      * @param element dom element
+      * @param selector css selector
+      */
     def matchesSelector(element: js.Dynamic)(selector: String): Boolean = {
       val funcName = Stream(
         "matches",
@@ -60,16 +64,17 @@ object ReactDraggable {
     }
 
     /**
-     *  onTouchStart - / works on most browsers
-     *  onmsgesturechange - works on ie10 on ms surface
-     * @return whether device is touch enabled or not
-     */
-    def isTouchDevice = dom.window.hasOwnProperty("ontouchstart") || dom.window.hasOwnProperty("onmsgesturechange")
+      *  onTouchStart - / works on most browsers
+      *  onmsgesturechange - works on ie10 on ms surface
+      * @return whether device is touch enabled or not
+      */
+    def isTouchDevice =
+      dom.window.hasOwnProperty("ontouchstart") || dom.window.hasOwnProperty("onmsgesturechange")
 
     def dragEventFor(e: Event, name: String) = name match {
       case "start" => if (e.`type`.contains("touch")) "touchstart" else "mousedown"
-      case "move" => if (e.`type`.contains("touch")) "touchmove" else "mousemove"
-      case "end" => if (e.`type`.contains("touch")) "touchend" else "mouseup"
+      case "move"  => if (e.`type`.contains("touch")) "touchmove" else "mousemove"
+      case "end"   => if (e.`type`.contains("touch")) "touchend" else "mouseup"
     }
 
     def getControlPosition(e: Event): RPoint =
@@ -87,43 +92,43 @@ object ReactDraggable {
   }
 
   case class Props(
-    cancel: js.UndefOr[String],
-    onDrag: js.UndefOr[(Event, RElementPosition) => Callback],
-    useCSSTransforms: Boolean,
-    clsNames: CssClassType,
-    ref: js.UndefOr[String],
-    moveOnStartChange: Boolean,
-    grid: js.UndefOr[RGrid],
-    key: js.Any,
-    zIndex: Int,
-    axis: String,
-    onStop: js.UndefOr[(Event, RElementPosition) => Callback],
-    start: RPoint,
-    onStart: js.UndefOr[(Event, RElementPosition) => Callback],
-    onMouseDown: js.UndefOr[Event => Callback],
-    handle: js.UndefOr[String],
-    minConstraints: js.UndefOr[RGrid],
-    maxConstraints: js.UndefOr[RGrid]
+      cancel: js.UndefOr[String],
+      onDrag: js.UndefOr[(Event, RElementPosition) => Callback],
+      useCSSTransforms: Boolean,
+      clsNames: CssClassType,
+      ref: js.UndefOr[String],
+      moveOnStartChange: Boolean,
+      grid: js.UndefOr[RGrid],
+      key: js.Any,
+      zIndex: Int,
+      axis: String,
+      onStop: js.UndefOr[(Event, RElementPosition) => Callback],
+      start: RPoint,
+      onStart: js.UndefOr[(Event, RElementPosition) => Callback],
+      onMouseDown: js.UndefOr[Event => Callback],
+      handle: js.UndefOr[String],
+      minConstraints: js.UndefOr[RGrid],
+      maxConstraints: js.UndefOr[RGrid]
   )
 
   /**
-   * @param dragging whether or not currently dragging
-   * @param startX Start left of t.getDOmNode()
-   * @param startY Start top of t.getDOmNode()
-   * @param offsetX Offset between start left and mouse left
-   * @param offsetY Offset between start top and mouse top
-   * @param clientX Current left of this.getDOMNode
-   * @param clientY Current top of this.getDOMNode
-   */
+    * @param dragging whether or not currently dragging
+    * @param startX Start left of t.getDOmNode()
+    * @param startY Start top of t.getDOmNode()
+    * @param offsetX Offset between start left and mouse left
+    * @param offsetY Offset between start top and mouse top
+    * @param clientX Current left of this.getDOMNode
+    * @param clientY Current top of this.getDOMNode
+    */
   case class State(
-    dragging: Boolean,
-    startX: Int,
-    startY: Int,
-    offsetX: Int,
-    offsetY: Int,
-    clientX: Int,
-    clientY: Int,
-    stopListening: js.UndefOr[Callback]
+      dragging: Boolean,
+      startX: Int,
+      startY: Int,
+      offsetX: Int,
+      offsetY: Int,
+      clientX: Int,
+      clientY: Int,
+      stopListening: js.UndefOr[Callback]
   )
 
   implicit val r0 = Reusability.byRef[Props]
@@ -131,12 +136,13 @@ object ReactDraggable {
 
   class Backend(t: BackendScope[Props, State]) {
 
-    def pos(S: State) = t.root.getDOMNode.map(node => RElementPosition(node, top = S.clientY, left = S.clientX))
+    def pos(S: State) =
+      t.root.getDOMNode.map(node => RElementPosition(node, top = S.clientY, left = S.clientX))
 
     def handleDragStart(props: Props)(e: Event): Callback = {
       val moveEventType = DomUtil.dragEventFor(e, "move")
-      val endEventType = DomUtil.dragEventFor(e, "end")
-      val dragPoint = DomUtil.getControlPosition(e)
+      val endEventType  = DomUtil.dragEventFor(e, "end")
+      val dragPoint     = DomUtil.getControlPosition(e)
 
       val mouseDown: Callback = props.onMouseDown.fold(Callback.empty)(fn => fn(e))
 
@@ -170,7 +176,6 @@ object ReactDraggable {
       val dragPoint = DomUtil.getControlPosition(e)
 
       val c1 = t.modState { S =>
-
         // calculate top and left
         var clientX: Int = S.startX + (dragPoint.x - S.offsetX)
         var clientY: Int = S.startY + (dragPoint.y - S.offsetY)
@@ -246,8 +251,9 @@ object ReactDraggable {
         if (props.useCSSTransforms) positionToCSSTransform(leftValue, topValue)
         else TagMod(^.top := topValue.px, ^.left := leftValue.px)
 
-      implicit def rawEventCallbackToReactEventCallback(fn: Event => Callback): ReactEvent => Callback = {
-        e => fn(e.nativeEvent)
+      implicit def rawEventCallbackToReactEventCallback(
+          fn: Event => Callback): ReactEvent => Callback = { e =>
+        fn(e.nativeEvent)
       }
 
       <.div(
@@ -274,64 +280,66 @@ object ReactDraggable {
       stopListening = js.undefined
     )
 
-  val component = ScalaComponent.builder[Props]("ReactDraggable")
+  val component = ScalaComponent
+    .builder[Props]("ReactDraggable")
     .initialStateFromProps(newStateFrom)
     .renderBackendWithChildren[Backend]
     .componentWillReceiveProps {
       case componentWillReceiveProps =>
         componentWillReceiveProps
           .setState(newStateFrom(componentWillReceiveProps.nextProps))
-          .when(componentWillReceiveProps.nextProps.moveOnStartChange).void
+          .when(componentWillReceiveProps.nextProps.moveOnStartChange)
+          .void
     }
     .configure(Reusability.shouldComponentUpdate)
     .componentWillUnmount($ => $.state.stopListening.getOrElse(Callback.empty))
     .build
 
   /**
-   *
-   * @param cancel specifies a selector to be used to prevent drag initialization.
-   * @param onDrag  Called while dragging
-   * @param useCSSTransforms if true will place the element using translate(x, y)
-   *                         rather than CSS top/left.
-   *                         This generally gives better performance, and is useful in combination with
-   *                         other layout systems that use translate(), such as react-grid-layout.
-   * @param clsNames css class names map
-   * @param ref ref for this component
-   * @param moveOnStartChange tells the Draggable element to reset its position
-   *                          if the `start` parameters are changed. By default, if the `start`
-   *                          parameters change, the Draggable element still remains where it started
-   *                          or was dragged to.
-   * @param grid specifies the x and y that dragging should snap to.
-   * @param key key for this react component
-   * @param zIndex specifies the zIndex to use while dragging.
-   * @param axis determines which axis the draggable can move.(both,x,y)
-   * @param onStop Called when dragging stops
-   * @param start specifies the x and y that the dragged item should start at
-   * @param onStart Called when dragging starts.
-   * @param onMouseDown  * A workaround option which can be passed if onMouseDown needs to be accessed,
-   *                     since it'll always be blocked (due to that there's internal use of onMouseDown)
-   * @param handle specifies a selector to be used as the handle that initiates drag.
-   * @param children
-   * @return
-   */
+    *
+    * @param cancel specifies a selector to be used to prevent drag initialization.
+    * @param onDrag  Called while dragging
+    * @param useCSSTransforms if true will place the element using translate(x, y)
+    *                         rather than CSS top/left.
+    *                         This generally gives better performance, and is useful in combination with
+    *                         other layout systems that use translate(), such as react-grid-layout.
+    * @param clsNames css class names map
+    * @param ref ref for this component
+    * @param moveOnStartChange tells the Draggable element to reset its position
+    *                          if the `start` parameters are changed. By default, if the `start`
+    *                          parameters change, the Draggable element still remains where it started
+    *                          or was dragged to.
+    * @param grid specifies the x and y that dragging should snap to.
+    * @param key key for this react component
+    * @param zIndex specifies the zIndex to use while dragging.
+    * @param axis determines which axis the draggable can move.(both,x,y)
+    * @param onStop Called when dragging stops
+    * @param start specifies the x and y that the dragged item should start at
+    * @param onStart Called when dragging starts.
+    * @param onMouseDown  * A workaround option which can be passed if onMouseDown needs to be accessed,
+    *                     since it'll always be blocked (due to that there's internal use of onMouseDown)
+    * @param handle specifies a selector to be used as the handle that initiates drag.
+    * @param children
+    * @return
+    */
   def apply(
-    cancel: js.UndefOr[String] = js.undefined,
-    onDrag: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-    useCSSTransforms: Boolean = false,
-    clsNames: CssClassType = Map(),
-    ref: js.UndefOr[String] = js.undefined,
-    moveOnStartChange: Boolean = false,
-    grid: js.UndefOr[RGrid] = js.undefined,
-    key: js.Any = {},
-    zIndex: Int = 0,
-    axis: String = "both",
-    onStop: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-    start: RPoint = RPoint(0, 0),
-    onStart: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
-    onMouseDown: js.UndefOr[Event => Callback] = js.undefined,
-    handle: js.UndefOr[String] = js.undefined,
-    minConstraints: js.UndefOr[RGrid] = js.undefined,
-    maxConstraints: js.UndefOr[RGrid] = js.undefined
+      cancel: js.UndefOr[String] = js.undefined,
+      onDrag: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      useCSSTransforms: Boolean = false,
+      clsNames: CssClassType = Map(),
+      ref: js.UndefOr[String] = js.undefined,
+      moveOnStartChange: Boolean = false,
+      grid: js.UndefOr[RGrid] = js.undefined,
+      key: js.Any = {},
+      zIndex: Int = 0,
+      axis: String = "both",
+      onStop: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      start: RPoint = RPoint(0, 0),
+      onStart: js.UndefOr[(Event, RElementPosition) => Callback] = js.undefined,
+      onMouseDown: js.UndefOr[Event => Callback] = js.undefined,
+      handle: js.UndefOr[String] = js.undefined,
+      minConstraints: js.UndefOr[RGrid] = js.undefined,
+      maxConstraints: js.UndefOr[RGrid] = js.undefined
   )(children: VdomNode) = {
     val props = Props(
       cancel = cancel,

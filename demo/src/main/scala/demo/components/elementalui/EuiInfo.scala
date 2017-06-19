@@ -18,7 +18,8 @@ object EuiInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("EuiInfo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "elementalui/")(
         <.div(
@@ -33,15 +34,22 @@ object EuiInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "https://github.com/elementalui/elemental"),
+            <.p(
+              "Follow the installation guide from :",
+              RedLink("here", "https://github.com/elementalui/elemental"),
               <.br(),
               <.br(),
-              "Configure elemental-ui context in your top level component :", RedLink("example", "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/EuiPage.scala"))
+              "Configure elemental-ui context in your top level component :",
+              RedLink(
+                "example",
+                "https://github.com/chandu0101/scalajs-react-components/blob/master/demo/src/main/scala/demo/pages/EuiPage.scala")
+            )
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

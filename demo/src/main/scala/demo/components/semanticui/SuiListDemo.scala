@@ -12,7 +12,7 @@ object SuiListDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     def render() =
       <.div(
@@ -28,7 +28,8 @@ object SuiListDemo {
             ),
             SuiListItem()(
               SuiListIcon(name = SuiIconType("mail"))(),
-              SuiListContent()(<.a(^.href := "mailto:jack@semantic-ui.com")("jack@semantic-ui.com"))
+              SuiListContent()(
+                <.a(^.href := "mailto:jack@semantic-ui.com")("jack@semantic-ui.com"))
             ),
             SuiListItem()(
               SuiListIcon(name = SuiIconType("linkify"))(),
@@ -39,7 +40,8 @@ object SuiListDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("SuiListDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiListDemo")
     .renderBackend[Backend]
     .build
 

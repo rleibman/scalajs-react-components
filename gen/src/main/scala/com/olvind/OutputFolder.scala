@@ -1,9 +1,9 @@
 package com.olvind
 
 import ammonite.ops.FileType.Dir
-import ammonite.ops.{ Path, mkdir, pwd }
+import ammonite.ops.{Path, mkdir, pwd}
 
-import scala.util.{ Failure, Success, Try }
+import scala.util.{Failure, Success, Try}
 
 object OutputFolder {
   def unapply(s: String): Option[Path] =

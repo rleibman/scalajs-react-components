@@ -14,15 +14,15 @@ object EuiMiscDemo {
   // EXAMPLE:START
 
   case class State(
-    currentPage: Int = 1,
-    pageSize: Int = 25,
-    plural: String = "Potatoes",
-    singular: String = "Potato",
-    total: Int = 123,
-    limit: Int = 5
+      currentPage: Int = 1,
+      pageSize: Int = 25,
+      plural: String = "Potatoes",
+      singular: String = "Potato",
+      total: Int = 123,
+      limit: Int = 5
   )
 
-  case class Backend($: BackendScope[Unit, State]) {
+  case class Backend($ : BackendScope[Unit, State]) {
     def handleClear(event: ReactEvent) =
       $.modState(identity)
 
@@ -32,7 +32,7 @@ object EuiMiscDemo {
     def handleCurrentPageChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x < 0 => 0
-        case x => x
+        case x          => x
       }
       $.modState(_.copy(currentPage = value))
     }
@@ -40,8 +40,8 @@ object EuiMiscDemo {
     def handlePageSizeChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x > 100 => 100
-        case x if x < 1 => 1
-        case x => x
+        case x if x < 1   => 1
+        case x            => x
       }
       $.modState(_.copy(pageSize = value))
     }
@@ -49,8 +49,8 @@ object EuiMiscDemo {
     def handleTotalChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x > 1000 => 1000
-        case x if x < 1 => 1
-        case x => x
+        case x if x < 1    => 1
+        case x             => x
       }
       $.modState(_.copy(total = value))
     }
@@ -58,7 +58,7 @@ object EuiMiscDemo {
     def handleLimitChange(event: ReactEventFromInput) = {
       val value = event.target.value.toInt match {
         case x if x < 1 => 1
-        case x => x
+        case x          => x
       }
       $.modState(_.copy(limit = value))
     }
@@ -72,10 +72,18 @@ object EuiMiscDemo {
 
     def renderAlerts =
       <.div(
-        EuiElementalAlert(`type` = AlertType.info)(<.strong("Info"), "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
-        EuiElementalAlert(`type` = AlertType.success)(<.strong("Success"), "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
-        EuiElementalAlert(`type` = AlertType.warning)(<.strong("Warning"), "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
-        EuiElementalAlert(`type` = AlertType.danger)(<.strong("Error"), "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u")
+        EuiElementalAlert(`type` = AlertType.info)(
+          <.strong("Info"),
+          "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
+        EuiElementalAlert(`type` = AlertType.success)(
+          <.strong("Success"),
+          "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
+        EuiElementalAlert(`type` = AlertType.warning)(
+          <.strong("Warning"),
+          "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u"),
+        EuiElementalAlert(`type` = AlertType.danger)(
+          <.strong("Error"),
+          "Blah Blah Blah au au oeu oeau eouaoeu eou  aouo u")
       )
 
     def renderCards =
@@ -198,7 +206,8 @@ object EuiMiscDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("EuiMiscDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiMiscDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

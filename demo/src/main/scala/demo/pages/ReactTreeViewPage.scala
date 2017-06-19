@@ -2,13 +2,13 @@ package demo
 package pages
 
 import demo.components.LeftNavPage
-import demo.routes.{ LeftRoute, ReactTreeViewRouteModule }
+import demo.routes.{LeftRoute, ReactTreeViewRouteModule}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactTreeViewPage {
-  val component = ScalaComponent.builder[Props]("ReactTreeViewPage")
+  val component = ScalaComponent
+    .builder[Props]("ReactTreeViewPage")
     .renderBackend[Backend]
     .build
 
@@ -19,6 +19,7 @@ object ReactTreeViewPage {
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

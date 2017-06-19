@@ -12,7 +12,8 @@ object MuiProgressDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  val component = ScalaComponent.builder[Unit]("MuiProgressDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiProgressDemo")
     .render(P => {
       <.div(
         CodeExample(code, "Progress Bars")(
@@ -23,7 +24,8 @@ object MuiProgressDemo {
           MuiLinearProgress(mode = DeterminateIndeterminate.indeterminate)()
         )
       )
-    }).build
+    })
+    .build
   // EXAMPLE:END
 
   def apply() = component()

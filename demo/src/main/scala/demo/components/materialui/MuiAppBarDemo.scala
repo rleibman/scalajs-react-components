@@ -14,19 +14,22 @@ object MuiAppBarDemo {
   val code = GhPagesMacros.exampleSource
   // EXAMPLE:START
 
-  val component = ScalaComponent.builder[Unit]("MuiAppBarDemo")
-    .render(P =>
-      <.div(
-        CodeExample(code, "MuiAppBar")(
-          MuiAppBar(
-            title = js.defined("Title"),
-            onLeftIconButtonTouchTap = CallbackDebug.f1("onLeftIconButtonTouchTap"),
-            onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
-            onTitleTouchTap = CallbackDebug.f1("onTitleTouchTap"),
-            showMenuIconButton = true
-          )()
-        )
-      )).build
+  val component = ScalaComponent
+    .builder[Unit]("MuiAppBarDemo")
+    .render(
+      P =>
+        <.div(
+          CodeExample(code, "MuiAppBar")(
+            MuiAppBar(
+              title = js.defined("Title"),
+              onLeftIconButtonTouchTap = CallbackDebug.f1("onLeftIconButtonTouchTap"),
+              onRightIconButtonTouchTap = CallbackDebug.f1("onRightIconButtonTouchTap"),
+              onTitleTouchTap = CallbackDebug.f1("onTitleTouchTap"),
+              showMenuIconButton = true
+            )()
+          )
+      ))
+    .build
 
   // EXAMPLE:END
 

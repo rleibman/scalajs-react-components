@@ -14,7 +14,8 @@ object MuiTimePickerDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  val component = ScalaComponent.builder[Unit]("MuiTimePickerDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiTimePickerDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiTimePicker")(
@@ -22,7 +23,8 @@ object MuiTimePickerDemo {
           MuiTimePicker(format = Ampm_24hr._24hr, hintText = js.defined("24 hr format"))()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

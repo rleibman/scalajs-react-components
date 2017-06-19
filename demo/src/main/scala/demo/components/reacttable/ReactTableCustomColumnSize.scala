@@ -3,7 +3,7 @@ package components
 package reacttable
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ JsonUtil, ReactTable }
+import chandu0101.scalajs.react.components.{JsonUtil, ReactTable}
 import demo.util.SampleData
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
@@ -14,7 +14,7 @@ object ReactTableCustomColumnSize {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     val data: Vector[Map[String, Any]] =
       JsonUtil.jsonArrayToMap(SampleData.personJson)
 
@@ -36,7 +36,8 @@ object ReactTableCustomColumnSize {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactTableCustomColumnSize")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTableCustomColumnSize")
     .renderBackend[Backend]
     .build
 

@@ -7,15 +7,14 @@ import chandu0101.scalajs.react.components.materialui.MuiSlider
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scala.scalajs.js
-
 object MuiSliderDemo {
 
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
 
-  val component = ScalaComponent.builder[Unit]("MuiSliderDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiSliderDemo")
     .render(P => {
 
       val onChange: (ReactMouseEvent, Double) => Callback =
@@ -28,7 +27,8 @@ object MuiSliderDemo {
           MuiSlider(name = "slider1", onChange = onChange, value = 0.3, disabled = true)()
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

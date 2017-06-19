@@ -8,7 +8,8 @@ object MuiRunner extends App {
     case OutputFolder(buildFolder) :: OutputFolder(outputFolder) :: Nil =>
       val outs: Seq[Path] = Runner(MuiLibrary(buildFolder), outputFolder)
     case _ =>
-      System.err.println("Syntax: MuiRunner <directory with transpiled javascript> <output folder>")
+      System.err.println(
+        "Syntax: MuiRunner <directory with transpiled javascript> <output folder>")
       System.exit(1)
   }
 }

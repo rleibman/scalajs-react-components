@@ -2,12 +2,9 @@ package chandu0101.scalajs.react.components.reactslick
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.raw._
-import japgolly.scalajs.react.vdom._
 import japgolly.scalajs.react.vdom.html_<^._
-import org.scalajs.dom
+
 import scala.scalajs.js
-import scala.scalajs.js.`|`
 
 case class ReactSlick(
     /* Additional class name for the inner slider div */
@@ -55,7 +52,7 @@ case class ReactSlick(
 ) {
 
   def apply(children: VdomNode*) = {
-    val f = JsComponent[js.Object, Children.Varargs, Null](js.Dynamic.global.ReactSlick)
+    val f     = JsComponent[js.Object, Children.Varargs, Null](js.Dynamic.global.ReactSlick)
     val props = JSMacro[ReactSlick](this)
 
     f(props)(children: _*)

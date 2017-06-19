@@ -1,7 +1,8 @@
 package com.olvind
 
 sealed trait OutFile
-case class PrimaryOutFile(filename: CompName, content: String, secondaries: Seq[SecondaryOutFile]) extends OutFile
+case class PrimaryOutFile(filename: CompName, content: String, secondaries: Seq[SecondaryOutFile])
+    extends OutFile
 case class SecondaryOutFile(filename: String, content: String) extends OutFile
 
 object Printer {
@@ -19,9 +20,12 @@ object Printer {
         comp.name,
         Seq(
           s"\ncase class ${comp.nameDef(prefix, withBounds = true)}(",
-          comp.fields.filterNot(_.name == PropName("children")).map(
-            p => outProp(p, fs)
-          ).mkString("", ",\n", ")") + bodyChildren(prefix, comp)
+          comp.fields
+            .filterNot(_.name == PropName("children"))
+            .map(
+              p => outProp(p, fs)
+            )
+            .mkString("", ",\n", ")") + bodyChildren(prefix, comp)
         ) mkString "\n",
         comp.methodClassOpt.toSeq map outMethodClass
       )
@@ -30,11 +34,12 @@ object Printer {
   }
 
   def hack(comp: ParsedComponent): String =
-    comp.genericParams.map {
-      p ⇒
+    comp.genericParams
+      .map { p ⇒
         s"""implicit def ev${p.name}(${p.name.toLowerCase}: ${p.name}): js.Any = ${p.name.toLowerCase}.asInstanceOf[js.Any]
 implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]): js.Any = ${p.name.toLowerCase}.asInstanceOf[js.Any]"""
-    }.mkString(";")
+      }
+      .mkString(";")
 
   def bodyChildren(prefix: String, comp: ParsedComponent): String =
     (comp.childrenOpt, comp.definition.multipleChildren) match {
@@ -71,7 +76,8 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
            |${indent(2)}${hack(comp)}
            |${indent(2)}val props = JSMacro[${comp.nameDef(prefix)}](this)
            |${indent(2)}val f = JsComponent[js.Object, Children.Varargs, Null]($prefix.${comp.name.value})
-           |${indent(2)}${if (childrenProp.isRequired) "f(props)(child)" else "child.fold(f(props)())(ch => f(props)(ch))"}
+           |${indent(2)}${if (childrenProp.isRequired) "f(props)(child)"
+           else "child.fold(f(props)())(ch => f(props)(ch))"}
            |${indent(1)}}
            |}""".stripMargin
     }
@@ -111,7 +117,7 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
   def safeName(name: String): String = {
     val safeSubstitutions = Map(
       ("super" -> "`super`"),
-      ("type" -> "`type`")
+      ("type"  -> "`type`")
     )
     safeSubstitutions.get(name).getOrElse(name)
   }
@@ -124,14 +130,14 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
       val deprecation: String =
         (p.deprecatedMsg, p.commentOpt.exists(_.anns.contains(Ignore))) match {
           case (Some(msg), _) => s"""${indent(1)}@deprecated("$msg", "")\n"""
-          case (None, true) => "" //s"""${indent(1)}@deprecated("Internal API", "")\n"""
-          case _ => ""
+          case (None, true)   => "" //s"""${indent(1)}@deprecated("Internal API", "")\n"""
+          case _              => ""
         }
       s"$comment$deprecation${indent(1)}${padTo(fixedName + ": ")(fs.maxFieldNameLen + 2)}"
     }
 
     p.isRequired match {
-      case true => intro + p.typeName
+      case true  => intro + p.typeName
       case false => intro + padTo(p.typeName)(fs.maxTypeNameLen) + " = js.undefined"
     }
   }
@@ -142,12 +148,12 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
       s"""
          |class ${c.name}(val value: String) extends AnyVal
          |object ${c.name} {
-         |${
-      c.identifiers.map {
-        case (ident, original) =>
-          s"""${indent(1)}val ${safeName(ident.value)} = new ${c.name}("$original")"""
-      }.mkString("\n")
-    }
+         |${c.identifiers
+           .map {
+             case (ident, original) =>
+               s"""${indent(1)}val ${safeName(ident.value)} = new ${c.name}("$original")"""
+           }
+           .mkString("\n")}
          |${indent(1)}val values = ${c.identifiers.map(_._1.value).map(safeName).toList}
          |}""".stripMargin
     )
@@ -158,15 +164,16 @@ implicit def ev2${p.name}(${p.name.toLowerCase}: ${p.name} | js.Array[${p.name}]
       s"""
          |@js.native
          |trait ${c.className} extends js.Object {
-         |${
-      c.methods.map { m =>
-        val deprecated: String =
-          if (m.toString.toLowerCase.contains("deprecated")) s"""${indent(1)}@deprecated("", "")\n"""
-          else ""
-        val comment = outComment(m.commentOpt, None)
-        s"$comment$deprecated${indent(1)}def ${m.definition} = js.native"
-      }.mkString("\n\n")
-    }
+         |${c.methods
+           .map { m =>
+             val deprecated: String =
+               if (m.toString.toLowerCase.contains("deprecated"))
+                 s"""${indent(1)}@deprecated("", "")\n"""
+               else ""
+             val comment = outComment(m.commentOpt, None)
+             s"$comment$deprecated${indent(1)}def ${m.definition} = js.native"
+           }
+           .mkString("\n\n")}
          |}""".stripMargin
     )
 }

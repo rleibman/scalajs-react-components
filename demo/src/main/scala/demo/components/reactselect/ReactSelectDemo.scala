@@ -5,12 +5,9 @@ package reactselect
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.reactselect._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.raw._
 import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
-import scala.scalajs.js.JSConverters._
-import japgolly.scalajs.react.vdom._
 
 object ReactSelectDemo {
 
@@ -19,8 +16,8 @@ object ReactSelectDemo {
   // EXAMPLE:START
 
   case class State(
-    value: js.UndefOr[String] = js.undefined,
-    multiValue: js.UndefOr[String] = js.undefined
+      value: js.UndefOr[String] = js.undefined,
+      multiValue: js.UndefOr[String] = js.undefined
   )
 
   class Backend(t: BackendScope[_, State]) {
@@ -66,7 +63,8 @@ object ReactSelectDemo {
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactSelectDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSelectDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

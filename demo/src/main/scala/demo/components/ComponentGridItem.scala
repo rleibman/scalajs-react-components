@@ -1,12 +1,10 @@
 package demo
 package components
 
-import scala.scalajs.js
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
-
-import japgolly.scalajs.react.extra.router.RouterCtl
 import demo.routes.AppRouter._
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.extra.router.RouterCtl
+import japgolly.scalajs.react.vdom.html_<^._
 
 object ComponentGridItem {
 
@@ -70,7 +68,8 @@ object ComponentGridItem {
       )
   }
 
-  val component = ScalaComponent.builder[Props]("ComponentGridElement")
+  val component = ScalaComponent
+    .builder[Props]("ComponentGridElement")
     .initialState(State())
     .renderBackend[Backend]
     .build

@@ -2,9 +2,9 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
-import japgolly.scalajs.react.raw._
 
 case class Spinner(
     key: js.UndefOr[String] = js.undefined,

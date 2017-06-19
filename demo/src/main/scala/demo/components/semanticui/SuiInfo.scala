@@ -7,7 +7,8 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object SuiInfo {
 
-  val component = ScalaComponent.builder[Unit]("SuiInfo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "semanticui/package.scala")(
         <.div(
@@ -22,12 +23,14 @@ object SuiInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "http://react.semantic-ui.com/usage#javascript"))
+            <.p("Follow the installation guide from :",
+                RedLink("here", "http://react.semantic-ui.com/usage#javascript"))
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

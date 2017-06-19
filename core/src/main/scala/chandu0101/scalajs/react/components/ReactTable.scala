@@ -13,12 +13,13 @@ object ReactTable {
   type Model = Map[String, Any]
 
   /**
-   *  ._1: String = column name
-   *  ._2: Option[Any => VdomElement] = custom cell
-   *  ._3: Option[(Model,Model) => Boolean] = sorting function
-   *  ._4: Option[Double] = column width interms of flex property
-   */
-  type Config = (String, Option[Any => VdomElement], Option[(Model, Model) => Boolean], Option[Double])
+    *  ._1: String = column name
+    *  ._2: Option[Any => VdomElement] = custom cell
+    *  ._3: Option[(Model,Model) => Boolean] = sorting function
+    *  ._4: Option[Double] = column width interms of flex property
+    */
+  type Config =
+    (String, Option[Any => VdomElement], Option[(Model, Model) => Boolean], Option[Double])
 
   val ASC: String = "asc"
   val DSC: String = "dsc"
@@ -71,25 +72,27 @@ object ReactTable {
       justifyContent.spaceBetween
     )
 
-    val sortIcon = styleF.bool(ascending => styleS(
-      &.after(
-        fontSize(9 px),
-        marginLeft(5 px),
-        if (ascending) content := "'\\25B2'"
-        else content := "'\\25BC'"
-      )
-    ))
+    val sortIcon = styleF.bool(
+      ascending =>
+        styleS(
+          &.after(
+            fontSize(9 px),
+            marginLeft(5 px),
+            if (ascending) content := "'\\25B2'"
+            else content := "'\\25BC'"
+          )
+      ))
 
   }
 
   object DefaultStyle extends Style
 
   case class State(
-    filterText: String,
-    offset: Int,
-    rowsPerPage: Int,
-    filteredModels: Vector[Model],
-    sortedState: Map[String, String]
+      filterText: String,
+      offset: Int,
+      rowsPerPage: Int,
+      filteredModels: Vector[Model],
+      sortedState: Map[String, String]
   )
 
   class Backend(t: BackendScope[Props, State]) {
@@ -111,9 +114,12 @@ object ReactTable {
       t.modState { S =>
         val rows = S.filteredModels
         S.sortedState.getOrElse(item, "") match {
-          case ASC => S.copy(filteredModels = rows.reverse, sortedState = Map(item -> DSC), offset = 0)
-          case DSC => S.copy(filteredModels = rows.sortWith(f), sortedState = Map(item -> ASC), offset = 0)
-          case _ => S.copy(filteredModels = rows.sortWith(f), sortedState = Map(item -> ASC), offset = 0)
+          case ASC =>
+            S.copy(filteredModels = rows.reverse, sortedState = Map(item -> DSC), offset = 0)
+          case DSC =>
+            S.copy(filteredModels = rows.sortWith(f), sortedState = Map(item -> ASC), offset = 0)
+          case _ =>
+            S.copy(filteredModels = rows.sortWith(f), sortedState = Map(item -> ASC), offset = 0)
         }
       }
 
@@ -139,15 +145,20 @@ object ReactTable {
       )
   }
 
-  def getIntSort(key: String) = (m1: Model, m2: Model) => m1(key).asInstanceOf[Int] < m2(key).asInstanceOf[Int]
+  def getIntSort(key: String) =
+    (m1: Model, m2: Model) => m1(key).asInstanceOf[Int] < m2(key).asInstanceOf[Int]
 
-  def getDoubleSort(key: String) = (m1: Model, m2: Model) => m1(key).asInstanceOf[Double] < m2(key).asInstanceOf[Double]
+  def getDoubleSort(key: String) =
+    (m1: Model, m2: Model) => m1(key).asInstanceOf[Double] < m2(key).asInstanceOf[Double]
 
-  def getLongSort(key: String) = (m1: Model, m2: Model) => m1(key).asInstanceOf[Long] < m2(key).asInstanceOf[Long]
+  def getLongSort(key: String) =
+    (m1: Model, m2: Model) => m1(key).asInstanceOf[Long] < m2(key).asInstanceOf[Long]
 
   def getStringSort(key: String) = (m1: Model, m2: Model) => m1(key).toString < m2(key).toString
 
-  def getDateSort(key: String) = (m1: Model, m2: Model) => m1(key).asInstanceOf[Date].getTime() < m2(key).asInstanceOf[Date].getTime()
+  def getDateSort(key: String) =
+    (m1: Model, m2: Model) =>
+      m1(key).asInstanceOf[Date].getTime() < m2(key).asInstanceOf[Date].getTime()
 
   def getRenderFunction(key: String, config: List[Config]) = {
     val group = config.groupBy(_._1).getOrElse(key, Nil)
@@ -186,55 +197,65 @@ object ReactTable {
   def emptyClass: TagMod =
     TagMod(^.padding := 1.px)
 
-  val tableHeader = ScalaComponent.builder[(Props, Backend, State)]("reactTableHeader")
+  val tableHeader = ScalaComponent
+    .builder[(Props, Backend, State)]("reactTableHeader")
     .render { $ =>
       val (props, b, state) = $.props
       <.div(
-        props.style.tableHeader,
-        {
-        if (props.config.nonEmpty) {
-          props.columns.map { item =>
-            {
-              val cell = getColumnDiv(item, props.config)
-              val f = getSortFunction(item, props.config)
-              if (f.isDefined) {
-                cell(
-                  ^.cursor := "pointer",
-                  ^.onClick --> b.sort(f.get, item), item.capitalize,
-                  props.style.sortIcon(state.sortedState(item) == ASC).when(state.sortedState.isDefinedAt(item))
-                )
-              } else cell(item.capitalize)
+        props.style.tableHeader, {
+          if (props.config.nonEmpty) {
+            props.columns.map { item =>
+              {
+                val cell = getColumnDiv(item, props.config)
+                val f    = getSortFunction(item, props.config)
+                if (f.isDefined) {
+                  cell(
+                    ^.cursor := "pointer",
+                    ^.onClick --> b.sort(f.get, item),
+                    item.capitalize,
+                    props.style
+                      .sortIcon(state.sortedState(item) == ASC)
+                      .when(state.sortedState.isDefinedAt(item))
+                  )
+                } else cell(item.capitalize)
+              }
             }
-          }
-        } else props.columns.map(s => <.div(s.capitalize))
-      }.toTagMod
+          } else props.columns.map(s => <.div(s.capitalize))
+        }.toTagMod
       )
-    }.build
+    }
+    .build
 
-  val tableRow = ScalaComponent.builder[(Model, Props)]("TableRow")
+  val tableRow = ScalaComponent
+    .builder[(Model, Props)]("TableRow")
     .render { $ =>
       val (row, props) = $.props
       <.div(
-        props.style.tableRow,
-        {
-        if (props.config.nonEmpty) {
-          props.columns.map { item =>
-            val cell = getColumnDiv(item, props.config)
-            val f = getRenderFunction(item, props.config)
-            if (f.isDefined) cell(f.get(row(item)))
-            else cell(row(item).toString)
-          }
-        } else props.columns.map { item => <.div(row(item).toString) }
-      }.toTagMod
+        props.style.tableRow, {
+          if (props.config.nonEmpty) {
+            props.columns.map { item =>
+              val cell = getColumnDiv(item, props.config)
+              val f    = getRenderFunction(item, props.config)
+              if (f.isDefined) cell(f.get(row(item)))
+              else cell(row(item).toString)
+            }
+          } else
+            props.columns.map { item =>
+              <.div(row(item).toString)
+            }
+        }.toTagMod
       )
-    }.build
+    }
+    .build
 
-  val tableC = ScalaComponent.builder[(Props, State, Backend)]("table")
+  val tableC = ScalaComponent
+    .builder[(Props, State, Backend)]("table")
     .render { $ =>
       val (props, state, b) = $.props
       val rows = state.filteredModels
         .slice(state.offset, state.offset + state.rowsPerPage)
-        .zipWithIndex.map {
+        .zipWithIndex
+        .map {
           case (row, i) => tableRow.withKey(i)((row, props))
         }
       <.div(
@@ -242,17 +263,23 @@ object ReactTable {
         tableHeader((props, b, state)),
         rows.toTagMod
       )
-    }.build
+    }
+    .build
 
-  val settingsBar = ScalaComponent.builder[(Props, Backend, State)]("settingbar")
+  val settingsBar = ScalaComponent
+    .builder[(Props, Backend, State)]("settingbar")
     .render { $ =>
-      val (p, b, s) = $.props
-      var value = ""
+      val (p, b, s)             = $.props
+      var value                 = ""
       var options: List[String] = Nil
-      val total = s.filteredModels.length
+      val total                 = s.filteredModels.length
       if (total > p.rowsPerPage) {
         value = s.rowsPerPage.toString
-        options = immutable.Range.inclusive(p.rowsPerPage, total, 10 * (total / 100 + 1)).:+(total).toList.map(_.toString)
+        options = immutable.Range
+          .inclusive(p.rowsPerPage, total, 10 * (total / 100 + 1))
+          .:+(total)
+          .toList
+          .map(_.toString)
       }
       <.div(p.style.settingsBar)(
         <.div(<.strong("Total: " + s.filteredModels.size)),
@@ -263,24 +290,34 @@ object ReactTable {
           onChange = b.onPageSizeChange
         )
       )
-    }.build
+    }
+    .build
 
-  val component = ScalaComponent.builder[Props]("ReactTable")
+  val component = ScalaComponent
+    .builder[Props]("ReactTable")
     .initialStateFromProps(p => State(filterText = "", offset = 0, p.rowsPerPage, p.data, Map()))
     .renderBackend[Backend]
-    .componentWillReceiveProps(e => Callback.when(e.currentProps.data != e.nextProps.data)(e.backend.onTextChange(e.nextProps)(e.state.filterText)))
+    .componentWillReceiveProps(e =>
+      Callback.when(e.currentProps.data != e.nextProps.data)(
+        e.backend.onTextChange(e.nextProps)(e.state.filterText)))
     .build
 
   case class Props(
-    data: Vector[Model],
-    columns: List[String],
-    config: List[Config],
-    rowsPerPage: Int,
-    style: Style,
-    enableSearch: Boolean,
-    searchBoxStyle: ReactSearchBox.Style
+      data: Vector[Model],
+      columns: List[String],
+      config: List[Config],
+      rowsPerPage: Int,
+      style: Style,
+      enableSearch: Boolean,
+      searchBoxStyle: ReactSearchBox.Style
   )
 
-  def apply(data: Vector[Model], columns: List[String], config: List[Config] = List(), rowsPerPage: Int = 5, style: Style = DefaultStyle, enableSearch: Boolean = true, searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle) =
+  def apply(data: Vector[Model],
+            columns: List[String],
+            config: List[Config] = List(),
+            rowsPerPage: Int = 5,
+            style: Style = DefaultStyle,
+            enableSearch: Boolean = true,
+            searchBoxStyle: ReactSearchBox.Style = ReactSearchBox.DefaultStyle) =
     component(Props(data, columns, config, rowsPerPage, style, enableSearch, searchBoxStyle))
 }

@@ -5,13 +5,15 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactListViewInfo {
 
-  val component = ScalaComponent.builder[Unit]("ReactListViewInfo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactListViewInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "listviews/ReactListView.scala")(
         <.h3("React ListView :"),
         <.p("List View Component with search feature")
       )
-    }).build
+    })
+    .build
 
   def apply() = component()
 

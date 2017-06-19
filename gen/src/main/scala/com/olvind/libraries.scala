@@ -3,11 +3,11 @@ package com.olvind
 import ammonite.ops.Path
 
 final case class ComponentDef(
-  name: CompName,
-  shared: Option[ComponentDef] = None,
-  multipleChildren: Boolean = true,
-  domeTypeOpt: Option[DomType] = None, //Some(DomElement),
-  forceChildren: Boolean = false
+    name: CompName,
+    shared: Option[ComponentDef] = None,
+    multipleChildren: Boolean = true,
+    domeTypeOpt: Option[DomType] = None, //Some(DomElement),
+    forceChildren: Boolean = false
 )
 
 trait TypeMapper {

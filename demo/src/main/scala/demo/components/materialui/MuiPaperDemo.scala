@@ -16,7 +16,8 @@ object MuiPaperDemo {
 
   // EXAMPLE:START
 
-  val component = ScalaComponent.builder[Unit]("MuiPaperDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiPaperDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiPaper")(
@@ -40,7 +41,8 @@ object MuiPaperDemo {
           )
         )
       )
-    }).build
+    })
+    .build
 
   object Style extends StyleSheet.Inline {
     import dsl._

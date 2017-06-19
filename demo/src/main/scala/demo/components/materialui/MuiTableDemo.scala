@@ -15,22 +15,23 @@ object MuiTableDemo {
   // EXAMPLE:START
 
   case class State(
-    fixedHeader: Boolean,
-    fixedFooter: Boolean,
-    stripedRows: Boolean,
-    showRowHover: Boolean,
-    selectable: Boolean,
-    multiSelectable: Boolean,
-    enableSelectAll: Boolean,
-    deselectOnClickaway: Boolean,
-    height: String,
-    selected: String | js.Array[Int]
+      fixedHeader: Boolean,
+      fixedFooter: Boolean,
+      stripedRows: Boolean,
+      showRowHover: Boolean,
+      selectable: Boolean,
+      multiSelectable: Boolean,
+      enableSelectAll: Boolean,
+      deselectOnClickaway: Boolean,
+      height: String,
+      selected: String | js.Array[Int]
   )
 
-  case class Backend($: BackendScope[Unit, State]) {
+  case class Backend($ : BackendScope[Unit, State]) {
     val onRowSelection: String | js.Array[Int] => Callback =
-      rows => $.modState(_.copy(selected = rows)) >>
-        Callback.info(s"selected $rows")
+      rows =>
+        $.modState(_.copy(selected = rows)) >>
+          Callback.info(s"selected $rows")
 
     val toggleMultiSelectable: (ReactEvent, Boolean) => Callback =
       (e, b) => $.modState(_.copy(multiSelectable = b))
@@ -65,7 +66,7 @@ object MuiTableDemo {
         case (p, idx) =>
           val selected = selecteds match {
             case a: js.Array[_] => a.contains(idx)
-            case all => true
+            case all            => true
           }
           MuiTableRow(selected = selected)(
             MuiTableRowColumn()(p.id),
@@ -107,7 +108,8 @@ object MuiTableDemo {
               MuiTableRow(style = js.Dynamic.literal("textAlign" -> "center"))()
             )
           ),
-          MuiPaper(rounded = true, style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
+          MuiPaper(rounded = true,
+                   style = js.Dynamic.literal("width" -> "300", "padding" -> "20px"))(
             MuiToggle(
               label = js.defined("selectable"),
               defaultToggled = S.selectable,
@@ -143,7 +145,8 @@ object MuiTableDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("MuiTableDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiTableDemo")
     .initialState(State(
       fixedHeader = false,
       fixedFooter = false,

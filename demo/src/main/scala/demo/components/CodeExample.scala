@@ -4,8 +4,6 @@ package components
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
-import scala.scalajs.js
-
 object CodeExample {
 
   object Style {
@@ -25,7 +23,7 @@ object CodeExample {
     )
 
   }
-  case class Backend($: BackendScope[Props, Unit]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(
         (<.h3(P.title, Style.title)).when(P.title.nonEmpty),
@@ -41,15 +39,16 @@ object CodeExample {
     }
   }
 
-  val component = ScalaComponent.builder[Props]("codeexample")
+  val component = ScalaComponent
+    .builder[Props]("codeexample")
     .renderBackendWithChildren[Backend]
     .build
 
   case class Props(code: String, title: String)
 
   def apply(
-    code: String,
-    title: String
+      code: String,
+      title: String
   )(children: VdomNode*) = {
     //    component.set(key, ref)(Props(code, title), children: _*)
     component(Props(code, title))(children: _*)

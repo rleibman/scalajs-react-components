@@ -4,7 +4,6 @@ package routes
 import demo.components.googlemap._
 import demo.pages.GoogleMapPage
 import japgolly.scalajs.react.extra.router.RouterConfigDsl
-import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 object GoogleMapRouteModule {
@@ -15,20 +14,24 @@ object GoogleMapRouteModule {
 
   case object Marker extends LeftRoute("Map With Markers", "markers", () => GoogleMapMarkers())
 
-  case object MutableMarker extends LeftRoute("Mutable Markers", "mutableMarkers", () => MutableGoogleMapMarkers())
+  case object MutableMarker
+      extends LeftRoute("Mutable Markers", "mutableMarkers", () => MutableGoogleMapMarkers())
 
-  case object MarkerIcon extends LeftRoute("Custom Marker Icon", "markericon", () => GoogleMapCustomMarkerIcon())
+  case object MarkerIcon
+      extends LeftRoute("Custom Marker Icon", "markericon", () => GoogleMapCustomMarkerIcon())
 
-  case object MarkerInfoWindow extends LeftRoute("Marker Info Window", "markerinfowindow", () => GoogleMapMarkerInfoWindow())
+  case object MarkerInfoWindow
+      extends LeftRoute("Marker Info Window",
+                        "markerinfowindow",
+                        () => GoogleMapMarkerInfoWindow())
 
-  val menu: List[LeftRoute] = List(Info, Basic, Marker, MutableMarker, MarkerIcon, MarkerInfoWindow)
+  val menu: List[LeftRoute] =
+    List(Info, Basic, Marker, MutableMarker, MarkerIcon, MarkerInfoWindow)
 
   val routes = RouterConfigDsl[LeftRoute].buildRule { dsl =>
-
     import dsl._
 
-    menu.map(i =>
-      staticRoute(i.route, i) ~> renderR(r => GoogleMapPage(i, r))).reduce(_ | _)
+    menu.map(i => staticRoute(i.route, i) ~> renderR(r => GoogleMapPage(i, r))).reduce(_ | _)
 
   }
 }

@@ -6,4 +6,3 @@ import scala.scalajs.js
 trait IAutoHighlightResult extends IHighlightResultBase {
   var second_best: js.UndefOr[IAutoHighlightResult] = js.native
 }
-

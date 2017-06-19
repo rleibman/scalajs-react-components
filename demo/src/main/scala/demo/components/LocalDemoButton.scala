@@ -64,35 +64,37 @@ object LocalDemoButton {
           ^.onMouseLeave --> onMouseLeave,
           P.name
         )
-      else <.a(
-        buttonStyle,
-        ^.onClick ==> onButtonClick(P),
-        ^.onMouseEnter --> onMouseEnter,
-        ^.onMouseLeave --> onMouseLeave,
-        P.name
-      )
+      else
+        <.a(
+          buttonStyle,
+          ^.onClick ==> onButtonClick(P),
+          ^.onMouseEnter --> onMouseEnter,
+          ^.onMouseLeave --> onMouseLeave,
+          P.name
+        )
     }
   }
 
-  val component = ScalaComponent.builder[Props]("LocalDemoButton")
+  val component = ScalaComponent
+    .builder[Props]("LocalDemoButton")
     .initialState(State())
     .renderBackend[Backend]
     .build
 
   case class Props(
-    name: String,
-    onButtonClick: js.UndefOr[ReactEventFromHtml => Callback],
-    linkButton: Boolean,
-    href: String,
-    style: Style
+      name: String,
+      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback],
+      linkButton: Boolean,
+      href: String,
+      style: Style
   )
 
   def apply(
-    name: String,
-    onButtonClick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined,
-    linkButton: Boolean = false,
-    href: String = "",
-    style: Style = new Style {}
+      name: String,
+      onButtonClick: js.UndefOr[ReactEventFromHtml => Callback] = js.undefined,
+      linkButton: Boolean = false,
+      href: String = "",
+      style: Style = new Style {}
   ) = {
     //    component.set(key, ref)(Props(name, onButtonClick, linkButton, href, style))
     component(Props(name, onButtonClick, linkButton, href, style))

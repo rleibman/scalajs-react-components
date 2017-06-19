@@ -8,7 +8,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.concurrent.duration._
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{ global => g }
+import scala.scalajs.js.Dynamic.{global => g}
 
 object EuiFormsDemo {
   val code = GhPagesMacros.exampleSource
@@ -23,13 +23,13 @@ object EuiFormsDemo {
   )
 
   case class State(
-    searching: Boolean = false,
-    inputSelect: String = "",
-    inlineRadioGroup: String = "",
-    inputEmail: String = "",
-    inputPassword: String = "",
-    inputConfirmPassword: String = "",
-    files: scala.scalajs.js.Array[File] = scala.scalajs.js.Array()
+      searching: Boolean = false,
+      inputSelect: String = "",
+      inlineRadioGroup: String = "",
+      inputEmail: String = "",
+      inputPassword: String = "",
+      inputConfirmPassword: String = "",
+      files: scala.scalajs.js.Array[File] = scala.scalajs.js.Array()
   )
 
   val renderBasicExample =
@@ -151,7 +151,7 @@ object EuiFormsDemo {
       )
     )
 
-  case class Backend($: BackendScope[Unit, State]) {
+  case class Backend($ : BackendScope[Unit, State]) {
     def onDrop(files: scala.scalajs.js.Array[File]) = {
       scala.scalajs.js.Dynamic.global.alert(files)
       $.modState(_.copy(files = files))
@@ -294,11 +294,15 @@ object EuiFormsDemo {
             EuiFormInput(name = "postal-code")()
           ),
           EuiFormField(width = FormFieldWidth.two_thirds)(
-            EuiFormSelect(options = js.Array(
-              FormSelectOption("Esperantujo", "esperantujo"),
-              FormSelectOption("Volapuko", "volapuko"),
-              FormSelectOption("Usono", "usono")
-            ), firstOption = "Country", onChange = updateSelect _)()
+            EuiFormSelect(
+              options = js.Array(
+                FormSelectOption("Esperantujo", "esperantujo"),
+                FormSelectOption("Volapuko", "volapuko"),
+                FormSelectOption("Usono", "usono")
+              ),
+              firstOption = "Country",
+              onChange = updateSelect _
+            )()
           )
         )
       )
@@ -313,7 +317,6 @@ object EuiFormsDemo {
           required = true,
           inline = true
         )(),
-
         EuiFormSelect(
           label = "Select",
           value = S.inputSelect,
@@ -322,21 +325,18 @@ object EuiFormsDemo {
           required = true,
           prependEmptyOption = true
         )(),
-
         EuiEmailInputGroup(
           label = "Email",
           value = S.inputEmail,
           onChange = js.defined(updateEmail _),
           required = true
         )(),
-
         EuiPasswordInputGroup(
           label = "Password",
           value = S.inputPassword,
           onChange = js.defined(updatePassword _),
           required = true
         )(),
-
         EuiPasswordInputGroup(
           label = "Confirm",
           value = S.inputConfirmPassword,
@@ -351,34 +351,60 @@ object EuiFormsDemo {
       <.div(
         <.h3("Alignment"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.left, iconColor = ColorVariant.default, iconKey = Octicons.star)(
+          EuiFormIconField(width = FormFieldWidth.one_half,
+                           iconPosition = LeftRight.left,
+                           iconColor = ColorVariant.default,
+                           iconKey = Octicons.star)(
             EuiFormInput(name = "icon-alignment-left")()
           ),
-          EuiFormIconField(width = FormFieldWidth.one_half, iconPosition = LeftRight.right, iconColor = ColorVariant.default, iconKey = Octicons.star)(
+          EuiFormIconField(width = FormFieldWidth.one_half,
+                           iconPosition = LeftRight.right,
+                           iconColor = ColorVariant.default,
+                           iconKey = Octicons.star)(
             EuiFormInput(name = "icon-alignment-right")()
           )
         ),
-
         <.h3("Context Variants Color"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.default, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.primary, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.success, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.warning, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconColor = ColorVariant.danger, iconKey = Octicons.star)(EuiFormInput()())
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconColor = ColorVariant.default,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconColor = ColorVariant.primary,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconColor = ColorVariant.success,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconColor = ColorVariant.warning,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconColor = ColorVariant.danger,
+                           iconKey = Octicons.star)(EuiFormInput()())
         ),
-
         <.h3("Context Variants Fill"),
         EuiFormRow()(
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.default, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.primary, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.success, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.warning, iconKey = Octicons.star)(EuiFormInput()()),
-          EuiFormIconField(width = FormFieldWidth.one_fifth, iconFill = ColorVariant.danger, iconKey = Octicons.star)(EuiFormInput()())
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconFill = ColorVariant.default,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconFill = ColorVariant.primary,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconFill = ColorVariant.success,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconFill = ColorVariant.warning,
+                           iconKey = Octicons.star)(EuiFormInput()()),
+          EuiFormIconField(width = FormFieldWidth.one_fifth,
+                           iconFill = ColorVariant.danger,
+                           iconKey = Octicons.star)(EuiFormInput()())
         ),
-
         <.h3("Loading Indicator"),
-        EuiFormIconField(iconPosition = LeftRight.right, iconKey = Octicons.search, iconColor = ColorVariant.default, iconIsLoading = S.searching)(
+        EuiFormIconField(iconPosition = LeftRight.right,
+                         iconKey = Octicons.search,
+                         iconColor = ColorVariant.default,
+                         iconIsLoading = S.searching)(
           EuiFormInput(
             onChange = js.defined(handleSearch _),
             `type` = "search",
@@ -434,7 +460,8 @@ object EuiFormsDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("EuiFormsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiFormsDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

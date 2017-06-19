@@ -16,7 +16,8 @@ object SpinnerInfo {
     )
   }
 
-  val component = ScalaComponent.builder[Unit]("SpinnerInfo")
+  val component = ScalaComponent
+    .builder[Unit]("SpinnerInfo")
     .render(P => {
       InfoTemplate(componentFilePath = "spinners/Spinner.scala")(
         <.div(
@@ -31,12 +32,14 @@ object SpinnerInfo {
           ),
           <.div(
             <.h4("How To Use :"),
-            <.p("Follow the installation guide from :", RedLink("here", "https://github.com/chenglou/react-spinner#install"))
+            <.p("Follow the installation guide from :",
+                RedLink("here", "https://github.com/chenglou/react-spinner#install"))
           )
         )
       )
 
-    }).build
+    })
+    .build
 
   def apply() = component()
 }

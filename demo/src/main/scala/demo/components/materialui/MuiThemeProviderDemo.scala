@@ -21,19 +21,20 @@ object MuiThemeProviderDemo {
   ) {
 
     val theme: MuiTheme =
-      Mui.Styles.getMuiTheme(backgroundColor.fold(baseTheme)(
-        color ⇒ baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color))
-      ))
+      Mui.Styles.getMuiTheme(
+        backgroundColor.fold(baseTheme)(
+          color ⇒ baseTheme.copy(palette = baseTheme.palette.copy(canvasColor = color))
+        ))
   }
 
-  case class Backend($: BackendScope[Unit, State]) {
+  case class Backend($ : BackendScope[Unit, State]) {
 
     def pickColor(s: String): MuiColor =
       Mui.Styles.colors.asInstanceOf[Dynamic].selectDynamic(s).asInstanceOf[MuiColor]
 
     val colors: Seq[(String, MuiColor)] =
-      js.Object.keys(Mui.Styles.colors).map {
-        key ⇒ key → pickColor(key)
+      js.Object.keys(Mui.Styles.colors).map { key ⇒
+        key → pickColor(key)
       }
 
     val onThemeChanged: (ReactEvent, Int, MuiRawTheme) ⇒ Callback =
@@ -48,9 +49,15 @@ object MuiThemeProviderDemo {
           MuiMuiThemeProvider(muiTheme = S.theme)(
             MuiPaper()(
               <.h3("Pick base theme"),
-              MuiDropDownMenu[MuiRawTheme](key = "themeDropdown", value = S.baseTheme, onChange = onThemeChanged)(
-                MuiMenuItem[MuiRawTheme](key = "LightRawTheme", primaryText = js.defined("LightRawTheme"), value = Mui.Styles.LightRawTheme)(),
-                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme", primaryText = js.defined("DarkRawTheme"), value = Mui.Styles.DarkRawTheme)()
+              MuiDropDownMenu[MuiRawTheme](key = "themeDropdown",
+                                           value = S.baseTheme,
+                                           onChange = onThemeChanged)(
+                MuiMenuItem[MuiRawTheme](key = "LightRawTheme",
+                                         primaryText = js.defined("LightRawTheme"),
+                                         value = Mui.Styles.LightRawTheme)(),
+                MuiMenuItem[MuiRawTheme](key = "DarkRawTheme",
+                                         primaryText = js.defined("DarkRawTheme"),
+                                         value = Mui.Styles.DarkRawTheme)()
               ),
               <.h3("Override theme canvas color"),
               MuiDropDownMenu[MuiColor](
@@ -76,7 +83,8 @@ object MuiThemeProviderDemo {
   }
 
   private val component =
-    ScalaComponent.builder[Unit]("MuiThemeProviderDemo")
+    ScalaComponent
+      .builder[Unit]("MuiThemeProviderDemo")
       .initialState(State(Mui.Styles.LightRawTheme, js.undefined))
       .renderBackend[Backend]
       .build

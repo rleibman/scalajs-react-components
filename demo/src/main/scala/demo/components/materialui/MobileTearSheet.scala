@@ -3,8 +3,8 @@ package components
 package materialui
 
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.vdom._
+import japgolly.scalajs.react.vdom.html_<^._
 
 import scala.scalajs.js
 import scalacss.ProdDefaults._
@@ -36,7 +36,7 @@ object MobileTearSheet {
     )
   }
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     def render(C: PropsChildren) = {
       <.div(
         Style.root,
@@ -49,7 +49,8 @@ object MobileTearSheet {
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("MobileTearSheet")
+  val component = ScalaComponent
+    .builder[Unit]("MobileTearSheet")
     .renderBackendWithChildren[Backend]
     .build
 

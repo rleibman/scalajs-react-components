@@ -2,13 +2,11 @@ package chandu0101.scalajs.react.components
 
 import chandu0101.macros.tojs.JSMacro
 import japgolly.scalajs.react._
+import japgolly.scalajs.react.raw._
+import japgolly.scalajs.react.vdom.VdomElement
 import org.scalajs.dom.raw.HTMLElement
 
 import scala.scalajs.js
-import scala.scalajs.js.JSConverters.JSRichGenTraversableOnce
-import japgolly.scalajs.react.raw._
-import japgolly.scalajs.react.vdom.VdomElement
-import japgolly.scalajs.react.raw._
 
 case class ReactInfinite(
     handleScroll: js.UndefOr[HTMLElement => Callback] = js.undefined,
@@ -28,7 +26,7 @@ case class ReactInfinite(
 
   def apply(children: Seq[VdomElement]) = {
     val props = JSMacro[ReactInfinite](this)
-    val f = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
+    val f     = React.asInstanceOf[js.Dynamic].createFactory(js.Dynamic.global.Infinite)
     f(props, children).asInstanceOf[ScalaComponent.Unmounted[_, _, _]]
   }
 }

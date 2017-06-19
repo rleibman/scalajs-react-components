@@ -7,7 +7,8 @@ import jdk.nashorn.internal.ir._
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 
-case class VisitorImports(n: FunctionNode, currentPath: Path) extends VisitorHelperNameStack[FunctionNode, Seq[Import]](n) {
+case class VisitorImports(n: FunctionNode, currentPath: Path)
+    extends VisitorHelperNameStack[FunctionNode, Seq[Import]](n) {
   private val ret: mutable.Map[VarName, Import] =
     mutable.Map.empty[VarName, Import]
 

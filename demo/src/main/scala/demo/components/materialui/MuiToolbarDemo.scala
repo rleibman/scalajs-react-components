@@ -15,7 +15,8 @@ object MuiToolbarDemo {
 
   // EXAMPLE:START
 
-  val component = ScalaComponent.builder[Unit]("MuiToolbarDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiToolbarDemo")
     .render(P => {
       <.div(
         CodeExample(code, "MuiToolbar")(
@@ -31,7 +32,8 @@ object MuiToolbarDemo {
           )
         )
       )
-    }).build
+    })
+    .build
 
   // EXAMPLE:END
 

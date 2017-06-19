@@ -6,4 +6,3 @@ import scala.scalajs.js
 trait IHighlightResult extends IHighlightResultBase {
   var top: ICompiledMode = js.native
 }
-

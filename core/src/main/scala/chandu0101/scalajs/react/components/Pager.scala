@@ -53,13 +53,24 @@ object Pager {
   }
   object DefaultStyle extends Style
 
-  val component = ScalaComponent.builder[Props]("Pager")
+  val component = ScalaComponent
+    .builder[Props]("Pager")
     .renderBackend[Backend]
     .build
 
-  case class Props(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style)
+  case class Props(itemsPerPage: Int,
+                   totalItems: Int,
+                   offset: Int,
+                   nextClick: Callback,
+                   previousClick: Callback,
+                   style: Style)
 
-  def apply(itemsPerPage: Int, totalItems: Int, offset: Int, nextClick: Callback, previousClick: Callback, style: Style = DefaultStyle) = {
+  def apply(itemsPerPage: Int,
+            totalItems: Int,
+            offset: Int,
+            nextClick: Callback,
+            previousClick: Callback,
+            style: Style = DefaultStyle) = {
     component(Props(itemsPerPage, totalItems, offset, nextClick, previousClick, style))
   }
 

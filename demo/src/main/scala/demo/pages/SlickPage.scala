@@ -1,10 +1,9 @@
 package demo.pages
 
 import demo.components.LeftNavPage
-import demo.routes.{ LeftRoute, ReactSlickRouteModule }
-import japgolly.scalajs.react.extra.router.RouterCtl
+import demo.routes.{LeftRoute, ReactSlickRouteModule}
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.extra.router.RouterCtl
 
 object SlickPage {
 
@@ -13,13 +12,15 @@ object SlickPage {
       LeftNavPage(ReactSlickRouteModule.menu, P.selectedPage, P.ctrl)
   }
 
-  val component = ScalaComponent.builder[Props]("SlickPage")
+  val component = ScalaComponent
+    .builder[Props]("SlickPage")
     .stateless
     .renderBackend[Backend]
     .build
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) = component(Props(selectedPage, ctrl))
+  def apply(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute]) =
+    component(Props(selectedPage, ctrl))
 
 }

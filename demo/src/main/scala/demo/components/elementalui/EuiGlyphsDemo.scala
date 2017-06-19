@@ -1,7 +1,7 @@
 package demo.components.elementalui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.elementalui.{ EuiGlyph, Octicons, _ }
+import chandu0101.scalajs.react.components.elementalui.{EuiGlyph, Octicons, _}
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.TagOf
@@ -13,7 +13,7 @@ object EuiGlyphsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
     val renderButtons: TagOf[Div] =
       <.div(
         EuiButton(`type` = ButtonType.primary)(EuiGlyph(icon = Octicons.beaker)()),
@@ -31,30 +31,38 @@ object EuiGlyphsDemo {
       )
 
     val renderGlyphGrid: VdomNode =
-      Octicons.values.grouped(10).zipWithIndex.map {
-        case (list, index) =>
-          EuiRow(key = s"row_$index") {
-            list.map { icon =>
-              EuiCol(key = s"col_${icon.value}", sm = "1/10")(
-                EuiCard(className = "code-example--glyph__icon")(
-                  EuiGlyph(key = icon.value, icon = icon)(),
-                  <.div(
-                    ^.className := "code-example--glyph__icon-name",
-                    icon.value
+      Octicons.values
+        .grouped(10)
+        .zipWithIndex
+        .map {
+          case (list, index) =>
+            EuiRow(key = s"row_$index") {
+              list.map { icon =>
+                EuiCol(key = s"col_${icon.value}", sm = "1/10")(
+                  EuiCard(className = "code-example--glyph__icon")(
+                    EuiGlyph(key = icon.value, icon = icon)(),
+                    <.div(
+                      ^.className := "code-example--glyph__icon-name",
+                      icon.value
+                    )
                   )
                 )
-              )
-            }.toVdomArray
-          }
-      }.toVdomArray
+              }.toVdomArray
+            }
+        }
+        .toVdomArray
 
     def renderGlyphColors(icon: Octicons): VdomNode =
-      GlyphType.values.map(glyphType =>
-        <.div(
-          ^.key := s"${glyphType.value}-${icon.value}",
-          ^.className := "code-example__example-element--inline",
-          EuiGlyph(icon = icon, `type` = glyphType)(), glyphType.value
-        )).toVdomArray
+      GlyphType.values
+        .map(
+          glyphType =>
+            <.div(
+              ^.key := s"${glyphType.value}-${icon.value}",
+              ^.className := "code-example__example-element--inline",
+              EuiGlyph(icon = icon, `type` = glyphType)(),
+              glyphType.value
+          ))
+        .toVdomArray
 
     def render =
       CodeExample(code, "EuiGlyphs")(
@@ -74,7 +82,8 @@ object EuiGlyphsDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("EuiGlyphsDemo")
+  val component = ScalaComponent
+    .builder[Unit]("EuiGlyphsDemo")
     .renderBackend[Backend]
     .build
 

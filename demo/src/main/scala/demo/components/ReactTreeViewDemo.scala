@@ -1,7 +1,7 @@
 package demo.components
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.{ ReactTreeView, TreeItem }
+import chandu0101.scalajs.react.components.{ReactTreeView, TreeItem}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
@@ -50,7 +50,8 @@ object ReactTreeViewDemo {
 
     def render = {
       <.div(
-        <.h3("Demo"), CodeExample(code, "ReactTreeView")(
+        <.h3("Demo"),
+        CodeExample(code, "ReactTreeView")(
           <.div(Style.treeViewDemo)(
             ReactTreeView(
               root = data,
@@ -65,7 +66,8 @@ object ReactTreeViewDemo {
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactTreeViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactTreeViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

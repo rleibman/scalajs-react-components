@@ -12,14 +12,15 @@ case class EuiLibrary(base: Path) extends Library {
       base / 'lib // / 'components
     )
 
-  override val prefixOpt = Some("Eui")
-  override val name = "elementalui"
-  override val typeMapper = EuiTypeMapper
+  override val prefixOpt    = Some("Eui")
+  override val name         = "elementalui"
+  override val typeMapper   = EuiTypeMapper
   override val memberMapper = EuiTypeMemberMethodMapper
-  override val indexNames = Set("Elemental.js", "index.js")
-  override val packageName = "chandu0101.scalajs.react.components.elementalui"
+  override val indexNames   = Set("Elemental.js", "index.js")
+  override val packageName  = "chandu0101.scalajs.react.components.elementalui"
 
-  val formField = ComponentDef(CompName("FormField"), forceChildren = true, domeTypeOpt = Some(DomInput))
+  val formField =
+    ComponentDef(CompName("FormField"), forceChildren = true, domeTypeOpt = Some(DomInput))
   val components: Seq[ComponentDef] =
     Seq(
       //      ComponentDef(CompName("BlankState")),
@@ -28,12 +29,11 @@ case class EuiLibrary(base: Path) extends Library {
       //      ComponentDef(CompName("Body")),
       //      ComponentDef(CompName("Footer")),
       //      ComponentDef(CompName("Header")),
-
       ComponentDef(CompName("ElementalAlert")),
       ComponentDef(CompName("ButtonGroup")),
       ComponentDef(CompName("Button"), forceChildren = true, domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Card")),
-      ComponentDef(CompName("Col")), // Error, comments 
+      ComponentDef(CompName("Col")), // Error, comments
       ComponentDef(CompName("Container"), forceChildren = true),
       ComponentDef(CompName("Checkbox"), domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Dropdown")),
@@ -41,7 +41,10 @@ case class EuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("Dropzone")),
       ComponentDef(CompName("FileUpload"), domeTypeOpt = Some(DomInput)),
       formField,
-      ComponentDef(CompName("FormIconField"), forceChildren = true, shared = Some(formField), domeTypeOpt = Some(DomInput)),
+      ComponentDef(CompName("FormIconField"),
+                   forceChildren = true,
+                   shared = Some(formField),
+                   domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("FormIcon"), forceChildren = true),
       ComponentDef(CompName("FormInput"), forceChildren = true, domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Form"), forceChildren = true),

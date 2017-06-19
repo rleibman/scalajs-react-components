@@ -12,7 +12,7 @@ object SuiButtonDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[Unit, Unit]) {
+  case class Backend($ : BackendScope[Unit, Unit]) {
 
     val handleOnClick = (e: ReactMouseEventFromInput) => Callback.info("You clicked me!")
 
@@ -26,7 +26,8 @@ object SuiButtonDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("SuiButtonDemo")
+  val component = ScalaComponent
+    .builder[Unit]("SuiButtonDemo")
     .renderBackend[Backend]
     .build
 

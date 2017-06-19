@@ -10,9 +10,11 @@ trait SlidesToShow extends js.Any {
 
 object SlidesToShow {
   def apply(slidesToShow: Int): SlidesToShow =
-    js.Dynamic.literal(
-      slidesToShow = slidesToShow
-    ).asInstanceOf[SlidesToShow]
+    js.Dynamic
+      .literal(
+        slidesToShow = slidesToShow
+      )
+      .asInstanceOf[SlidesToShow]
 }
 
 @js.native

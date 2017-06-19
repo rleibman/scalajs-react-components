@@ -34,7 +34,8 @@ object ReactListViewDemo {
 
     def render =
       <.div(
-        <.h3("Demo"), CodeExample(code, "ReactListView")(
+        <.h3("Demo"),
+        CodeExample(code, "ReactListView")(
           <.div(Style.listViewDemo)(
             ReactListView(
               items = data,
@@ -51,7 +52,8 @@ object ReactListViewDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactListViewDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactListViewDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build

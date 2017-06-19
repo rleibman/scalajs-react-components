@@ -1,9 +1,9 @@
 package chandu0101.scalajs.react.components
 package materialui
 
-import japgolly.scalajs.react.component.Js.{ RawMounted, UnmountedWithRawType }
+import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
 import japgolly.scalajs.react.vdom.VdomNode
-import japgolly.scalajs.react.{ Callback, Children, JsComponent, ReactMouseEventFromHtml }
+import japgolly.scalajs.react.{Callback, Children, JsComponent, ReactMouseEventFromHtml}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -23,14 +23,14 @@ trait MuiSvgIconProps extends js.Object {
 object MuiSvgIcon {
   implicit class SvgIconApply(icon: MuiSvgIcon) {
     def apply(
-      key: js.UndefOr[String] = js.undefined,
-      ref: js.UndefOr[String] = js.undefined,
-      color: js.UndefOr[String] = js.undefined,
-      hoverColor: js.UndefOr[MuiColor] = js.undefined,
-      onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
-      onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
-      style: js.UndefOr[CssProperties] = js.undefined,
-      viewBox: js.UndefOr[String] = js.undefined
+        key: js.UndefOr[String] = js.undefined,
+        ref: js.UndefOr[String] = js.undefined,
+        color: js.UndefOr[String] = js.undefined,
+        hoverColor: js.UndefOr[MuiColor] = js.undefined,
+        onMouseEnter: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+        onMouseLeave: js.UndefOr[ReactMouseEventFromHtml => Callback] = js.undefined,
+        style: js.UndefOr[CssProperties] = js.undefined,
+        viewBox: js.UndefOr[String] = js.undefined
     )(children: VdomNode*): UnmountedWithRawType[MuiSvgIconProps, Null, RawMounted] = {
 
       val props = js.Dynamic.literal()
@@ -662,7 +662,8 @@ object MuiSvgIcons {
   object CommunicationCallMade extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/communication/call-merge", JSImport.Default)
   object CommunicationCallMerge extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/communication/call-missed-outgoing", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/communication/call-missed-outgoing",
+                       JSImport.Default)
   object CommunicationCallMissedOutgoing extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/communication/call-missed", JSImport.Default)
   object CommunicationCallMissed extends MuiSvgIcon
@@ -736,13 +737,17 @@ object MuiSvgIcons {
   object CommunicationScreenShare extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/communication/speaker-phone", JSImport.Default)
   object CommunicationSpeakerPhone extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/communication/stay-current-landscape", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/communication/stay-current-landscape",
+                       JSImport.Default)
   object CommunicationStayCurrentLandscape extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/communication/stay-current-portrait", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/communication/stay-current-portrait",
+                       JSImport.Default)
   object CommunicationStayCurrentPortrait extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/communication/stay-primary-landscape", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/communication/stay-primary-landscape",
+                       JSImport.Default)
   object CommunicationStayPrimaryLandscape extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/communication/stay-primary-portrait", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/communication/stay-primary-portrait",
+                       JSImport.Default)
   object CommunicationStayPrimaryPortrait extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/communication/stop-screen-share", JSImport.Default)
   object CommunicationStopScreenShare extends MuiSvgIcon
@@ -946,15 +951,20 @@ object MuiSvgIcons {
   object DeviceSignalCellular3Bar extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-4-bar", JSImport.Default)
   object DeviceSignalCellular4Bar extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-0-bar", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-0-bar",
+                       JSImport.Default)
   object DeviceSignalCellularConnectedNoInternet0Bar extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-1-bar", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-1-bar",
+                       JSImport.Default)
   object DeviceSignalCellularConnectedNoInternet1Bar extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-2-bar", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-2-bar",
+                       JSImport.Default)
   object DeviceSignalCellularConnectedNoInternet2Bar extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-3-bar", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-3-bar",
+                       JSImport.Default)
   object DeviceSignalCellularConnectedNoInternet3Bar extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-4-bar", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-connected-no-internet-4-bar",
+                       JSImport.Default)
   object DeviceSignalCellularConnectedNoInternet4Bar extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/device/signal-cellular-no-sim", JSImport.Default)
   object DeviceSignalCellularNoSim extends MuiSvgIcon
@@ -1066,9 +1076,11 @@ object MuiSvgIcons {
   object EditorFormatSize extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/editor/format-strikethrough", JSImport.Default)
   object EditorFormatStrikethrough extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/editor/format-textdirection-l-to-r", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/editor/format-textdirection-l-to-r",
+                       JSImport.Default)
   object EditorFormatTextdirectionLToR extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/editor/format-textdirection-r-to-l", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/editor/format-textdirection-r-to-l",
+                       JSImport.Default)
   object EditorFormatTextdirectionRToL extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/editor/format-underlined", JSImport.Default)
   object EditorFormatUnderlined extends MuiSvgIcon
@@ -1746,9 +1758,11 @@ object MuiSvgIcons {
   object NavigationMoreVert extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/navigation/refresh", JSImport.Default)
   object NavigationRefresh extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/navigation/subdirectory-arrow-left", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/navigation/subdirectory-arrow-left",
+                       JSImport.Default)
   object NavigationSubdirectoryArrowLeft extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/navigation/subdirectory-arrow-right", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/navigation/subdirectory-arrow-right",
+                       JSImport.Default)
   object NavigationSubdirectoryArrowRight extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/navigation/unfold-less", JSImport.Default)
   object NavigationUnfoldLess extends MuiSvgIcon
@@ -1758,21 +1772,28 @@ object MuiSvgIcons {
   object NavigationArrowDropRight extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/notification/adb", JSImport.Default)
   object NotificationAdb extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-flat-angled", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-flat-angled",
+                       JSImport.Default)
   object NotificationAirlineSeatFlatAngled extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-flat", JSImport.Default)
   object NotificationAirlineSeatFlat extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-individual-suite", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-individual-suite",
+                       JSImport.Default)
   object NotificationAirlineSeatIndividualSuite extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-extra", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-extra",
+                       JSImport.Default)
   object NotificationAirlineSeatLegroomExtra extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-normal", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-normal",
+                       JSImport.Default)
   object NotificationAirlineSeatLegroomNormal extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-reduced", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-legroom-reduced",
+                       JSImport.Default)
   object NotificationAirlineSeatLegroomReduced extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-recline-extra", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-recline-extra",
+                       JSImport.Default)
   object NotificationAirlineSeatReclineExtra extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-recline-normal", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/airline-seat-recline-normal",
+                       JSImport.Default)
   object NotificationAirlineSeatReclineNormal extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/notification/bluetooth-audio", JSImport.Default)
   object NotificationBluetoothAudio extends MuiSvgIcon
@@ -1816,7 +1837,8 @@ object MuiSvgIcons {
   object NotificationOndemandVideo extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/notification/personal-video", JSImport.Default)
   object NotificationPersonalVideo extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/notification/phone-bluetooth-speaker", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/notification/phone-bluetooth-speaker",
+                       JSImport.Default)
   object NotificationPhoneBluetoothSpeaker extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/notification/phone-forwarded", JSImport.Default)
   object NotificationPhoneForwarded extends MuiSvgIcon
@@ -1954,7 +1976,8 @@ object MuiSvgIcons {
   object SocialSentimentNeutral extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/social/sentiment-satisfied", JSImport.Default)
   object SocialSentimentSatisfied extends MuiSvgIcon
-  @js.native @JSImport("material-ui/svg-icons/social/sentiment-very-dissatisfied", JSImport.Default)
+  @js.native @JSImport("material-ui/svg-icons/social/sentiment-very-dissatisfied",
+                       JSImport.Default)
   object SocialSentimentVeryDissatisfied extends MuiSvgIcon
   @js.native @JSImport("material-ui/svg-icons/social/sentiment-very-satisfied", JSImport.Default)
   object SocialSentimentVerySatisfied extends MuiSvgIcon

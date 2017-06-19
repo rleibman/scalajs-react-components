@@ -1,8 +1,14 @@
 package demo
 
-import chandu0101.scalajs.react.components.{ Pager, ReactDraggable, ReactListView, ReactSearchBox, ReactTable }
-import demo.components.materialui._
+import chandu0101.scalajs.react.components.{
+  Pager,
+  ReactDraggable,
+  ReactListView,
+  ReactSearchBox,
+  ReactTable
+}
 import demo.components._
+import demo.components.materialui._
 
 import scalacss.ProdDefaults._
 import scalacss.ScalaCssReact._

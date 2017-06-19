@@ -3,8 +3,8 @@ package components
 
 import chandu0101.scalajs.react.components._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.component.Generic.toComponentCtor
+import japgolly.scalajs.react.vdom.html_<^._
 
 object AppHeader {
   import RCustomStyles._
@@ -79,7 +79,8 @@ object AppHeader {
     }
   }
 
-  val component = ScalaComponent.builder[Unit]("AppHeader")
+  val component = ScalaComponent
+    .builder[Unit]("AppHeader")
     .initialState(State())
     .renderBackend[Backend]
     .build

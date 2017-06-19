@@ -25,7 +25,7 @@ object MuiMenuDemo {
     }
   }
 
-  class Backend($: BackendScope[Unit, State]) {
+  class Backend($ : BackendScope[Unit, State]) {
     val toggleOpen: ReactEvent => Callback =
       e => $.modState(s => s.copy(isOpen = !s.isOpen))
 
@@ -47,15 +47,17 @@ object MuiMenuDemo {
           onKeyDown = CallbackDebug.f1("onKeyDown"),
           onEscKeyDown = toggleOpen
         )(
-            MuiMenuItem[String](value = "bold", secondaryText = js.defined("⌘B"), checked = true)("Bold"),
-            MuiMenuItem[String](value = "italic", secondaryText = js.defined("⌘I"))("Italic"),
-            MuiMenuItem[String](value = "under", secondaryText = js.defined("⌘U"))("Underline"),
-            MuiMenuItem[String](value = "strike", secondaryText = js.defined("Alt+Shift+5"))("Strikethrough"),
-            MuiMenuItem[String](value = "super", secondaryText = js.defined("⌘."))("Superscript"),
-            MuiMenuItem[String](value = "sub", secondaryText = js.defined("⌘,"))("Subscript"),
-            MuiDivider()(),
-            MuiMenuItem[String](value = "align")("Align")
-          )
+          MuiMenuItem[String](value = "bold", secondaryText = js.defined("⌘B"), checked = true)(
+            "Bold"),
+          MuiMenuItem[String](value = "italic", secondaryText = js.defined("⌘I"))("Italic"),
+          MuiMenuItem[String](value = "under", secondaryText = js.defined("⌘U"))("Underline"),
+          MuiMenuItem[String](value = "strike", secondaryText = js.defined("Alt+Shift+5"))(
+            "Strikethrough"),
+          MuiMenuItem[String](value = "super", secondaryText = js.defined("⌘."))("Superscript"),
+          MuiMenuItem[String](value = "sub", secondaryText = js.defined("⌘,"))("Subscript"),
+          MuiDivider()(),
+          MuiMenuItem[String](value = "align")("Align")
+        )
       )
 
     def renderClosed(S: State) =
@@ -70,7 +72,8 @@ object MuiMenuDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("MuiMenuDemo")
+  val component = ScalaComponent
+    .builder[Unit]("MuiMenuDemo")
     .initialState(State(isOpen = false, Set.empty))
     .renderBackend[Backend]
     .build

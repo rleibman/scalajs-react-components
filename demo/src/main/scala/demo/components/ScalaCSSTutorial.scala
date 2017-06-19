@@ -57,14 +57,18 @@ object ScalaCSSTutorial {
       |
     """.stripMargin
 
-  val component = ScalaComponent.builder[Unit]("ScalaCSSTutorial")
+  val component = ScalaComponent
+    .builder[Unit]("ScalaCSSTutorial")
     .renderStatic(
       <.div(
         Style.content,
         <.div(
           <.h4("Basic Usage :"),
-          <.p("To use scalacss based components, u just need to register component style", <.br(),
-            "For example if you want to use ReactTable component in ur project "),
+          <.p(
+            "To use scalacss based components, u just need to register component style",
+            <.br(),
+            "For example if you want to use ReactTable component in ur project "
+          ),
           <.pre(
             CodeHighlight(basicCode)
           ),
@@ -86,7 +90,8 @@ object ScalaCSSTutorial {
           )
         )
       )
-    ).build
+    )
+    .build
 
   def apply() = component()
 

@@ -5,7 +5,7 @@ import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.html_<^._
 
 object RedLink {
-  case class Backend($: BackendScope[Props, Unit]) {
+  case class Backend($ : BackendScope[Props, Unit]) {
     def render(P: Props) = {
       <.a(
         ^.href := P.url,
@@ -18,7 +18,8 @@ object RedLink {
     }
   }
 
-  val component = ScalaComponent.builder[Props]("RedLink")
+  val component = ScalaComponent
+    .builder[Props]("RedLink")
     .renderBackend[Backend]
     .build
 

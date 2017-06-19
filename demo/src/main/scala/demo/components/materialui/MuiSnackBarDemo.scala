@@ -5,8 +5,9 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import org.scalajs.dom
 import japgolly.scalajs.react.vdom.html_<^._
+import org.scalajs.dom
+
 import scala.scalajs.js
 
 object MuiSnackbarDemo {
@@ -14,9 +15,9 @@ object MuiSnackbarDemo {
 
   // EXAMPLE:START
 
-  class Backend($: BackendScope[_, Boolean]) {
+  class Backend($ : BackendScope[_, Boolean]) {
     val close = $.setState(false)
-    val open = $.setState(true)
+    val open  = $.setState(true)
 
     val undoAdd: ReactEvent => Callback =
       e => close >> Callback(dom.window.alert("We removed Event from your calendar"))
@@ -46,7 +47,8 @@ object MuiSnackbarDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("MuiSnackBar")
+  val component = ScalaComponent
+    .builder[Unit]("MuiSnackBar")
     .initialState(false)
     .renderBackend[Backend]
     .build

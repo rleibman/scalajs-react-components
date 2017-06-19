@@ -5,10 +5,9 @@ import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala.Unmounted
-
-import scala.scalajs.js
 import japgolly.scalajs.react.vdom.html_<^._
 
+import scala.scalajs.js
 import scala.scalajs.js.annotation.ScalaJSDefined
 
 object MuiSelectFieldDemo {
@@ -16,10 +15,10 @@ object MuiSelectFieldDemo {
 
   // EXAMPLE:START
 
-  @ScalaJSDefined class ChoiceId(val value: String) extends js.Object
+  @ScalaJSDefined class ChoiceId(val value: String)                extends js.Object
   @ScalaJSDefined class Choice(val id: ChoiceId, val text: String) extends js.Object
 
-  case class Backend($: BackendScope[Seq[Choice], Choice]) {
+  case class Backend($ : BackendScope[Seq[Choice], Choice]) {
     val onChange: (TouchTapEvent, Int, Choice) => Callback =
       (e, idx, a) => $.setState(a) >> Callback.info(s"selected $a")
 
@@ -31,15 +30,21 @@ object MuiSelectFieldDemo {
           onFocus = CallbackDebug.f1("onFocus"),
           onChange = onChange
         )(
-            choices.map(
-            c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = js.defined(c.text))()
-          ).toVdomArray
-          )
+          choices
+            .map(
+              c =>
+                MuiMenuItem[Choice](key = c.id.value,
+                                    value = c,
+                                    primaryText = js.defined(c.text))()
+            )
+            .toVdomArray
+        )
       )
   }
 
   private val component =
-    ScalaComponent.builder[Seq[Choice]]("MuiSelectFieldDemo")
+    ScalaComponent
+      .builder[Seq[Choice]]("MuiSelectFieldDemo")
       .initialStateFromProps(_.head)
       .renderBackend[Backend]
       .build

@@ -7,9 +7,9 @@ import scala.collection.mutable
 
 class ScanCtx {
 
-  private val parsedFiles = mutable.Map.empty[Path, ParsedFile]
+  private val parsedFiles   = mutable.Map.empty[Path, ParsedFile]
   private val requiredFiles = mutable.Map.empty[Path, Lazy[Required]]
-  private val comps = mutable.Map.empty[CompName, FoundComponent]
+  private val comps         = mutable.Map.empty[CompName, FoundComponent]
 
   def parsedFile(p: Path): ParsedFile =
     parsedFiles.getOrElseUpdate(p, JsParser(p))

@@ -13,43 +13,54 @@ object ParseComponent {
     )
 
   def apply(
-    scope: Map[CompName, requiresjs.FoundComponent],
-    library: Library,
-    comp: ComponentDef
+      scope: Map[CompName, requiresjs.FoundComponent],
+      library: Library,
+      comp: ComponentDef
   ): ParsedComponent = {
 
     val propTypes: Map[PropName, PropUnparsed] =
-      scope.get(comp.name).map(_.props).getOrElse(
-        panic(s"No Proptypes found for ${comp.name}")
-      )
+      scope
+        .get(comp.name)
+        .map(_.props)
+        .getOrElse(
+          panic(s"No Proptypes found for ${comp.name}")
+        )
 
     val inheritedProps: Map[PropName, PropUnparsed] =
       comp.shared match {
         case None => Map.empty
         case Some(shared) =>
-          scope.get(shared.name).map(_.props).getOrElse(
-            panic(s"$comp: No Proptypes found for $shared")
-          )
+          scope
+            .get(shared.name)
+            .map(_.props)
+            .getOrElse(
+              panic(s"$comp: No Proptypes found for $shared")
+            )
       }
 
     val methodClassOpt: Option[ParsedMethodClass] =
       scope
         .get(comp.name)
         .flatMap(_.methods)
-        .map(_.filterNot(m ⇒ ignoredMembers(m.name) || m.name.startsWith("handle") || m.name.startsWith("_")))
+        .map(_.filterNot(m ⇒
+          ignoredMembers(m.name) || m.name.startsWith("handle") || m.name.startsWith("_")))
         .filter(_.nonEmpty)
-        .map(members ⇒
-          ParsedMethodClass(
-            library.prefixOpt.getOrElse("") + comp.name + "M",
-            members.toSeq.sortBy(_.name).map(library.memberMapper(comp.name))
+        .map(
+          members ⇒
+            ParsedMethodClass(
+              library.prefixOpt.getOrElse("") + comp.name + "M",
+              members.toSeq.sortBy(_.name).map(library.memberMapper(comp.name))
           ))
 
     val basicFields: Seq[ParsedProp] =
       Seq(
-        ParsedProp(PropName("key"), isRequired = false,
-          Normal("String"), None, None, None),
-        ParsedProp(PropName("ref"), isRequired = false,
-          Normal(methodClassOpt.fold("String")(c => c.className + " => Unit")), None, None, None)
+        ParsedProp(PropName("key"), isRequired = false, Normal("String"), None, None, None),
+        ParsedProp(PropName("ref"),
+                   isRequired = false,
+                   Normal(methodClassOpt.fold("String")(c => c.className + " => Unit")),
+                   None,
+                   None,
+                   None)
       )
 
     val parsedProps: Seq[ParsedProp] =
@@ -85,12 +96,12 @@ object ParseProp {
   val Pattern = "Deprecated\\(([^,]+), '(.+)'\\)".r
 
   def apply(
-    library: Library,
-    compName: CompName,
-    origCompName: CompName,
-    propName: PropName,
-    propString: PropTypeUnparsed,
-    commentOpt: Option[PropComment]
+      library: Library,
+      compName: CompName,
+      origCompName: CompName,
+      propName: PropName,
+      propString: PropTypeUnparsed,
+      commentOpt: Option[PropComment]
   ): ParsedProp = {
     val _clean: String =
       propString.value
@@ -110,7 +121,7 @@ object ParseProp {
 
     val (typeStr: String, deprecatedOpt: Option[String]) = _clean match {
       case Pattern(tpe, depMsg) => (tpe, Some(depMsg))
-      case tpe => (tpe, None)
+      case tpe                  => (tpe, None)
     }
 
     val mappedType: Type =

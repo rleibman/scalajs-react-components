@@ -18,20 +18,24 @@ object ReactSelectAsyncDemo {
   // EXAMPLE:START
 
   case class State(
-    value: JsCollection[ValueOption[MyValue]] = js.undefined
+      value: JsCollection[ValueOption[MyValue]] = js.undefined
   )
 
   case class MyValue(value: String, anotherValue: Int)
 
   class Backend(t: BackendScope[_, State]) {
     val loadValues: (String, js.Function2[Null, AsyncLoaded[MyValue], Unit]) => Callback =
-      (search, cb) => Callback(
-        cb(null, AsyncLoaded(
-          complete = true,
-          ValueOption(MyValue("value", 23), "First value"),
-          ValueOption(MyValue("value2", 42), "Second value"),
-          ValueOption(MyValue("value3", 101), "Third value")
-        ))
+      (search, cb) =>
+        Callback(
+          cb(
+            null,
+            AsyncLoaded(
+              complete = true,
+              ValueOption(MyValue("value", 23), "First value"),
+              ValueOption(MyValue("value2", 42), "Second value"),
+              ValueOption(MyValue("value3", 101), "Third value")
+            )
+          )
       )
 
     val onChangeValue: JsCollection[ValueOption[MyValue]] => Callback =
@@ -40,10 +44,11 @@ object ReactSelectAsyncDemo {
           Callback.info(s"Chose ${chosen.toJsArray.map(_.value)}")
 
     val valueRenderer: ValueOption[MyValue] => TagOf[Div] =
-      vo => <.div(
-        <.h3(vo.title.getOrElse[String]("No title")),
-        <.p(vo.label),
-        <.small(vo.value.toString)
+      vo =>
+        <.div(
+          <.h3(vo.title.getOrElse[String]("No title")),
+          <.p(vo.label),
+          <.small(vo.value.toString)
       )
 
     val optionRenderer: ValueOption[MyValue] => TagOf[Div] =
@@ -53,7 +58,7 @@ object ReactSelectAsyncDemo {
           <.h3(vo.title.getOrElse[String]("No title")),
           <.p(vo.label),
           <.small(vo.value.toString)
-        )
+      )
 
     val onValueClick: (ValueOption[MyValue], ReactEvent) => Callback =
       (vo, e) => Callback.info(s"Clicked on ${vo.value.value}")
@@ -75,7 +80,8 @@ object ReactSelectAsyncDemo {
       )
   }
 
-  val component = ScalaComponent.builder[Unit]("ReactSelectAsyncDemo")
+  val component = ScalaComponent
+    .builder[Unit]("ReactSelectAsyncDemo")
     .initialState(State())
     .renderBackend[Backend]
     .build
