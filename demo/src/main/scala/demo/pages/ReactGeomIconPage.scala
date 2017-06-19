@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactGeomIconPage {
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
       WithAsyncScript("assets/react_geom_icons-bundle.js")(
         LeftNavPage(ReactGeomIcontRouteModule.menu, P.selectedPage, P.ctrl)

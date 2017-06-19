@@ -8,7 +8,7 @@ import demo.routes.{ LeftRoute, ReactPopoverRouteModule }
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactPopoverPage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) = {
       LeftNavPage(ReactPopoverRouteModule.menu, P.selectedPage, P.ctrl)
     }

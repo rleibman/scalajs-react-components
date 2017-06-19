@@ -15,7 +15,7 @@ object InfoTemplate {
     scalacss: Boolean
   )
 
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(^.cls := "info-template")(
         <.div(^.cls := "component-info")(C),

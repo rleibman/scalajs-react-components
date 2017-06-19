@@ -12,7 +12,7 @@ object ReactTableInfo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     def render =
       InfoTemplate(componentFilePath = "/tables/ReactTable.scala", scalacss = true)(
         <.div(^.cls := "full-width-section")(

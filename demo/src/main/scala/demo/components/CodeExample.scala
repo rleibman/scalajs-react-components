@@ -25,7 +25,7 @@ object CodeExample {
     )
 
   }
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props, C: PropsChildren) = {
       <.div(
         (<.h3(P.title, Style.title)).when(P.title.nonEmpty),

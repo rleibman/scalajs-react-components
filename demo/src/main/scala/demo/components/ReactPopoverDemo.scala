@@ -16,7 +16,7 @@ object ReactPopoverDemo {
 
   // EXAMPLE:START
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, Unit]) {
     type Ref = MutableRef[ReactPopOver.Props, ReactPopOver.State, ReactPopOver.Backend, PropsAndChildren]
 
     val topRef:    Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)

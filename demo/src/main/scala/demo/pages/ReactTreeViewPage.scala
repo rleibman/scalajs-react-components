@@ -12,7 +12,7 @@ object ReactTreeViewPage {
     .renderBackend[Backend]
     .build
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
       LeftNavPage(ReactTreeViewRouteModule.menu, P.selectedPage, P.ctrl)
   }

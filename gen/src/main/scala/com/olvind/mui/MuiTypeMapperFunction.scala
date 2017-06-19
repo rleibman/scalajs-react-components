@@ -54,7 +54,7 @@ object MuiTypeMapperFunction {
       case ("Menu", "onEscKeyDown") => KeyboardEventHandler
       case ("Menu", "onChange") => "(TouchTapEvent, T | js.Array[T]) => Callback"
       case ("Menu", "onMenuItemFocusChange") => "(js.UndefOr[ReactEvent], Int) => Callback"
-      case ("Menu", "onItemTouchTap") => "(TouchTapEvent, MuiMenuItem[T]) => Callback"
+      case ("Menu", "onItemTouchTap") => "(TouchTapEvent, js.Object) => Callback"
       case ("MenuItem", "animation") => "js.Function"
       case ("MenuItem", "onClick") => "ReactEvent => Callback"
       case ("Popover", "onRequestClose") => "String => Callback"

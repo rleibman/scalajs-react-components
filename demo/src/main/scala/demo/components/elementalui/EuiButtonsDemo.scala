@@ -14,7 +14,7 @@ object EuiButtonsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     val renderButtonSizes =
       <.div(
         EuiButton(size = ButtonSize.lg)("Large"),

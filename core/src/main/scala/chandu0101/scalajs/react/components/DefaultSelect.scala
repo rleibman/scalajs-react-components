@@ -7,7 +7,7 @@ import scala.scalajs.js
 
 object DefaultSelect {
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
 
     def onChange(P: Props)(e: ReactEventFromInput) =
       P.onChange(e.target.value)

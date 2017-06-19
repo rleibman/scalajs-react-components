@@ -36,7 +36,7 @@ object MobileTearSheet {
     )
   }
 
-  case class Backend($: BackendScope[Unit, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     def render(C: PropsChildren) = {
       <.div(
         Style.root,

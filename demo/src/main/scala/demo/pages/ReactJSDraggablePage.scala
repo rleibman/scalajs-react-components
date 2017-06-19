@@ -8,7 +8,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router.RouterCtl
 
 object ReactJSDraggablePage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) =
       LeftNavPage(ReactJSDraggableRouteModule.menu, P.selectedPage, P.ctrl)
   }

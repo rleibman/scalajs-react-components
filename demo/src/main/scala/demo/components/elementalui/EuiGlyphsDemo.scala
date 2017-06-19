@@ -13,7 +13,7 @@ object EuiGlyphsDemo {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     val renderButtons: TagOf[Div] =
       <.div(
         EuiButton(`type` = ButtonType.primary)(EuiGlyph(icon = Octicons.beaker)()),

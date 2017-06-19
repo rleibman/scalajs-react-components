@@ -25,7 +25,7 @@ object ReactListViewDemo {
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String) = Callback {
       val content = s"Selected Item: $item <br>"

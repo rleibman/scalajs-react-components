@@ -153,19 +153,18 @@ hr {
 	<div id="container"></div>
 
 	<script type="text/javascript">
-		loadingElement = document.createElement("div")
-		loadingElement.className = "pg-loading-screen"
+		loadingElement = document.createElement("div");
+		loadingElement.className = "pg-loading-screen";
 		loadingElement.innerHTML = "<div class=\"message\">"
 				+ "<blockquote>\"Why join the navy when you can be a pirate\" - Steve Jobs</blockquote>"
 				+ "<div class=\"spinner\">" + "<div class=\"bounce1\"></div>"
 				+ "<div class=\"bounce2\"></div>"
-				+ "<div class=\"bounce3\"></div>" + "</div>" + "</div>"
-		document.body.appendChild(loadingElement)
+				+ "<div class=\"bounce3\"></div>" + "</div>" + "</div>";
+		document.body.appendChild(loadingElement);
 		document.body.className += " pg-loading"
 
 	</script>
-	<script type="text/javascript"
-		src="assets/scalajs-react-components-demo-opt-bundle.js"></script>
-
+	<script type="text/javascript" src="index-bundle.js"></script>
+	<script type="text/javascript" src="scalajs-react-components-demo-opt-bundle.js"></script>
 </body>
 </html>

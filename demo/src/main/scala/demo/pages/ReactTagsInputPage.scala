@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactTagsInputPage {
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) = {
       WithAsyncScript("assets/react_tags_input-bundle.js")(
         LeftNavPage(ReactTagsInputRouteModule.menu, P.selectedPage, P.ctrl)

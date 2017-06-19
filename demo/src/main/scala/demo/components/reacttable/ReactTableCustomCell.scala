@@ -14,9 +14,10 @@ object ReactTableCustomCell {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     val data: Vector[Map[String, Any]] =
       JsonUtil.jsonArrayToMap(SampleData.personJson)
+
     val columns: List[String] =
       List("fname", "lname", "email", "country")
 
@@ -26,6 +27,7 @@ object ReactTableCustomCell {
     // ._3: Sorting function
     // ._4: column width (flex := width)
     // let say if i want to turn all fnames to grey that starts with J (you can return any VdomElement(buttons,well another ReactTable if you want!)
+
 
     val config = List(("fname", Some(customFname), None, None))
 

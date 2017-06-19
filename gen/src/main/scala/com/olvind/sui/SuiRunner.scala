@@ -7,7 +7,6 @@ object SuiRunner extends App {
   args.toList match {
     case OutputFolder(buildFolder) :: OutputFolder(outputFolder) :: Nil =>
       val outs: Seq[Path] = Runner(SuiLibrary(buildFolder), outputFolder)
-      outs foreach (out => println(out.toIO.getAbsolutePath))
 
     case _ =>
       System.err.println("Syntax: SuiRunner <directory with transpiled javascript> <output folder>")

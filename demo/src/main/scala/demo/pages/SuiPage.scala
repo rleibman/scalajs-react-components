@@ -12,7 +12,7 @@ object SuiPage {
 
   case class Props(selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) =
       WithAsyncScript("assets/semantic_ui-bundle.js") {
         LeftNavPage(SuiRouteModule.menu, P.selectedPage, P.ctrl)

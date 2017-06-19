@@ -14,7 +14,7 @@ object ReactTableSorting {
 
   // EXAMPLE:START
 
-  case class Backend($: BackendScope[_, _]) {
+  case class Backend($: BackendScope[Unit, Unit]) {
     val data: Vector[Map[String, Any]] =
       JsonUtil.jsonArrayToMap(SampleData.personJson)
 

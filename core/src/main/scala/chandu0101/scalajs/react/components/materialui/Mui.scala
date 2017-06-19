@@ -4,7 +4,7 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation._
 
 @js.native
-@JSGlobal("material-ui")
+@JSGlobal("mui")
 object Mui extends js.Object {
   val AppBar: js.Dynamic = js.native
   val Avatar: js.Dynamic = js.native

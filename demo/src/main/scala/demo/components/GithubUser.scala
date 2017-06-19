@@ -22,7 +22,7 @@ object GithubUser {
 
     val userName = TagMod(^.fontSize := "18px", ^.fontWeight := "500")
   }
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) = {
       <.a(Styles.userGroup, ^.href := P.user.html_url)(
         <.img(Styles.userIcon, ^.src := P.user.avatar_url),

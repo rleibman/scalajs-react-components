@@ -29,7 +29,7 @@ object ReactSearchBox {
     )
   }
 
-  class Backend(t: BackendScope[Props, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def onTextChange(P: Props)(e: ReactEventFromInput) =
       e.preventDefaultCB >> P.onTextChange(e.target.value)
 

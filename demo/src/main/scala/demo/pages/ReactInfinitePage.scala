@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactInfinitePage {
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
       WithAsyncScript("assets/react_infinite-bundle.js")(
         LeftNavPage(ReactInfiniteRouteModule.menu, P.selectedPage, P.ctrl)

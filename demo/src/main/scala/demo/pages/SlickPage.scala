@@ -9,7 +9,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object SlickPage {
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
       WithAsyncScript("assets/react_slick-bundle.js")(
         LeftNavPage(ReactSlickRouteModule.menu, P.selectedPage, P.ctrl)

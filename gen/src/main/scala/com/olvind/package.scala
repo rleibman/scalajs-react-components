@@ -25,7 +25,6 @@ package object olvind {
     new File(path.toString).exists
 
   def printToFile(f: Path)(op: java.io.PrintWriter => Unit): Unit = {
-    println(s"Generating $f")
     val p = new java.io.PrintWriter(f.toIO)
     try { op(p) } finally { p.close() }
   }

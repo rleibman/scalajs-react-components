@@ -43,7 +43,10 @@ object MuiSvgIconDemo {
       e => $.modState(_.copy(hovered = js.undefined))
 
     val onSearchChange: (ReactEventFromInput, String) => Callback =
-      (e, str) => $.modState(_.copy(accepts = Accepts(e.target.value)))
+      (e, str) => {
+        e.persist()
+        $.modState(_.copy(accepts = Accepts(e.target.value)))
+      }
 
     /* rendering all icons turned out to be expensive, so
      *  we cache things based on search string */
@@ -69,7 +72,7 @@ object MuiSvgIconDemo {
           <.div(
             <.h4(s"Current icon: ${S.hovered.getOrElse("None")}"),
             <.label("Search: "),
-            MuiTextField(value = S.accepts.search, onChange = js.defined(onSearchChange))()
+            MuiTextField(name = "search", value = S.accepts.search, onChange = js.defined(onSearchChange))()
           ),
           <.div(
             ^.height := "300px",

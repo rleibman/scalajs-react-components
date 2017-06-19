@@ -11,11 +11,11 @@ import japgolly.scalajs.react.vdom.html_<^._
 import chandu0101.scalajs.react.components.materialui._
 
 object MuiPage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) = {
-      WithAsyncScript("assets/material_ui-bundle.js") {
+//      WithAsyncScript("assets/material_ui-bundle.js") {
         MuiMuiThemeProvider()(MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)))
-      }
+//      }
     }
   }
 

@@ -42,7 +42,7 @@ object LeftNav {
 
   case class Props(menus: List[LeftRoute], selectedPage: LeftRoute, ctrl: RouterCtl[LeftRoute])
 
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) = {
       <.ul(Style.container)(
         P.menus.map(item => <.li(

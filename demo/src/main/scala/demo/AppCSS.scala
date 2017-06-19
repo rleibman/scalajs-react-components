@@ -1,7 +1,7 @@
 package demo
 
-//import demo.components._
-//import demo.components.materialui._
+import chandu0101.scalajs.react.components.{Pager, ReactDraggable, ReactListView, ReactSearchBox, ReactTable}
+import demo.components.materialui._
 import demo.components._
 
 import scalacss.ProdDefaults._
@@ -13,19 +13,19 @@ object AppCSS {
     GlobalRegistry.register(
       LeftNav.Style,
       LeftNavPage.Style,
-//      MuiButtonsDemo.Style,
-//      MuiPaperDemo.Style,
-//      MuiSwitchesDemo.Style,
-//      MobileTearSheet.Style,
-//      ReactTable.DefaultStyle,
-//      ReactListView.DefaultStyle,
-//      ReactSearchBox.DefaultStyle,
-//      Pager.DefaultStyle,
-//      ScalaCSSTutorial.Style,
-//      InfoTemplate.Style,
-//      ReactInfiniteDemo.styles,
-//      ReactDraggable.Style,
-//      MuiTabsDemo.Style
+      MuiButtonsDemo.Style,
+      MuiPaperDemo.Style,
+      MuiSwitchesDemo.Style,
+      MuiTabsDemo.Style,
+      MobileTearSheet.Style,
+      ReactTable.DefaultStyle,
+      ReactListView.DefaultStyle,
+      ReactSearchBox.DefaultStyle,
+      Pager.DefaultStyle,
+      ScalaCSSTutorial.Style,
+      InfoTemplate.Style,
+      ReactInfiniteDemo.styles,
+      ReactDraggable.Style
     )
 
     GlobalRegistry.addToDocumentOnRegistration()

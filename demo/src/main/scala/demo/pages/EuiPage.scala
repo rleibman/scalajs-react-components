@@ -9,7 +9,7 @@ import japgolly.scalajs.react.extra.router.RouterCtl
 import japgolly.scalajs.react.vdom.html_<^._
 
 object EuiPage {
-  case class Backend($: BackendScope[Props, _]) {
+  case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) =
       <.div(
         WithAsyncScript("assets/elemental_ui-bundle.js")(

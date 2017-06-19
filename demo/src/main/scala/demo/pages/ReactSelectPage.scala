@@ -10,7 +10,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 
 object ReactSelectPage {
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
       WithAsyncScript("assets/react_select-bundle.js")(
         LeftNavPage(ReactSelectRouteModule.menu, P.selectedPage, P.ctrl)

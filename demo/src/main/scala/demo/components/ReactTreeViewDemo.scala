@@ -37,7 +37,7 @@ object ReactTreeViewDemo {
 
   case class State(content: String = "")
 
-  class Backend(t: BackendScope[_, _]) {
+  class Backend(t: BackendScope[Unit, State]) {
 
     def onItemSelect(item: String, parent: String, depth: Int): Callback = {
       val content =
