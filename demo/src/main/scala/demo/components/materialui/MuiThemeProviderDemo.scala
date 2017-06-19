@@ -66,7 +66,7 @@ object MuiThemeProviderDemo {
                       value = color,
                       style = js.Dynamic.literal(backgroundColor = color)
                     )(): VdomNode
-                } :_*
+                }: _*
               )
             )
           )

@@ -60,7 +60,8 @@ object MuiDrawerDemo {
               onRequestChange = onRequestChange,
               openSecondary = S.isRight,
               open = S.isOpen,
-              docked = S.isDocked)(
+              docked = S.isDocked
+            )(
 
               /* hack in a cheesy centered avatar */
               MuiAvatar(
@@ -76,8 +77,7 @@ object MuiDrawerDemo {
                   primaryText = js.defined(c.text),
                   checked = S.selected == js.defined(c.id),
                   onTouchTap = selectItem(c.id)
-                )()
-              ).toVdomArray
+                )()).toVdomArray
             ),
 
             MuiToggle(key = "toggle1", toggled = S.isOpen, label = js.defined("Show drawer"), onToggle = toggleOpen)(),

@@ -41,11 +41,10 @@ object ReactSelectAsyncDemo {
 
     val valueRenderer: ValueOption[MyValue] => TagOf[Div] =
       vo => <.div(
-          <.h3(vo.title.getOrElse[String]("No title")),
-          <.p(vo.label),
-          <.small(vo.value.toString)
-        )
-
+        <.h3(vo.title.getOrElse[String]("No title")),
+        <.p(vo.label),
+        <.small(vo.value.toString)
+      )
 
     val optionRenderer: ValueOption[MyValue] => TagOf[Div] =
       vo =>

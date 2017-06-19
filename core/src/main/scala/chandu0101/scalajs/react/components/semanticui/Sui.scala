@@ -5,7 +5,7 @@ package semanticui
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-object Sui  {
+object Sui {
   // Addons
   @js.native @JSImport("semantic-ui-react/dist/commonjs/addons/Confirm", JSImport.Default)
   object Confirm extends js.Any

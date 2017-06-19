@@ -4,7 +4,7 @@ package materialui
 import chandu0101.macros.tojs.GhPagesMacros
 import chandu0101.scalajs.react.components.materialui._
 import japgolly.scalajs.react._
-import japgolly.scalajs.react.extra.{Px, Reusability}
+import japgolly.scalajs.react.extra.{ Px, Reusability }
 import japgolly.scalajs.react.vdom.TagOf
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom.html.Div
@@ -49,10 +49,10 @@ object MuiSvgIconDemo {
 
     /* rendering all icons turned out to be expensive, so
      *  we cache things based on search string */
-    val renderedIconsPx: Px[VdomNode]  =
+    val renderedIconsPx: Px[VdomNode] =
       Px.callback($.props zip $.state.map(_.accepts)).withReuse.autoRefresh.map {
         case (p, accepts) =>
-          p.icons.collect{
+          p.icons.collect {
             case (name, icon) if accepts(name) =>
               icon.apply(
                 key = name,
@@ -89,38 +89,37 @@ object MuiSvgIconDemo {
 
   val icons: js.Array[(String, MuiSvgIcon)] =
     js.Array(
-      "PlacesRvHookup"              -> MuiSvgIcons.PlacesRvHookup,
-      "PlacesSmokeFree"             -> MuiSvgIcons.PlacesSmokeFree,
-      "PlacesSmokingRooms"          -> MuiSvgIcons.PlacesSmokingRooms,
-      "PlacesSpa"                   -> MuiSvgIcons.PlacesSpa,
-      "SocialCake"                  -> MuiSvgIcons.SocialCake,
-      "SocialDomain"                -> MuiSvgIcons.SocialDomain,
-      "SocialGroupAdd"              -> MuiSvgIcons.SocialGroupAdd,
-      "SocialGroup"                 -> MuiSvgIcons.SocialGroup,
-      "SocialLocationCity"          -> MuiSvgIcons.SocialLocationCity,
-      "SocialMoodBad"               -> MuiSvgIcons.SocialMoodBad,
-      "SocialMood"                  -> MuiSvgIcons.SocialMood,
-      "SocialNotificationsActive"   -> MuiSvgIcons.SocialNotificationsActive,
-      "SocialNotificationsNone"     -> MuiSvgIcons.SocialNotificationsNone,
-      "SocialNotificationsOff"      -> MuiSvgIcons.SocialNotificationsOff,
-      "SocialNotificationsPaused"   -> MuiSvgIcons.SocialNotificationsPaused,
-      "SocialNotifications"         -> MuiSvgIcons.SocialNotifications,
-      "SocialPages"                 -> MuiSvgIcons.SocialPages,
-      "SocialPartyMode"             -> MuiSvgIcons.SocialPartyMode,
-      "SocialPeopleOutline"         -> MuiSvgIcons.SocialPeopleOutline,
-      "SocialPeople"                -> MuiSvgIcons.SocialPeople,
-      "SocialPersonAdd"             -> MuiSvgIcons.SocialPersonAdd,
-      "SocialPersonOutline"         -> MuiSvgIcons.SocialPersonOutline,
-      "SocialPerson"                -> MuiSvgIcons.SocialPerson,
-      "SocialPlusOne"               -> MuiSvgIcons.SocialPlusOne,
-      "SocialPoll"                  -> MuiSvgIcons.SocialPoll,
-      "SocialPublic"                -> MuiSvgIcons.SocialPublic,
-      "SocialSchool"                -> MuiSvgIcons.SocialSchool,
+      "PlacesRvHookup" -> MuiSvgIcons.PlacesRvHookup,
+      "PlacesSmokeFree" -> MuiSvgIcons.PlacesSmokeFree,
+      "PlacesSmokingRooms" -> MuiSvgIcons.PlacesSmokingRooms,
+      "PlacesSpa" -> MuiSvgIcons.PlacesSpa,
+      "SocialCake" -> MuiSvgIcons.SocialCake,
+      "SocialDomain" -> MuiSvgIcons.SocialDomain,
+      "SocialGroupAdd" -> MuiSvgIcons.SocialGroupAdd,
+      "SocialGroup" -> MuiSvgIcons.SocialGroup,
+      "SocialLocationCity" -> MuiSvgIcons.SocialLocationCity,
+      "SocialMoodBad" -> MuiSvgIcons.SocialMoodBad,
+      "SocialMood" -> MuiSvgIcons.SocialMood,
+      "SocialNotificationsActive" -> MuiSvgIcons.SocialNotificationsActive,
+      "SocialNotificationsNone" -> MuiSvgIcons.SocialNotificationsNone,
+      "SocialNotificationsOff" -> MuiSvgIcons.SocialNotificationsOff,
+      "SocialNotificationsPaused" -> MuiSvgIcons.SocialNotificationsPaused,
+      "SocialNotifications" -> MuiSvgIcons.SocialNotifications,
+      "SocialPages" -> MuiSvgIcons.SocialPages,
+      "SocialPartyMode" -> MuiSvgIcons.SocialPartyMode,
+      "SocialPeopleOutline" -> MuiSvgIcons.SocialPeopleOutline,
+      "SocialPeople" -> MuiSvgIcons.SocialPeople,
+      "SocialPersonAdd" -> MuiSvgIcons.SocialPersonAdd,
+      "SocialPersonOutline" -> MuiSvgIcons.SocialPersonOutline,
+      "SocialPerson" -> MuiSvgIcons.SocialPerson,
+      "SocialPlusOne" -> MuiSvgIcons.SocialPlusOne,
+      "SocialPoll" -> MuiSvgIcons.SocialPoll,
+      "SocialPublic" -> MuiSvgIcons.SocialPublic,
+      "SocialSchool" -> MuiSvgIcons.SocialSchool,
       "SocialSentimentDissatisfied" -> MuiSvgIcons.SocialSentimentDissatisfied
     )
 
   // EXAMPLE:END
-
 
   def apply() = component(Props(icons))
 }

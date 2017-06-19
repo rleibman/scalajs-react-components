@@ -1,7 +1,7 @@
 package chandu0101.scalajs.react.components.hljs
 
 import scala.scalajs.js
-import scala.scalajs.js.{RegExp, `|`}
+import scala.scalajs.js.{ RegExp, `|` }
 
 @js.native
 trait IModeBase extends js.Object {

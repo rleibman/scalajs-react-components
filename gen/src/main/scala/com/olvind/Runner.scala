@@ -96,7 +96,7 @@ object Runner {
     val outs: Seq[(PrimaryOutFile, Path)] =
       mainFiles map (f => (f, destinationPathFor(fullOutputPath, library.prefixOpt, f.filename)))
 
-    outs.foreach{
+    outs.foreach {
       case (PrimaryOutFile(compName, content, secondaries), file) =>
         printToFile(file) {
           w =>

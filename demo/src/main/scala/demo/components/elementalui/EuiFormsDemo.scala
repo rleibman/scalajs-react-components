@@ -32,7 +32,6 @@ object EuiFormsDemo {
     files: scala.scalajs.js.Array[File] = scala.scalajs.js.Array()
   )
 
-
   val renderBasicExample =
     <.div(
       ^.className := "code-example__example",
@@ -347,7 +346,6 @@ object EuiFormsDemo {
           invalidMessage = "Password validation doesn't match password"
         )()
       )
-
 
     def renderIcons(S: State) =
       <.div(

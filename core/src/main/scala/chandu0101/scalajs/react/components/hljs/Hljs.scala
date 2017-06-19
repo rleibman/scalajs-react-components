@@ -3,7 +3,7 @@ package chandu0101.scalajs.react.components.hljs
 import org.scalajs.dom.Node
 
 import scala.scalajs.js
-import scala.scalajs.js.{RegExp, `|`}
+import scala.scalajs.js.{ RegExp, `|` }
 import scala.scalajs.js.annotation._
 
 @JSImport("highlight.js", "default")
@@ -43,5 +43,5 @@ object Hljs extends js.Any {
   def initHighlighting(): Unit = js.native
   def initHighlightingOnLoad(): Unit = js.native
   def listLanguages(): js.Array[String] = js.native
-  def registerLanguage(name: String, language: js.Function1[/* hljs */ js.UndefOr[HLJSStatic], IModeBase]): Unit = js.native
+  def registerLanguage(name: String, language: js.Function1[ /* hljs */ js.UndefOr[HLJSStatic], IModeBase]): Unit = js.native
 }

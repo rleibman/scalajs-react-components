@@ -40,8 +40,8 @@ object MuiDropDownMenuDemo {
             value = chosen
           )(
             items.map(
-              item => MuiMenuItem[Item](key = item.id, value = item, primaryText = js.defined(item.name))()
-            ).toVdomArray
+            item => MuiMenuItem[Item](key = item.id, value = item, primaryText = js.defined(item.name))()
+          ).toVdomArray
           )
         )
       )

@@ -15,7 +15,7 @@ object MuiSelectFieldDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-  
+
   @ScalaJSDefined class ChoiceId(val value: String) extends js.Object
   @ScalaJSDefined class Choice(val id: ChoiceId, val text: String) extends js.Object
 
@@ -31,9 +31,9 @@ object MuiSelectFieldDemo {
           onFocus = CallbackDebug.f1("onFocus"),
           onChange = onChange
         )(
-            choices.map (
-              c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = js.defined(c.text))()
-            ).toVdomArray
+            choices.map(
+            c => MuiMenuItem[Choice](key = c.id.value, value = c, primaryText = js.defined(c.text))()
+          ).toVdomArray
           )
       )
   }

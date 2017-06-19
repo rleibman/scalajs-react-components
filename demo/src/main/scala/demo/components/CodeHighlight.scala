@@ -9,7 +9,7 @@ import org.scalajs.dom
 import org.scalajs.dom.ext.PimpedNodeList
 
 object CodeHighlight {
-  val applySyntaxHighlight = Callback (
+  val applySyntaxHighlight = Callback(
     dom.document.querySelectorAll("code").foreach(Hljs.highlightBlock)
   )
 

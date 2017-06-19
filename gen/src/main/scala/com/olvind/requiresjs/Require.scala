@@ -58,9 +58,9 @@ object Require {
               })
           }
 
-      case other =>
-        println(other)
-        Required(requiredPath, Nil)
+        case other =>
+          println(other)
+          Required(requiredPath, Nil)
       }
     }
 

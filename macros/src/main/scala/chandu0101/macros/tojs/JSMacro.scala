@@ -1,9 +1,9 @@
 package chandu0101.macros.tojs
 
 import japgolly.scalajs.react.CallbackTo
-import japgolly.scalajs.react.vdom.{TagOf, VdomElement, VdomNode}
+import japgolly.scalajs.react.vdom.{ TagOf, VdomElement, VdomNode }
 
-import scala.collection.{GenMap, GenTraversableOnce}
+import scala.collection.{ GenMap, GenTraversableOnce }
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox
 import scala.scalajs.js

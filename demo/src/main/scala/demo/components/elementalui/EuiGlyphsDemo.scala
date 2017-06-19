@@ -1,7 +1,7 @@
 package demo.components.elementalui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.elementalui.{EuiGlyph, Octicons, _}
+import chandu0101.scalajs.react.components.elementalui.{ EuiGlyph, Octicons, _ }
 import demo.components.CodeExample
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.TagOf
@@ -47,7 +47,6 @@ object EuiGlyphsDemo {
             }.toVdomArray
           }
       }.toVdomArray
-
 
     def renderGlyphColors(icon: Octicons): VdomNode =
       GlyphType.values.map(glyphType =>

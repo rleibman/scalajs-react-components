@@ -75,17 +75,17 @@ object MuiPopoverDemo {
               targetOrigin = S.target,
               onRequestClose = (s: String) => toggle
             )(
-                <.div(
-                  ^.padding := "20px",
-                  <.h2("here is an arbitrary popover"),
-                  <.p("Hi - here is some content"),
-                  MuiRaisedButton(
-                    primary = true,
-                    label = "here is a button",
-                    onTouchTap = (e: TouchTapEvent) => toggle
-                  )()
-                )
+              <.div(
+                ^.padding := "20px",
+                <.h2("here is an arbitrary popover"),
+                <.p("Hi - here is some content"),
+                MuiRaisedButton(
+                  primary = true,
+                  label = "here is a button",
+                  onTouchTap = (e: TouchTapEvent) => toggle
+                )()
               )
+            )
           )
         )
       )

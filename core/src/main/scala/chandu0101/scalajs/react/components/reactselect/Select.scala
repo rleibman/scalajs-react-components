@@ -7,7 +7,7 @@ import japgolly.scalajs.react.raw._
 
 import scala.scalajs.js
 import TODO._
-import japgolly.scalajs.react.component.Js.{RawMounted, UnmountedWithRawType}
+import japgolly.scalajs.react.component.Js.{ RawMounted, UnmountedWithRawType }
 
 import scala.scalajs.js.`|`
 

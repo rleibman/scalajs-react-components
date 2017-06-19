@@ -28,7 +28,6 @@ object ReactTableCustomCell {
     // ._4: column width (flex := width)
     // let say if i want to turn all fnames to grey that starts with J (you can return any VdomElement(buttons,well another ReactTable if you want!)
 
-
     val config = List(("fname", Some(customFname), None, None))
 
     def customFname: Any => VdomElement =

@@ -119,7 +119,9 @@ object AppRouter {
       r.render(),
       <.div(^.textAlign := "center", ^.key := "footer")(
         <.hr(),
-        <.p("Built using scalajs-react")))
+        <.p("Built using scalajs-react")
+      )
+    )
   }
 
   val homePageMenu = Vector(
@@ -127,85 +129,87 @@ object AppRouter {
       name = "Material UI",
       imagePath = g.materialuiImage.toString,
       route = MuiPages(MuiRouteModule.Info),
-      tags = Stream("materialui", "material", "framework")),
-        HomePage.ComponentInfo(
-          name = "Elemental UI",
-          imagePath = g.elementaluiImage.toString,
-          route = EuiPages(EuiRouteModule.Info),
-          tags = Stream("elementalui", "elemental", "framework")
-        ),
-        HomePage.ComponentInfo(
-          name = "Semantic UI",
-          imagePath = g.semanticuiImage.toString,
-          route = SuiPages(SuiRouteModule.Info),
-          tags = Stream("semanticui", "semantic", "framework")
-        ),
-        HomePage.ComponentInfo(
-          name = "React ListView",
-          imagePath = g.reactListViewImage.toString,
-          route = ReactListViewPages(ReactListViewRouteModule.Info),
-          tags = Stream("list view", "search", "listview")
-        ),
-        HomePage.ComponentInfo(
-          name = "Google Map",
-          imagePath = g.googleMapImage.toString,
-          route = GoogleMapPages(GoogleMapRouteModule.Info),
-          tags = Stream("google", "map", "googlemap")
-        ),
-        HomePage.ComponentInfo(
-          name = "React TreeView",
-          imagePath = g.reactTreeViewImage.toString,
-          route = ReactTreeViewPages(ReactTreeViewRouteModule.Info),
-          tags = Stream("tree view", "search", "treeview")
-        ),
-        HomePage.ComponentInfo(
-          name = "React Table",
-          imagePath = g.reactTableImage.toString,
-          route = ReactTablePages(ReactTableRouteModule.Info),
-          tags = Stream("table", "search", "pagination", "sorting", "cutom cell")
-        ),
-        HomePage.ComponentInfo(
-          name = "React Tags Input",
-          imagePath = g.reactTagsInputImage.toString,
-          route = ReactTagsInputPages(ReactTagsInputRouteModule.Info),
-          tags = Stream("tags", "input")
-        ),
-        HomePage.ComponentInfo(
-          name = "React Select",
-          imagePath = g.reactSelectImage.toString,
-          route = ReactSelectPages(ReactSelectRouteModule.Info),
-          tags = Stream("select", "multi", "search", "filter", "multi select")
-        ),
-        HomePage.ComponentInfo(
-          name = "React GeomIcons",
-          imagePath = g.reactGeomIconImage.toString,
-          route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info),
-          tags = Stream("icons", "svg")
-        ),
-        HomePage.ComponentInfo(
-          name = "React Infinite",
-          imagePath = g.reactInfiniteImage.toString,
-          route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
-          tags = Stream("infinite scroll", "listview")
-        ),
-        HomePage.ComponentInfo(
-          name = "React Slick",
-          imagePath = g.reactInfiniteImage.toString,
-          route = ReactSlickPages(ReactSlickRouteModule.Info),
-          tags = Stream("slick", "slick")
-        ),
-        HomePage.ComponentInfo(
-          name = "Spinner",
-          imagePath = g.spinnerImage.toString,
-          route = SpinnerPages(SpinnerRouteModule.Info),
-          tags = Stream("spinner")
-        ),
+      tags = Stream("materialui", "material", "framework")
+    ),
+    HomePage.ComponentInfo(
+      name = "Elemental UI",
+      imagePath = g.elementaluiImage.toString,
+      route = EuiPages(EuiRouteModule.Info),
+      tags = Stream("elementalui", "elemental", "framework")
+    ),
+    HomePage.ComponentInfo(
+      name = "Semantic UI",
+      imagePath = g.semanticuiImage.toString,
+      route = SuiPages(SuiRouteModule.Info),
+      tags = Stream("semanticui", "semantic", "framework")
+    ),
+    HomePage.ComponentInfo(
+      name = "React ListView",
+      imagePath = g.reactListViewImage.toString,
+      route = ReactListViewPages(ReactListViewRouteModule.Info),
+      tags = Stream("list view", "search", "listview")
+    ),
+    HomePage.ComponentInfo(
+      name = "Google Map",
+      imagePath = g.googleMapImage.toString,
+      route = GoogleMapPages(GoogleMapRouteModule.Info),
+      tags = Stream("google", "map", "googlemap")
+    ),
+    HomePage.ComponentInfo(
+      name = "React TreeView",
+      imagePath = g.reactTreeViewImage.toString,
+      route = ReactTreeViewPages(ReactTreeViewRouteModule.Info),
+      tags = Stream("tree view", "search", "treeview")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Table",
+      imagePath = g.reactTableImage.toString,
+      route = ReactTablePages(ReactTableRouteModule.Info),
+      tags = Stream("table", "search", "pagination", "sorting", "cutom cell")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Tags Input",
+      imagePath = g.reactTagsInputImage.toString,
+      route = ReactTagsInputPages(ReactTagsInputRouteModule.Info),
+      tags = Stream("tags", "input")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Select",
+      imagePath = g.reactSelectImage.toString,
+      route = ReactSelectPages(ReactSelectRouteModule.Info),
+      tags = Stream("select", "multi", "search", "filter", "multi select")
+    ),
+    HomePage.ComponentInfo(
+      name = "React GeomIcons",
+      imagePath = g.reactGeomIconImage.toString,
+      route = ReactGeomIconPages(ReactGeomIcontRouteModule.Info),
+      tags = Stream("icons", "svg")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Infinite",
+      imagePath = g.reactInfiniteImage.toString,
+      route = ReactInfinitePages(ReactInfiniteRouteModule.Info),
+      tags = Stream("infinite scroll", "listview")
+    ),
+    HomePage.ComponentInfo(
+      name = "React Slick",
+      imagePath = g.reactInfiniteImage.toString,
+      route = ReactSlickPages(ReactSlickRouteModule.Info),
+      tags = Stream("slick", "slick")
+    ),
+    HomePage.ComponentInfo(
+      name = "Spinner",
+      imagePath = g.spinnerImage.toString,
+      route = SpinnerPages(SpinnerRouteModule.Info),
+      tags = Stream("spinner")
+    ),
     HomePage.ComponentInfo(
       name = "React Popover",
       imagePath = g.reactPopoverImage.toString,
       route = ReactPopoverPages(ReactPopoverRouteModule.Info),
-      tags = Stream("modal", "popover"))
+      tags = Stream("modal", "popover")
     )
+  )
 
   //TODO, this, whatever this is, is not working, so we temporarily replaced it to make it wokr
   //  val baseUrl =

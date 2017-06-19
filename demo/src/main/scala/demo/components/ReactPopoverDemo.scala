@@ -19,9 +19,9 @@ object ReactPopoverDemo {
   class Backend(t: BackendScope[Unit, Unit]) {
     type Ref = MutableRef[ReactPopOver.Props, ReactPopOver.State, ReactPopOver.Backend, PropsAndChildren]
 
-    val topRef:    Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    val rightRef:  Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
-    val leftRef:   Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val topRef: Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val rightRef: Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
+    val leftRef: Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
     val bottomRef: Ref = ScalaComponent.mutableRefTo(ReactPopOver.component)
 
     def toggleCB(ref: Ref): ReactEventFromHtml => Callback =
