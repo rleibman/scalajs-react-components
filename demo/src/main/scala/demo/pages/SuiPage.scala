@@ -1,6 +1,5 @@
 package demo.pages
 
-import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.LeftRoute
 import demo.routes.SuiRouteModule
@@ -14,9 +13,7 @@ object SuiPage {
 
   case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) =
-      WithAsyncScript("assets/semantic_ui-bundle.js") {
-        LeftNavPage(SuiRouteModule.menu, P.selectedPage, P.ctrl)
-      }
+      LeftNavPage(SuiRouteModule.menu, P.selectedPage, P.ctrl)
   }
 
   val component = ScalaComponent.builder[Props]("SuiPage")

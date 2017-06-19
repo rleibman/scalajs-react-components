@@ -1,7 +1,6 @@
 package demo
 package pages
 
-import chandu0101.scalajs.react.components.WithAsyncScript
 import chandu0101.scalajs.react.components.materialui._
 import demo.components.LeftNavPage
 import demo.routes.{ LeftRoute, MuiRouteModule }
@@ -13,9 +12,7 @@ import chandu0101.scalajs.react.components.materialui._
 object MuiPage {
   case class Backend($: BackendScope[Props, Unit]) {
     def render(P: Props) = {
-//      WithAsyncScript("assets/material_ui-bundle.js") {
-        MuiMuiThemeProvider()(MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)))
-//      }
+      MuiMuiThemeProvider()(MuiPaper()(LeftNavPage(MuiRouteModule.menu, P.selectedPage, P.ctrl)))
     }
   }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 var webpack = require('webpack');
-var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+// var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var _ = require('lodash');
 
 module.exports = _.merge(
@@ -9,7 +9,7 @@ module.exports = _.merge(
     {
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
-            new CommonsChunkPlugin({name : "index"})
+            // new CommonsChunkPlugin({name : "index"})
         ],
         module: {
             loaders: [

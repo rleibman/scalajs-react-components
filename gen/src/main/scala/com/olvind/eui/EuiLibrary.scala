@@ -56,7 +56,7 @@ case class EuiLibrary(base: Path) extends Library {
       ComponentDef(CompName("ModalFooter"), forceChildren = true),
       ComponentDef(CompName("ModalHeader"), forceChildren = true),
       ComponentDef(CompName("Modal"), forceChildren = true),
-      ComponentDef(CompName("Page")),
+//      ComponentDef(CompName("Page")),
       ComponentDef(CompName("Pagination")),
       ComponentDef(CompName("PasswordInputGroup"), domeTypeOpt = Some(DomInput)),
       ComponentDef(CompName("Pill")),

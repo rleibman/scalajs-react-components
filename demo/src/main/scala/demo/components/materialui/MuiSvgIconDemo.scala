@@ -16,8 +16,7 @@ object MuiSvgIconDemo {
   val code = GhPagesMacros.exampleSource
 
   // EXAMPLE:START
-
-  case class Props(icons: js.Array[(String, Int)])
+  case class Props(icons: js.Array[(String, MuiSvgIcon)])
 
   case class State(accepts: Accepts, hovered: js.UndefOr[String])
 
@@ -54,9 +53,9 @@ object MuiSvgIconDemo {
       Px.callback($.props zip $.state.map(_.accepts)).withReuse.autoRefresh.map {
         case (p, accepts) =>
           p.icons.collect{
-            case (name, idx) if accepts(name) =>
-              lookupIcon(name).apply(
-                key = idx.toString,
+            case (name, icon) if accepts(name) =>
+              icon.apply(
+                key = name,
                 style = js.Dynamic.literal(width = "30px", height = "30px"),
                 hoverColor = Mui.Styles.colors.amber500,
                 onMouseEnter = select(name),
@@ -88,7 +87,40 @@ object MuiSvgIconDemo {
     .renderBackend[Backend]
     .build
 
+  val icons: js.Array[(String, MuiSvgIcon)] =
+    js.Array(
+      "PlacesRvHookup"              -> MuiSvgIcons.PlacesRvHookup,
+      "PlacesSmokeFree"             -> MuiSvgIcons.PlacesSmokeFree,
+      "PlacesSmokingRooms"          -> MuiSvgIcons.PlacesSmokingRooms,
+      "PlacesSpa"                   -> MuiSvgIcons.PlacesSpa,
+      "SocialCake"                  -> MuiSvgIcons.SocialCake,
+      "SocialDomain"                -> MuiSvgIcons.SocialDomain,
+      "SocialGroupAdd"              -> MuiSvgIcons.SocialGroupAdd,
+      "SocialGroup"                 -> MuiSvgIcons.SocialGroup,
+      "SocialLocationCity"          -> MuiSvgIcons.SocialLocationCity,
+      "SocialMoodBad"               -> MuiSvgIcons.SocialMoodBad,
+      "SocialMood"                  -> MuiSvgIcons.SocialMood,
+      "SocialNotificationsActive"   -> MuiSvgIcons.SocialNotificationsActive,
+      "SocialNotificationsNone"     -> MuiSvgIcons.SocialNotificationsNone,
+      "SocialNotificationsOff"      -> MuiSvgIcons.SocialNotificationsOff,
+      "SocialNotificationsPaused"   -> MuiSvgIcons.SocialNotificationsPaused,
+      "SocialNotifications"         -> MuiSvgIcons.SocialNotifications,
+      "SocialPages"                 -> MuiSvgIcons.SocialPages,
+      "SocialPartyMode"             -> MuiSvgIcons.SocialPartyMode,
+      "SocialPeopleOutline"         -> MuiSvgIcons.SocialPeopleOutline,
+      "SocialPeople"                -> MuiSvgIcons.SocialPeople,
+      "SocialPersonAdd"             -> MuiSvgIcons.SocialPersonAdd,
+      "SocialPersonOutline"         -> MuiSvgIcons.SocialPersonOutline,
+      "SocialPerson"                -> MuiSvgIcons.SocialPerson,
+      "SocialPlusOne"               -> MuiSvgIcons.SocialPlusOne,
+      "SocialPoll"                  -> MuiSvgIcons.SocialPoll,
+      "SocialPublic"                -> MuiSvgIcons.SocialPublic,
+      "SocialSchool"                -> MuiSvgIcons.SocialSchool,
+      "SocialSentimentDissatisfied" -> MuiSvgIcons.SocialSentimentDissatisfied
+    )
+
   // EXAMPLE:END
 
-  def apply() = component(Props(js.Object.keys(Mui.SvgIcons).zipWithIndex))
+
+  def apply() = component(Props(icons))
 }

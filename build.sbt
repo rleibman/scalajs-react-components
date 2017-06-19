@@ -131,11 +131,8 @@ lazy val demo =
       name := "scalajs-react-components-demo",
       version in webpack := "2.6.1",
       version in installWebpackDevServer := "2.4.5",
-      webpackConfigFile := Some(baseDirectory.value / "bundles" / "custom.webpack.config.js"),
       scalaJSUseMainModuleInitializer := true,
       scalaJSUseMainModuleInitializer.in(Test) := false,
-      webpackEntries in (Compile, fastOptJS) ++= Seq("index" -> (crossTarget in (Compile, npmUpdate)).value / "index.js"),
-      webpackEntries in (Compile, fullOptJS) ++= Seq("index" -> (crossTarget in (Compile, npmUpdate)).value / "index.js"),
       artifactPath.in(Compile, fastOptJS) := ((crossTarget in (Compile, fastOptJS)).value /
         ((moduleName in fastOptJS).value + "-opt.js")),
       webpackResources :=

@@ -1,21 +1,15 @@
 package demo
 
+import chandu0101.scalajs.react.components.ReactTapEventPlugin
 import demo.routes.AppRouter
 import org.scalajs.dom
-import japgolly.scalajs.react._
-import japgolly.scalajs.react.vdom.html_<^._
+
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{ global => g }
+import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
 
 
 object ReactApp extends JSApp {
-  def require(): Unit = {
-    WebpackRequire.React
-    WebpackRequire.ReactDOM
-    ()
-  }
-  require()
 
   override def main(): Unit = {
     // remove waiting page stuff
@@ -25,8 +19,12 @@ object ReactApp extends JSApp {
       dom.document.body.className.replace("pg-loading", "")
       dom.document.body.className += " pg-loaded"
     }
-    AppCSS.load()
 
+    //todo: dev-server complains that we load several times?
+//    ReactTapEventPlugin(js.undefined)
+    ReactTapEventPlugin
+
+    AppCSS.load()
     val router = AppRouter.router()
     router.renderIntoDOM(dom.document.getElementById("container"))
     ()

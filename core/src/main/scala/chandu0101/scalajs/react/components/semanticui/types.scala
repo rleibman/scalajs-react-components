@@ -1,8 +1,6 @@
 package chandu0101.scalajs.react.components.semanticui
 
-import chandu0101.macros.tojs.JSMacro
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
 
 class ButtonAnimatedType(val value: String) extends js.Any
 object ButtonAnimatedType {

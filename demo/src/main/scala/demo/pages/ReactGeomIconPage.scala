@@ -1,7 +1,6 @@
 package demo
 package pages
 
-import chandu0101.scalajs.react.components.WithAsyncScript
 import demo.components.LeftNavPage
 import demo.routes.{ LeftRoute, ReactGeomIcontRouteModule }
 import japgolly.scalajs.react.extra.router.RouterCtl
@@ -12,9 +11,7 @@ object ReactGeomIconPage {
 
   class Backend(t: BackendScope[Props, Unit]) {
     def render(P: Props) =
-      WithAsyncScript("assets/react_geom_icons-bundle.js")(
-        LeftNavPage(ReactGeomIcontRouteModule.menu, P.selectedPage, P.ctrl)
-      )
+      LeftNavPage(ReactGeomIcontRouteModule.menu, P.selectedPage, P.ctrl)
   }
 
   val component = ScalaComponent.builder[Props]("ReactGeomIconPage")
