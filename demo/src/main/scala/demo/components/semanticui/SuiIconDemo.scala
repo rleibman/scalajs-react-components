@@ -1,7 +1,6 @@
 package demo.components.semanticui
 
 import chandu0101.macros.tojs.GhPagesMacros
-import chandu0101.scalajs.react.components.ReactMouseEventB
 import chandu0101.scalajs.react.components.semanticui._
 import demo.components.CodeExample
 import japgolly.scalajs.react._

@@ -5,7 +5,9 @@ import demo.components._
 import demo.pages._
 import japgolly.scalajs.react.vdom.html_<^._
 import japgolly.scalajs.react.extra.router._
-import scala.scalajs.js.Dynamic.{ global => g }
+import org.scalajs.dom
+
+import scala.scalajs.js.Dynamic.{global => g}
 
 object AppRouter {
 
@@ -94,7 +96,8 @@ object AppRouter {
 
     (trimSlashes
       | staticRoute(root, Home) ~> renderR(ctrl => HomePage(ctrl))
-      | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial()) //      | euiRoutes
+      | staticRoute("#scalacss", ScalaCSSDoc) ~> render(ScalaCSSTutorial())
+      | euiRoutes
       | suiRoutes
       | googleMapRoutes
       | muiRoutes
@@ -211,16 +214,14 @@ object AppRouter {
     )
   )
 
-  //TODO, this, whatever this is, is not working, so we temporarily replaced it to make it wokr
-  //  val baseUrl =
-  //    if (dom.window.location.hostname == "localhost")
-  //      BaseUrl.fromWindowOrigin_/
-  //    else
-  //      BaseUrl.fromWindowOrigin / "sjrc/"
+  val baseUrl =
+    if (dom.window.location.hostname == "localhost")
+      BaseUrl.fromWindowOrigin_/
+    else
+      BaseUrl.fromWindowOrigin / "sjrc/"
 
   println("---------------------------------")
   println(g.googleMapImage)
   println("---------------------------------")
-  val router = Router(BaseUrl.fromWindowOrigin, config)
-
+  val router = Router(baseUrl, config)
 }

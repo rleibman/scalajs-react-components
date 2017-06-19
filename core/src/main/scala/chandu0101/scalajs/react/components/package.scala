@@ -1,29 +1,13 @@
 package chandu0101.scalajs.react
 
-import chandu0101.scalajs.react.components.semanticui.{ButtonAnimatedType, SuiCountry}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.VdomElement
-import org.scalajs.dom.html
 
 import scala.scalajs.js
 import scala.scalajs.js.`|`
 
 package object components {
   type CssProperties = js.Any
-
-  type ReactEventB = ReactEventFrom[html.Button]
-  type ReactClipboardEventB = ReactClipboardEventFrom[html.Button]
-  type ReactCompositionEventB = ReactCompositionEventFrom[html.Button]
-  type ReactDragEventB = ReactDragEventFrom[html.Button]
-  type ReactFocusEventB = ReactFocusEventFrom[html.Button]
-  type ReactMouseEventB = ReactMouseEventFrom[html.Button]
-
-  type ReactEventS = ReactEventFrom[html.Select]
-  type ReactClipboardEventS = ReactClipboardEventFrom[html.Select]
-  type ReactCompositionEventS = ReactCompositionEventFrom[html.Select]
-  type ReactDragEventS = ReactDragEventFrom[html.Select]
-  type ReactFocusEventS = ReactFocusEventFrom[html.Select]
-  type ReactMouseEventS = ReactMouseEventFrom[html.Select]
 
   /* this works here, but not in the general case!
    * (see https://github.com/scala-js/scala-js/pull/2070 )
@@ -32,6 +16,9 @@ package object components {
   private[components] implicit def UnionEvidence[A, B](ab: A | B)(implicit eva: A => js.Any, evb: B => js.Any): js.Any =
     ab.asInstanceOf[js.Any]
 
+  private[components] implicit def AnyValIsJs(u: AnyVal): js.Any =
+    u.asInstanceOf[js.Any]
+
   private[components] implicit def StringOrElementEvidence(u: String | VdomElement): js.Any =
     //noinspection ComparingUnrelatedTypes
     if (u.isInstanceOf[String]) u.asInstanceOf[js.Any] else u.asInstanceOf[VdomElement].rawElement
@@ -39,12 +26,6 @@ package object components {
   private[components] implicit def VdomElementOrStringOrDoubleEvidence(u: VdomElement | String | Double): js.Any =
     //noinspection ComparingUnrelatedTypes
     if (u.isInstanceOf[VdomElement]) u.asInstanceOf[VdomElement].rawElement else u.asInstanceOf[js.Any]
-
-  private[components] implicit def BooleanOrButtonAnimatedType(u: Boolean | ButtonAnimatedType): js.Any =
-    u.asInstanceOf[js.Any]
-
-  private[components] implicit def StringOrSuiCountry(u: String | SuiCountry): js.Any =
-    u.asInstanceOf[js.Any]
 
   private[components] implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =
@@ -59,10 +40,5 @@ package object components {
   private[components] implicit final class UF2CB[T1, T2, R](private val uc: js.UndefOr[(T1, T2) => CallbackTo[R]]) extends AnyVal {
     @inline def asCbo(t1: T1, t2: T2): CallbackOption[R] =
       CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2).toCBO)
-  }
-
-  private[components] implicit final class UF3CB[T1, T2, T3, R](private val uc: js.UndefOr[(T1, T2, T3) => CallbackTo[R]]) extends AnyVal {
-    @inline def asCbo(t1: T1, t2: T2, t3: T3): CallbackOption[R] =
-      CallbackOption.liftOptionLike(uc).flatMap(_.apply(t1, t2, t3).toCBO)
   }
 }

@@ -12,7 +12,7 @@ object FormSelectOption {
   def apply(label: String, value: String) = new FormSelectOption(label, value)
 }
 
-class ModalSize(val value: String) extends js.Any
+case class ModalSize(value: String) extends AnyVal
 object ModalSize {
   val small = ModalSize("small")
   val medium = ModalSize("medium")
@@ -22,7 +22,7 @@ object ModalSize {
   def apply(value: String) = new ModalSize(value)
 }
 
-case class ColBasis private (val value: String) extends AnyVal
+case class ColBasis private (value: String) extends AnyVal
 object ColBasis {
   val number = ColBasis("number")
   val string = ColBasis("string")
@@ -65,7 +65,7 @@ object File {
 
 }
 
-case class IconColorVariant private (val value: String) extends AnyVal
+case class IconColorVariant private (value: String) extends AnyVal
 object IconColorVariant {
   val DANGER = IconColorVariant("danger")
   val DEFAULT = IconColorVariant("default")
@@ -74,19 +74,19 @@ object IconColorVariant {
   val WARNING = IconColorVariant("warning")
 }
 
-case class FormIconFieldPosition private (val value: String) extends AnyVal
+case class FormIconFieldPosition private (value: String) extends AnyVal
 object FormIconFieldPosition {
   val LEFT = FormIconFieldPosition("left")
   val RIGHT = FormIconFieldPosition("right")
 }
-case class FormInputSize private (val value: String) extends AnyVal
+case class FormInputSize private (value: String) extends AnyVal
 
 object FormInputSize {
   val LG = FormInputSize("lg")
   val SM = FormInputSize("sm")
   val XS = FormInputSize("xs")
 }
-case class VerticalAlignment private (val value: String) extends AnyVal
+case class VerticalAlignment private (value: String) extends AnyVal
 object VerticalAlignment {
   val baseline = VerticalAlignment("baseline")
   val bottom = VerticalAlignment("bottom")
@@ -100,14 +100,14 @@ object VerticalAlignment {
   val top = VerticalAlignment("top'")
 }
 
-case class ModalWidth private (val value: String) extends AnyVal
+case class ModalWidth private (value: String) extends AnyVal
 
 object ModalWidth {
   val SMALL = ModalWidth("small")
   val MEDIUM = ModalWidth("medium")
   val LARGE = ModalWidth("large")
 }
-case class Octicons private (val value: String) extends AnyVal
+case class Octicons private (value: String) extends AnyVal
 
 object Octicons {
   val alert = Octicons("alert")
@@ -300,7 +300,7 @@ object Octicons {
     three_bars, thumbsdown, thumbsup, tools,
     trashcan, triangle_down, triangle_left, triangle_right, triangle_up, unfold, unmute, versions, watch, x)
 }
-case class PillType private (val value: String) extends AnyVal
+case class PillType private (value: String) extends AnyVal
 object PillType {
   val danger = PillType("danger")
   val default = PillType("default")
@@ -315,13 +315,13 @@ object PillType {
   val success_inverted = PillType("success-inverted")
   val warning_inverted = PillType("warning-inverted")
 }
-case class SpinnerSize private (val value: String) extends AnyVal
+case class SpinnerSize private (value: String) extends AnyVal
 object SpinnerSize {
   val SM = SpinnerSize("sm")
   val MD = SpinnerSize("md")
   val LG = SpinnerSize("lg")
 }
-case class SpinnerType private (val value: String) extends AnyVal
+case class SpinnerType private (value: String) extends AnyVal
 object SpinnerType {
   val DEFAULT = SpinnerType("default")
   val PRIMARY = SpinnerType("primary")
