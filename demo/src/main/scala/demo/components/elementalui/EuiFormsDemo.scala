@@ -37,10 +37,10 @@ object EuiFormsDemo {
       ^.className := "code-example__example",
       EuiForm()(
         EuiFormField(label = "Email address", htmlFor = "basic-form-input-email")(
-          EuiFormInput(autofocus = true, `type` = "email", name = "basic-form-input-email")()
+          EuiFormInput(`type` = "email", name = "basic-form-input-email")()
         ),
         EuiFormField(label = "Password", htmlFor = "basic-form-input-password")(
-          EuiFormInput(autofocus = true, `type` = "password", name = "basic-form-input-password")()
+          EuiFormInput(`type` = "password", name = "basic-form-input-password")()
         ),
         EuiFormField()(
           EuiCheckbox(label = "Check It")()
@@ -54,10 +54,10 @@ object EuiFormsDemo {
       ^.className := "code-example__example",
       EuiForm(`type` = FormType.horizontal)(
         EuiFormField(label = "Email address", htmlFor = "horizontal-input-email")(
-          EuiFormInput(autofocus = true, `type` = "email", name = "horizontal-input-email")()
+          EuiFormInput(`type` = "email", name = "horizontal-input-email")()
         ),
         EuiFormField(label = "Password", htmlFor = "horizontal-input-password")(
-          EuiFormInput(autofocus = true, `type` = "password", name = "horizontal-input-password")()
+          EuiFormInput(`type` = "password", name = "horizontal-input-password")()
         ),
         EuiFormField(offsetAbsentLabel = true)(
           EuiCheckbox(label = "Check It")()
@@ -73,10 +73,10 @@ object EuiFormsDemo {
       ^.className := "code-example__example",
       EuiForm(`type` = FormType.inline)(
         EuiFormField(label = "Email address", htmlFor = "inline-input-email")(
-          EuiFormInput(autofocus = true, `type` = "email", name = "inline-input-email")()
+          EuiFormInput(`type` = "email", name = "inline-input-email")()
         ),
         EuiFormField(label = "Password", htmlFor = "inline-input-password")(
-          EuiFormInput(autofocus = true, `type` = "password", name = "inline-input-password")()
+          EuiFormInput(`type` = "password", name = "inline-input-password")()
         ),
         EuiFormField()(
           EuiCheckbox(label = "Check It")()
@@ -207,13 +207,13 @@ object EuiFormsDemo {
           EuiRadio(label = "Pick Me")(),
           EuiRadio(label = "No, pick me!")()
         ),
-        EuiFormField(label = "Inline Checkboxes")(
-          EuiCheckbox(label = "Check me out", inline = true)(),
-          EuiCheckbox(label = "I'm disabled", disabled = true, inline = true)()
+        EuiFormField(label = "Inline Checkboxes", className = "inline-controls")(
+          EuiCheckbox(label = "Check me out")(),
+          EuiCheckbox(label = "I'm disabled", disabled = true)()
         ),
-        EuiFormField(label = "Inline Radios")(
-          EuiRadio(label = "Pick Me", inline = true)(),
-          EuiRadio(label = "No, pick me!", inline = true)()
+        EuiFormField(label = "Inline Radios", className = "inline-controls")(
+          EuiRadio(label = "Pick Me")(),
+          EuiRadio(label = "No, pick me!")()
         )
       )
 
@@ -314,8 +314,7 @@ object EuiFormsDemo {
           value = S.inlineRadioGroup,
           onChange = updateInlineRadios _,
           options = flavors.map(_.asInstanceOf[js.Object]),
-          required = true,
-          inline = true
+          required = true
         )(),
         EuiFormSelect(
           label = "Select",

@@ -7,7 +7,7 @@ import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
-import scala.scalajs.js.Dynamic.{global => g}
+import scala.scalajs.js.Dynamic.{ global => g }
 
 object AppRouter {
 
@@ -236,8 +236,5 @@ object AppRouter {
     else
       BaseUrl.fromWindowOrigin / "sjrc/"
 
-  println("---------------------------------")
-  println(g.googleMapImage)
-  println("---------------------------------")
   val router = Router(baseUrl, config)
 }
