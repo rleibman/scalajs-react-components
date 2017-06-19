@@ -1,5 +1,6 @@
 package chandu0101.scalajs.react
 
+import chandu0101.scalajs.react.components.semanticui.{ButtonAnimatedType, SuiCountry}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.VdomElement
 import org.scalajs.dom.html
@@ -38,6 +39,12 @@ package object components {
   private[components] implicit def VdomElementOrStringOrDoubleEvidence(u: VdomElement | String | Double): js.Any =
     //noinspection ComparingUnrelatedTypes
     if (u.isInstanceOf[VdomElement]) u.asInstanceOf[VdomElement].rawElement else u.asInstanceOf[js.Any]
+
+  private[components] implicit def BooleanOrButtonAnimatedType(u: Boolean | ButtonAnimatedType): js.Any =
+    u.asInstanceOf[js.Any]
+
+  private[components] implicit def StringOrSuiCountry(u: String | SuiCountry): js.Any =
+    u.asInstanceOf[js.Any]
 
   private[components] implicit final class UCB[R](private val uc: js.UndefOr[CallbackTo[R]]) extends AnyVal {
     @inline def asCbo: CallbackOption[R] =

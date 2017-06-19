@@ -1,24 +1,12 @@
 package chandu0101.scalajs.react.components.semanticui
 
-import scala.scalajs.js
-
-class ButtonAnimatedType(val value: String) extends js.Any
+case class ButtonAnimatedType private (value: String) extends AnyVal
 object ButtonAnimatedType {
   val fade = ButtonAnimatedType("fade")
   val vertical = ButtonAnimatedType("vertical")
   val values = List(fade, vertical)
-
-  def apply(value: String) = new ButtonAnimatedType(value)
 }
 
-class SuiIconType(val value: String) extends js.Any
-object SuiIconType {
-  //Add all icons here
-  def apply(value: String) = new SuiIconType(value)
-}
+case class SuiIconType(value: String) extends AnyVal
 
-class SuiCountry(val value: String) extends js.Any
-object SuiCountry {
-  //Add all countries here
-  def apply(value: String) = new SuiCountry(value)
-}
+case class SuiCountry(value: String) extends AnyVal
