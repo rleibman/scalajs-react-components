@@ -19,9 +19,8 @@ object ReactApp extends JSApp {
       dom.document.body.className += " pg-loaded"
     }
 
-    //todo: dev-server complains that we load several times?
+    //TODO: dev-server complains that we load several times?
     ReactTapEventPlugin(js.undefined)
-//    ReactTapEventPlugin
 
     AppCSS.load()
     val router = AppRouter.router()

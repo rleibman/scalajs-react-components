@@ -11,7 +11,6 @@ We are trying to make the experience of using javascript components in scala.js
 Adding types to javascript is a lot of guesswork, and we're certain to have gotten them wrong
  some places. Bug reports and/or pull requests are very much welcome! :)
 
-
 ### Wrappers for javascript components:
 These components require you to provide javascript yourself.
 
@@ -49,11 +48,14 @@ MuiRaisedButton(label = "label")()
 Add these dependencies to you sbt build file
 ```scala
 libraryDependencies ++= Seq(
-  "com.github.japgolly.scalajs-react" %%% "core" % "0.11.3",
-  "com.github.japgolly.scalajs-react" %%% "extra" % "0.11.3",
-  "com.olvind" %%% "scalajs-react-components" % "0.6.0"
+  "com.github.japgolly.scalajs-react" %%% "core" % "1.0.1",
+  "com.github.japgolly.scalajs-react" %%% "extra" % "1.0.1",
+  "com.olvind" %%% "scalajs-react-components" % "1.0.0"
 )
 ```
+
+This repository includes an example project, by all means use it as a template for your own.
+
 
 #### ScalaCSS
 In order to use the scala.js components, you need to make sure you load their CSS:
@@ -62,7 +64,7 @@ GlobalRegistry.register(<component>.Style)
 ```
 See [here](https://japgolly.github.io/scalacss/book/ext/react.html) for more details
 
-## Demo With Code Examples
+## Full Demo With Code Examples
 
 **Online :** 
 
