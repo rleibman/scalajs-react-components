@@ -46,7 +46,7 @@ lazy val generateSui = TaskKey[Seq[File]]("generateSui")
 lazy val core =
   project
     .in(file("core"))
-    .dependsOn(macros, gen)
+    .dependsOn(macros)
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings)
     .settings(
@@ -159,7 +159,7 @@ lazy val root =
 lazy val commonSettings =
   Seq(
     scalaVersion := "2.12.2",
-    version := "1.0.0-Snapshot",
+    version := "1.0.0",
     name := "scalajs-react-components",
     organization := "com.olvind",
     licenses += ("Apache 2.0",

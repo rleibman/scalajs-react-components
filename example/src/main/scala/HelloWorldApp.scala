@@ -1,14 +1,17 @@
 package demo
 
 import chandu0101.scalajs.react.components.ReactTapEventPlugin
-import demo.routes.AppRouter
 import org.scalajs.dom
 
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{global => g}
 import scala.scalajs.js.JSApp
+import japgolly.scalajs.react._
+import japgolly.scalajs.react.vdom.html_<^._
+import chandu0101.scalajs.react.components.elementalui.EuiButton
+import chandu0101.scalajs.react.components.elementalui.ButtonType
 
-object ReactApp extends JSApp {
+object HelloWorldApp extends JSApp {
 
   override def main(): Unit = {
     // remove waiting page stuff
@@ -23,9 +26,15 @@ object ReactApp extends JSApp {
     ReactTapEventPlugin(js.undefined)
 //    ReactTapEventPlugin
 
-    AppCSS.load()
-    val router = AppRouter.router()
-    router.renderIntoDOM(dom.document.getElementById("container"))
+    val component =
+      ScalaComponent
+        .builder[Unit]("component")
+        .renderStatic(
+          <.div(^.padding := 100.px, EuiButton(`type` = ButtonType.primary)("Hello World!"))
+        )
+        .build
+
+    component().renderIntoDOM(dom.document.getElementById("container"))
     ()
   }
 }

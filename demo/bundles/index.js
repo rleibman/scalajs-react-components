@@ -1,8 +1,8 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var injectTapEventPlugin = require('react-tap-event-plugin');
-injectTapEventPlugin();
+//var injectTapEventPlugin = require('react-tap-event-plugin');
+//injectTapEventPlugin();
 
 window.hljs = require("highlight.js");
 require("highlight.js/styles/github.css");
