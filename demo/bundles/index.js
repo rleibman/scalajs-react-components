@@ -1,5 +1,14 @@
-//images
+var React = require("react");
+var ReactDOM = require("react-dom");
 
+var injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
+
+window.hljs = require("highlight.js");
+require("highlight.js/styles/github.css");
+
+
+//images
 window.googleMapImage      = require("./googleMap.png");
 window.reactListViewImage  = require("./reactListView.png");
 window.reactTreeViewImage  = require("./reactTreeView.png");
@@ -16,4 +25,3 @@ window.spinnerImage        = require("./spinner.png");
 window.reactPopoverImage   = require("./reactPopover.png");
 window.reactDraggableImage = require("./reactDraggable.png");
 
-window.alert(window.googleMapImage);

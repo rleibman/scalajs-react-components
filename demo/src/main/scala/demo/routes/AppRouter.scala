@@ -7,7 +7,7 @@ import japgolly.scalajs.react.extra.router._
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 
-import scala.scalajs.js.Dynamic.{ global => g }
+import scala.scalajs.js.Dynamic.{global => g}
 
 object AppRouter {
 
