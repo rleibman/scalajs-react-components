@@ -33,7 +33,6 @@ lazy val gen =
       name := "generator",
       version in webpack := "2.6.1",
       version in installWebpackDevServer := "2.6.1",
-      webpackConfigFile := Some(baseDirectory.value / "bundles" / "custom.webpack.config.js"),
       libraryDependencies ++= Seq(
         "com.lihaoyi"   %% "ammonite-ops" % "0.9.5",
         "org.scalatest" %% "scalatest"    % "3.0.3" % Test
@@ -139,9 +138,11 @@ lazy val demo =
           PathFinder(
             Seq(
               baseDirectory.value / "images",
+              baseDirectory.value / "bundles" / "index.js",
               baseDirectory.value / "index.html"
             )) ** "*.*",
-      webpackEmitSourceMaps := false
+      webpackEmitSourceMaps := false,
+      webpackConfigFile := Some(baseDirectory.value / "bundles" / "custom.webpack.config.js")
 //      enableReloadWorkflow := true
     )
 

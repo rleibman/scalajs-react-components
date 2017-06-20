@@ -6,6 +6,9 @@ var _ = require('lodash');
 module.exports = _.merge(
     require('./scalajs.webpack.config'),
     {
+        entry: {
+            index: './index.js'
+        },
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
         ],
