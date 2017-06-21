@@ -51,6 +51,8 @@ object MuiTypeMapper extends TypeMapper {
       case ("Dialog", "width", "Mui.any")              => Normal("Int")
       case ("DropDownMenu", "value", "Mui.any")        => typeT
       case ("EnhancedSwitch", "value", "Mui.any")      => typeT
+      case ("RadioButtonGroup", "defaultSelected", "Mui.any")         => typeT
+      case ("RadioButtonGroup", "valueSelected", "Mui.any")         => typeT
       case ("RadioButton", "value", "Mui.any")         => typeT
       case ("Tab", "index", "Mui.any")                 => Normal("js.Any")
       case ("ListItem", "nestedItems", "Mui.arrayOf(Mui.element)") =>

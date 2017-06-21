@@ -6,3 +6,5 @@
 * ReactJS version 1.0.X!
 * ScalaJS version 0.6.17
 * Included an example project
+
+MIGRATION to 1.0.0
